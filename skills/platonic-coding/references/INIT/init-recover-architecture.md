@@ -14,7 +14,7 @@ Produce Draft RFCs that capture each major subsystem's component structure, resp
 | Confirmed RFC plan | From plan-modular-specs.md |
 | Conceptual Design RFC | Generated in recover-conceptual.md |
 | RFC numbers | From plan (e.g., 0002, 0003, ...) |
-| Spec-kind template | `assets/architecture-design.md.template` |
+| Spec-kind template | `assets/specs/template-architecture-design.md` |
 
 ## Recovery Process
 
@@ -84,7 +84,7 @@ From the scan's type catalog, identify the conceptual data models for this subsy
 
 ### Step 6: Draft the Spec
 
-Using the `architecture-design.md.template`:
+Using the `template-architecture-design.md`:
 
 1. Fill in metadata (RFC number, title, authors, date, depends on: RFC-0001)
 2. Write Abstract (what this subsystem is and its role)

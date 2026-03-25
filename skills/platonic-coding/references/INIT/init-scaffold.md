@@ -36,7 +36,7 @@ If not provided:
 
 ### Step 2: Create .platonic.yml
 
-1. Read `assets/platonic.yml.template`
+1. Read `assets/templates/template-platonic.yml`
 2. Replace placeholders:
    - `{{PROJECT_NAME}}` → project name
    - `{{PROJECT_DESCRIPTION}}` → description (ask user or leave as placeholder)
@@ -49,11 +49,11 @@ If not provided:
 ### Step 3: Create Specs Directory
 
 1. Create `<specs-path>/` directory
-2. Read and process RFC infrastructure templates from `assets/`:
-   - `rfc-standard.md.template` → `rfc-standard.md`
-   - `rfc-history.md.template` → `rfc-history.md`
-   - `rfc-index.md.template` → `rfc-index.md`
-   - `rfc-namings.md.template` → `rfc-namings.md`
+2. Read and process RFC infrastructure templates from `assets/templates/`:
+   - `template-rfc-standard.md` → `rfc-standard.md`
+   - `template-rfc-history.md` → `rfc-history.md`
+   - `template-rfc-index.md` → `rfc-index.md`
+   - `template-rfc-namings.md` → `rfc-namings.md`
 3. Replace `{{PROJECT_NAME}}` in each template
 4. Write output files to specs directory
 5. **Skip files that already exist**
@@ -61,17 +61,18 @@ If not provided:
 ### Step 4: Create Spec Templates
 
 1. Create `<specs-path>/templates/` directory
-2. Copy template files from `assets/`:
+2. Copy template files from `assets/specs/`:
    - `rfc-template.md` → `templates/rfc-template.md`
-   - `conceptual-design.md.template` → `templates/conceptual-design.md`
-   - `architecture-design.md.template` → `templates/architecture-design.md`
-   - `impl-interface-design.md.template` → `templates/impl-interface-design.md`
-3. **Skip files that already exist**
+   - `template-conceptual-design.md` → `templates/conceptual-design.md`
+   - `template-architecture-design.md` → `templates/architecture-design.md`
+   - `template-impl-interface-design.md` → `templates/impl-interface-design.md`
+3. Replace `{{PROJECT_NAME}}` in each template (except rfc-template.md which is generic)
+4. **Skip files that already exist**
 
 ### Step 5: Create Impl Directory
 
 1. Create `<impl-path>/` directory
-2. Read `assets/impl-readme.md.template`
+2. Read `assets/templates/template-impl-readme.md`
 3. Replace `{{PROJECT_NAME}}` → project name
 4. Write to `<impl-path>/README.md`
 5. **Skip if file already exists**
@@ -79,7 +80,7 @@ If not provided:
 ### Step 6: Create Drafts Directory
 
 1. Create `<drafts-path>/` directory
-2. Read `assets/drafts-readme.md.template`
+2. Read `assets/templates/template-drafts-readme.md`
 3. Replace `{{PROJECT_NAME}}` → project name
 4. Write to `<drafts-path>/README.md`
 5. **Skip if file already exists**

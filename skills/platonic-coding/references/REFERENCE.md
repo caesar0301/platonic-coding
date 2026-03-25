@@ -749,9 +749,9 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │   │   ├── RFC-0002.md
 │   │   └── templates/               # Templates for future RFCs
 │   │       ├── rfc-template.md
-│   │       ├── conceptual-design.md.template
-│   │       ├── architecture-design.md.template
-│   │       └── impl-interface-design.md.template
+│   │       ├── conceptual-design.md
+│   │       ├── architecture-design.md
+│   │       └── impl-interface-design.md
 │   │
 │   ├── impl/                       # Implementation guides
 │   │   ├── README.md

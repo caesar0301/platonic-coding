@@ -13,7 +13,7 @@ Produce a Draft RFC that captures the system's vision, principles, taxonomy, and
 | Scan synthesis | From scan-project.md |
 | Confirmed RFC plan | From plan-modular-specs.md |
 | RFC number | From plan (default: 0001) |
-| Spec-kind template | `assets/conceptual-design.md.template` |
+| Spec-kind template | `assets/specs/template-conceptual-design.md` |
 
 ## Recovery Process
 
@@ -73,7 +73,7 @@ From assertions, error types, validation rules, and test expectations:
 
 ### Step 5: Draft the Spec
 
-Using the `conceptual-design.md.template`:
+Using the `template-conceptual-design.md`:
 
 1. Fill in metadata (RFC number, title, authors, date, depends on: "---")
 2. Write Abstract (from Step 1)

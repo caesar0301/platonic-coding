@@ -21,7 +21,7 @@ Produce Draft RFCs that capture cross-boundary API contracts, naming conventions
 | Confirmed RFC plan | From plan-modular-specs.md |
 | Architecture Design RFCs | Generated in recover-architecture.md |
 | RFC numbers | From plan |
-| Spec-kind template | `assets/impl-interface-design.md.template` |
+| Spec-kind template | `assets/specs/template-impl-interface-design.md` |
 
 ## Recovery Process
 
@@ -84,7 +84,7 @@ For each interface, document the behavioral contract:
 
 ### Step 6: Draft the Spec
 
-Using the `impl-interface-design.md.template`:
+Using the `template-impl-interface-design.md`:
 
 1. Fill in metadata (RFC number, title, authors, date, depends on: relevant architecture RFCs)
 2. Write Abstract
