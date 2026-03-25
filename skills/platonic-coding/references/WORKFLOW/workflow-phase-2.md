@@ -30,7 +30,7 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
   1. **Spec Analysis**: Read the RFC, extract all requirements, constraints, invariants
   2. **Impl Guide Design**: Create a concrete implementation guide document
      - **Confirmation gate**: Present the guide to the user and wait for approval (default behavior)
-     - Save to `docs/impl/` (e.g., `docs/impl/RFC-0001-impl.md`)
+     - Save to `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `IG-001-user-authentication.md`)
   3. **Coding Plan**: Break the guide into ordered tasks with file-level changes and test tasks
      - **Confirmation gate**: Present the coding plan to the user and wait for approval (default behavior)
   4. **Coding**: Implement all tasks, write unit and integration tests
@@ -49,7 +49,7 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
 
 ## Output
 
-- **Implementation guide** document in `docs/impl/` (e.g., `RFC-0001-impl.md`)
+- **Implementation guide** document in `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `IG-001-user-authentication.md`)
 - **Source code** in the codebase implementing the feature
 - **Unit tests** for individual components
 - **Integration tests** for cross-component behavior

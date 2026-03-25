@@ -463,7 +463,7 @@ All implementation operations are in `references/IMPL/`.
 - Auto-mode flag (skip confirmations)
 
 **Output**:
-- Implementation guide in `docs/impl/`
+- Implementation guide in `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `IG-042-message-queue-protocol.md`)
 - Source code in target directory
 - Unit tests
 - Integration tests
@@ -493,7 +493,7 @@ Use platonic-coding impl-full for RFC-0042 without stopping for confirmation.
 - Language and framework context
 
 **Output**:
-- Implementation guide in `docs/impl/`
+- Implementation guide in `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `IG-001-user-authentication.md`)
 
 **Example**:
 ```
@@ -522,7 +522,7 @@ Use platonic-coding impl-create-guide for RFC-0001, guide only, no coding.
 
 **Example**:
 ```
-Use platonic-coding impl-code from docs/impl/RFC-0001-impl.md.
+Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.
 ```
 
 ---
@@ -544,7 +544,7 @@ Use platonic-coding impl-code from docs/impl/RFC-0001-impl.md.
 
 **Example**:
 ```
-Use platonic-coding impl-validate-guide for docs/impl/queue_impl.md.
+Use platonic-coding impl-validate-guide for docs/impl/IG-042-message-queue-protocol.md.
 ```
 
 ---
@@ -679,7 +679,7 @@ Call `impl-full` operation which runs:
 4. Coding with tests
 
 **Output**:
-- Implementation guide in `docs/impl/`
+- Implementation guide in `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md`
 - Source code with unit and integration tests
 
 **Example**:
@@ -755,8 +755,8 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │   │
 │   ├── impl/                       # Implementation guides
 │   │   ├── README.md
-│   │   ├── RFC-0001-impl.md         # Impl guide for RFC-0001
-│   │   └── RFC-0002-impl.md
+│   │   ├── IG-001-user-authentication.md         # Impl guide for RFC-0001
+│   │   └── IG-002-data-storage.md                # Impl guide for RFC-0002
 │   │
 │   └── drafts/                     # Phase 0 design drafts
 │       ├── README.md
@@ -813,13 +813,13 @@ Use platonic-coding workflow --phase 0 to add notifications.
 Use platonic-coding impl-create-guide for RFC-0001, guide only.
 
 # Just implement from existing guide
-Use platonic-coding impl-code from docs/impl/RFC-0001-impl.md.
+Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.
 
 # Update terminology
 Use platonic-coding specs-generate-namings.
 
 # Validate guide against RFC
-Use platonic-coding impl-validate-guide for docs/impl/queue_impl.md.
+Use platonic-coding impl-validate-guide for docs/impl/IG-042-message-queue-protocol.md.
 ```
 
 ---
@@ -849,6 +849,10 @@ Use platonic-coding --init-recover
 **Solution**:
 1. Run `impl-validate-guide` to identify contradictions
 2. Either update the guide (`impl-update-guide`) or modify the RFC and re-validate
+
+### Implementation guide naming
+
+Implementation guides should be named using the pattern `IG-<number>-semantic-short-desc.md` (e.g., `IG-053-cli-command-nesting.md`).
 
 ---
 

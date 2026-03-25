@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
 license: MIT
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -167,7 +167,7 @@ Use platonic-coding to implement RFC-0042 (Message Queue) in the acme-queue modu
 Use platonic-coding impl-create-guide for RFC-0001, guide only, no coding.
 
 # Explicit: implement from existing guide
-Use platonic-coding impl-code from docs/impl/RFC-0001-impl.md.
+Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.
 
 # Auto-mode: no confirmations
 Use platonic-coding impl-full for RFC-003 without stopping for confirmation.
@@ -240,11 +240,11 @@ Use platonic-coding to continue from where we left off.
 
 ## Default Paths
 
-| Artifact | Default Path | Configurable in .platonic.yml |
-|----------|--------------|-------------------------------|
-| Design drafts | `docs/drafts/` | Yes |
-| RFC specs | `docs/specs/` | Yes |
-| Implementation guides | `docs/impl/` | Yes |
+| Artifact | Default Path | Naming Convention | Configurable in .platonic.yml |
+|----------|--------------|-------------------|-------------------------------|
+| Design drafts | `docs/drafts/` | `<feature>-design.md` | Yes |
+| RFC specs | `docs/specs/` | `RFC-<NNNN>.md` | Yes |
+| Implementation guides | `docs/impl/` | `IG-<number>-semantic-short-desc.md` (e.g., `IG-053-cli-command-nesting.md`) | Yes |
 
 ## Templates
 

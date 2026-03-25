@@ -123,7 +123,7 @@ Are there ambiguous RFC requirements with multiple valid interpretations?
 
 ## Output
 
-- **Implementation guide** in `docs/impl/` (e.g., `RFC-NNNN-impl.md` such as `RFC-0001-impl.md`)
+- **Implementation guide** in `docs/impl/` using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `IG-042-message-queue-protocol.md`)
 - **Source code** in the codebase following the guide
 - **Unit tests** for individual components
 - **Integration tests** for cross-component behavior
@@ -138,11 +138,11 @@ Are there ambiguous RFC requirements with multiple valid interpretations?
 
 **Sub-Workflow Execution**:
 1. Spec Analysis: Extract 15 requirements, 4 invariants, 6 types from RFC-0042
-2. Impl Guide: Present `docs/impl/RFC-0042-impl.md` → user confirms
+2. Impl Guide: Present `docs/impl/IG-042-message-queue-protocol.md` → user confirms
 3. Coding Plan: 8 tasks (4 implementation + 4 test tasks) → user confirms
 4. Coding: Implement all tasks, run tests, verify build
 
 **Output**:
-- `docs/impl/RFC-0042-impl.md`
+- `docs/impl/IG-042-message-queue-protocol.md`
 - `acme-queue/src/lib.rs`, `acme-queue/src/message.rs`, etc.
 - `acme-queue/tests/unit/`, `acme-queue/tests/integration/`

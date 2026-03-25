@@ -2,6 +2,37 @@
 
 This document summarizes the changes made to align the platonic-coding-skills project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.0.1 — Improved Implementation Guide Naming (2026-03-25)
+
+### Enhanced Implementation Guide Naming Convention
+
+**Changed:** Implementation guide files now use a more descriptive and standardized naming format.
+
+**Previous format:** `RFC-<NNNN>-impl.md` (e.g., `RFC-0001-impl.md`)
+
+**New format:** `IG-<number>-semantic-short-desc.md` (e.g., `IG-001-user-authentication.md`)
+
+**Benefits:**
+- Self-documenting filenames with semantic descriptions
+- Better organization and discoverability
+- Clearer separation from RFC specification files
+- Easier navigation when working with multiple implementation guides
+
+**Updated across all files:**
+- ✅ `SKILL.md` — Updated examples and default paths table
+- ✅ `references/REFERENCE.md` — Updated all examples and added naming convention section
+- ✅ `references/IMPL/impl-full.md` — Updated output descriptions
+- ✅ `references/IMPL/impl-create-guide.md` — Updated examples
+- ✅ `references/IMPL/impl-code.md` — Updated examples
+- ✅ `references/IMPL/impl-validate-guide.md` — Updated examples
+- ✅ `references/WORKFLOW/workflow-phase-2.md` — Updated phase descriptions
+- ✅ `references/WORKFLOW/workflow-phase-3.md` — Updated examples
+- ✅ `assets/templates/template-impl-readme.md` — Updated template documentation
+
+**Migration:** Existing projects can continue using old naming, but new guides will use the improved format.
+
+---
+
 ## Version 2.0.0 — Unified Skill: platonic-coding (2026-03-25)
 
 ### Major Unification: 5 Skills → 1 Intelligent Orchestrator

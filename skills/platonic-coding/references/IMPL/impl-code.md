@@ -91,7 +91,7 @@ If the implementation guide is incomplete or ambiguous:
 ## Example
 
 **Input**:
-- Guide: `docs/impl/RFC-0001-impl.md`
+- Guide: `docs/impl/IG-001-user-authentication.md`
 - RFC: `docs/specs/RFC-0001.md`
 
 **Coding Plan** (simplified):

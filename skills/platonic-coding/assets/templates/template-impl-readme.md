@@ -47,8 +47,10 @@ Use the **platonic-impl** skill which includes its own template for generating i
 
 ## Naming Convention
 
-Name guides descriptively, referencing the feature or RFC:
+Implementation guides should follow the pattern `IG-<number>-semantic-short-desc.md`:
 
-- `auth-impl.md` - Authentication implementation
-- `storage-layer-impl.md` - Storage layer implementation
-- `api-contracts-impl.md` - API contracts implementation
+- `IG-001-user-authentication.md` - User authentication implementation
+- `IG-042-message-queue-protocol.md` - Message queue protocol implementation
+- `IG-053-cli-command-nesting.md` - CLI command nesting implementation
+
+The number typically corresponds to the RFC number it implements.
