@@ -161,7 +161,7 @@
 ---
 
 **Review Completed**: [YYYY-MM-DD HH:MM]  
-**Tool**: platonic-code-review skill
+**Tool**: platonic-coding REVIEW mode
 
 ## Additional Context
 

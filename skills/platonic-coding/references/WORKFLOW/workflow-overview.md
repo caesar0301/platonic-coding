@@ -19,11 +19,11 @@ Execute the full four-phase Platonic Coding workflow with clear phase visibility
 ```
 Phase 0: Conceptual Design
     → design draft (docs/drafts/ or user-provided)
-Phase 1: RFC from draft + platonic-specs refine
+Phase 1: RFC from draft + SPECS mode refine
     → RFC in docs/specs/
-Phase 2: platonic-impl full sub-workflow
+Phase 2: IMPL mode full operation
     → impl guide in docs/impl/ + source code with tests
-Phase 3: platonic-code-review (code + specs + impl guides)
+Phase 3: REVIEW mode (code + specs + impl guides)
     → review/compliance report
 FINISHED
 ```
@@ -40,14 +40,14 @@ User may override any path.
 
 - **Phase 0**: Clarify scope, constraints, and where to save the design draft if not using default.
 - **Phase 1**: RFC number/index for the new or updated RFC, if not specified.
-- **Phase 2**: RFC number/index for which to implement, if not specified. The platonic-impl skill handles its own confirmation gates for impl guide and coding plan.
+- **Phase 2**: RFC number/index for which to implement, if not specified. The IMPL mode operation handles its own confirmation gates for impl guide and coding plan.
 
 ## Skill Invocations
 
 | Phase | Skill / Action |
 |-------|----------------|
-| 1 | **platonic-specs** — refine generated RFC (and related specs) |
-| 2 | **platonic-impl** — full-impl: spec analysis → impl guide → coding plan → code with tests |
-| 3 | **platonic-code-review** — review code against RFC specs and impl guides |
+| 1 | **SPECS mode** — refine generated RFC (and related specs) |
+| 2 | **IMPL mode** — impl-full: spec analysis → impl guide → coding plan → code with tests |
+| 3 | **REVIEW mode** — review code against RFC specs and impl guides |
 
 Read the phase-specific reference file before executing each phase.

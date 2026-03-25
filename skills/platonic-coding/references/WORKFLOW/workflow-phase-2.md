@@ -6,7 +6,7 @@
 
 ## Objective
 
-Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **implement the code** with unit and integration tests. This phase delegates to **platonic-impl** which runs a four-step sub-workflow with user confirmation gates.
+Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **implement the code** with unit and integration tests. This phase uses the **platonic-coding IMPL mode** which runs a four-step sub-workflow with user confirmation gates.
 
 ## Inputs
 
@@ -21,10 +21,10 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
 - If not specified, ask the user which RFC (by number/index) should be implemented.
 - Determine target module/crate/package and language/framework (from user or existing codebase).
 
-### Step 2: Run platonic-impl Full Sub-Workflow
+### Step 2: Run IMPL Mode Full Operation
 
-- **Use the platonic-impl skill** with the **full-impl** operation.
-- Read `skills/platonic-impl/references/full-impl.md` and follow it.
+- **Use platonic-coding IMPL mode** with the **impl-full** operation.
+- Read `references/IMPL/impl-full.md` and follow it.
 - The sub-workflow runs four steps:
 
   1. **Spec Analysis**: Read the RFC, extract all requirements, constraints, invariants
@@ -35,7 +35,7 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
      - **Confirmation gate**: Present the coding plan to the user and wait for approval (default behavior)
   4. **Coding**: Implement all tasks, write unit and integration tests
 
-- Inputs to platonic-impl:
+- Inputs to impl-full:
   - RFC document path (e.g., `docs/specs/RFC-0001.md`)
   - Target module name
   - Language and optional framework
@@ -64,4 +64,4 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
 ## Handoff to Phase 3
 
 - Confirm which code paths and which RFC(s) / impl guide(s) should be reviewed.
-- Proceed to Phase 3: **platonic-code-review** for code vs specs and impl guides.
+- Proceed to Phase 3: **REVIEW mode** for code vs specs and impl guides.

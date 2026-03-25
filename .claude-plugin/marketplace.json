@@ -9,11 +9,12 @@
     "url": "https://github.com/caesar0301/platonic-coding-skills"
   },
   "metadata": {
-    "version": "1.0.3",
-    "description": "Professional Agent Skills collection for AI-powered Platonic Coding workflows. Includes skills for project initialization, RFC specification management, implementation guides, code review, and end-to-end workflow orchestration, following the Agent Skills standard from agentskills.io",
+    "version": "2.0.0",
+    "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill for specification-driven development.",
     "keywords": [
       "agent-skills",
       "platonic-coding",
+      "intelligent-orchestrator",
       "initialization",
       "code-review",
       "specifications",
@@ -22,85 +23,30 @@
       "documentation",
       "quality",
       "ai-coding",
-      "development-tools"
+      "development-tools",
+      "auto-detection",
+      "workflow"
     ],
     "license": "MIT"
   },
   "skills": [
     {
-      "name": "platonic-init",
-      "path": "skills/platonic-init",
-      "description": "Initialize the Platonic Coding system for any project. Scaffolds specs infrastructure and scans existing codebases to recover missing design specs as Draft RFCs",
-      "version": "1.0.3",
-      "category": "initialization",
-      "tags": [
-        "init",
-        "bootstrap",
-        "setup",
-        "adopt",
-        "recover",
-        "specs",
-        "rfc",
-        "project-setup"
-      ]
-    },
-    {
-      "name": "platonic-workflow",
-      "path": "skills/platonic-workflow",
-      "description": "Orchestrate the full four-phase Platonic Coding workflow from design draft to RFC, implementation (guide + code with tests), and review. Always shows current phase; invokes platonic-specs, platonic-impl, and platonic-code-review",
-      "version": "1.0.3",
+      "name": "platonic-coding",
+      "path": "skills/platonic-coding",
+      "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.",
+      "version": "2.0.0",
       "category": "workflow",
       "tags": [
-        "workflow",
-        "platonic-workflow",
-        "design-draft",
-        "rfc",
-        "implementation-guide",
-        "code-review",
-        "phase"
-      ]
-    },
-    {
-      "name": "platonic-specs",
-      "path": "skills/platonic-specs",
-      "description": "Manage and validate RFC-style specifications with dynamic generation of history, index, and namings files. For project initialization, use platonic-init instead",
-      "version": "1.0.3",
-      "category": "documentation",
-      "tags": [
-        "rfc",
+        "intelligent-orchestrator",
+        "auto-detection",
+        "platonic-coding",
+        "initialization",
         "specifications",
-        "documentation",
-        "validation",
-        "taxonomy",
-        "refinement"
-      ]
-    },
-    {
-      "name": "platonic-impl",
-      "path": "skills/platonic-impl",
-      "description": "Translate RFC specifications into concrete implementation guides and then implement them as code with tests. Manages the full spec-to-code pipeline with user confirmation gates. Language-aware and framework-aware",
-      "version": "1.0.3",
-      "category": "implementation",
-      "tags": [
-        "implementation-guide",
-        "technical-design",
-        "architecture",
-        "rfc-implementation",
-        "module-design"
-      ]
-    },
-    {
-      "name": "platonic-code-review",
-      "path": "skills/platonic-code-review",
-      "description": "Review code implementation against specifications to ensure consistency and completeness. Validates spec-to-code alignment and generates compliance reports",
-      "version": "1.0.3",
-      "category": "validation",
-      "tags": [
-        "spec-compliance",
-        "validation",
-        "consistency-check",
-        "requirements",
-        "gap-analysis"
+        "rfc",
+        "implementation",
+        "review",
+        "workflow",
+        "spec-driven"
       ]
     }
   ],
