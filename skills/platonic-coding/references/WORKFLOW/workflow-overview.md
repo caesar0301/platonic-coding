@@ -18,6 +18,7 @@ Execute the full four-phase Platonic Coding workflow with clear phase visibility
 
 ```
 Phase 0: Conceptual Design
+    → Invoke brainstorming skill (if installed) OR use bundled interactive method
     → design draft (docs/drafts/ or user-provided)
 Phase 1: RFC from draft + SPECS mode refine
     → RFC in docs/specs/
@@ -46,6 +47,7 @@ User may override any path.
 
 | Phase | Skill / Action |
 |-------|----------------|
+| 0 | **BRAINSTORMING** (if installed) — structured design exploration, or use bundled interactive method |
 | 1 | **SPECS mode** — refine generated RFC (and related specs) |
 | 2 | **IMPL mode** — impl-full: spec analysis → impl guide → coding plan → code with tests |
 | 3 | **REVIEW mode** — review code against RFC specs and impl guides |

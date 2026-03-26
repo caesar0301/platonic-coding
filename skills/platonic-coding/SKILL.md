@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
 license: MIT
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -12,11 +12,13 @@ metadata:
     - platonic-impl
     - platonic-code-review
     - platonic-workflow
+  integrates:
+    - brainstorming (optional)
 ---
 
 # Platonic Coding
 
-Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review.
+Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with Superpower Brainstorming skill for enhanced design exploration in Phase 0.
 
 ## When to Use This Skill
 
@@ -214,7 +216,7 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 **Purpose**: Orchestrate the full 4-phase workflow from design to review
 
 **Phases**:
-- **Phase 0**: Conceptual design (interactive chat, design draft)
+- **Phase 0**: Conceptual design (invoke brainstorming skill if installed, or use bundled interactive method → design draft)
 - **Phase 1**: Generate RFC from draft → call `specs-refine`
 - **Phase 2**: Call `impl-full` (guide → plan → code + tests)
 - **Phase 3**: Call `review` for spec compliance
@@ -223,6 +225,8 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 **Auto-detection**: Suggested when project is initialized and ready for new features
 
 **Phase Visibility**: Always shows current phase at each step
+
+**Brainstorming Integration**: Phase 0 automatically detects and uses the Superpower Brainstorming skill if installed, providing structured design exploration with multiple approaches, trade-offs, and incremental validation. Falls back to bundled interactive method if not available.
 
 **Examples**:
 ```

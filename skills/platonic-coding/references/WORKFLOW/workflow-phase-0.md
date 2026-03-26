@@ -10,8 +10,29 @@ Produce a **design draft** that captures the conceptual design: principles, cons
 
 ## Method
 
-- **Interactive chat** with the user.
-- Use **optional items** (e.g., bullet lists, short prompts, choices) to clarify:
+### Primary: Superpower Brainstorming Integration
+
+**Check for installed brainstorming skill** and use it if available:
+
+1. **Detect brainstorming skill**: Use Skill tool with `skill: "brainstorming"` to check if the official Superpower Brainstorming skill is installed.
+2. **Invoke brainstorming**: If available, use the Skill tool to invoke the brainstorming skill:
+   - The skill will guide the collaborative dialogue
+   - Follow the brainstorming checklist: explore context, ask clarifying questions, propose approaches, present design
+   - The skill will produce a design spec at `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+   - Copy/move the design spec to the Platonic Coding draft location (`docs/drafts/`)
+
+3. **Benefits of brainstorming skill**:
+   - Structured exploration of requirements and constraints
+   - Multiple approach comparison with trade-offs
+   - Incremental validation through section-by-section presentation
+   - Built-in design document review process
+
+### Fallback: Bundled Interactive Method
+
+If the brainstorming skill is **not installed**, use the bundled interactive approach:
+
+- **Interactive chat** with the user
+- Use **optional items** to clarify:
   - Problem space and goals
   - Constraints and invariants
   - Domain knowledge and prior art
@@ -31,9 +52,10 @@ A **design draft** document that includes:
 ## Location
 
 - **Default**: Save the design draft under `docs/drafts/`.
+- **From brainstorming**: If using the brainstorming skill, it saves to `docs/superpowers/specs/` — copy to `docs/drafts/` for Platonic Coding workflow continuity.
 - The user may provide an existing design draft from another location; in that case, use it as the Phase 1 input and do not require creating a new one in Phase 0.
 
-## Optional Items (Examples)
+## Optional Items (Examples for Fallback Mode)
 
 Use as needed to structure the conversation:
 

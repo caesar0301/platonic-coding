@@ -2,6 +2,35 @@
 
 This document summarizes the changes made to align the platonic-coding-skills project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.1.0 — Superpower Brainstorming Integration (2026-03-26)
+
+### Integrated with Superpower Brainstorming Skill
+
+**Enhanced:** Phase 0 now seamlessly integrates with the [Superpower Brainstorming](https://github.com/obra/superpowers/tree/main/skills/brainstorming) skill when installed, providing structured design exploration.
+
+**How it works:**
+- Phase 0 auto-detects if brainstorming skill is installed
+- If installed: invokes brainstorming skill for structured design exploration with multiple approaches, trade-offs, and incremental validation
+- If not installed: uses bundled interactive design method (no behavior change)
+
+**Benefits:**
+- **Better designs**: Structured exploration with 2-3 approaches and trade-off analysis
+- **User-driven decisions**: Incremental validation through section-by-section presentation
+- **Quality assurance**: Built-in spec review loops before implementation
+- **Seamless fallback**: Works perfectly without brainstorming skill installed
+
+**Updated files:**
+- ✅ `SKILL.md` — Added brainstorming integration to WORKFLOW Mode section
+- ✅ `metadata.version` — Updated to 2.1.0
+- ✅ `metadata.integrates` — Added optional brainstorming dependency
+- ✅ `references/WORKFLOW/workflow-phase-0.md` — Added brainstorming detection and invocation logic
+- ✅ `references/WORKFLOW/workflow-overview.md` — Updated skill invocations table
+- ✅ `README.md` — Added "Combine with Superpowers" section, simplified workflow and examples
+
+**No breaking changes:** Existing projects continue working exactly as before.
+
+---
+
 ## Version 2.0.1 — Improved Implementation Guide Naming (2026-03-25)
 
 ### Enhanced Implementation Guide Naming Convention
