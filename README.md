@@ -11,7 +11,7 @@ A professional collection of Agent Skills for AI-powered [Platonic Coding](https
 
 ![manifesto-infographic](./manifesto.png)
 
-See a full description in [Manifesto](https://github.com/caesar0301/platonic-coding-skills/blob/main/MANIFESTO.md).
+See a full description in [Manifesto](https://github.com/caesar0301/platonic-coding/blob/main/MANIFESTO.md).
 
 ## 🔗 Combine with Superpowers for Maximum Impact
 
@@ -46,13 +46,13 @@ If using Claude Code CLI with marketplace support:
 
 ```bash
 # Add the skills marketplace
-claude-code marketplace add caesar0301/platonic-coding-skills
+claude-code marketplace add caesar0301/platonic-coding
 ```
 
 ### Method 2: Install using npx skills (Recommended for Most)
 
 ```bash
-npx skills add caesar0301/platonic-coding-skills
+npx skills add caesar0301/platonic-coding
 ```
 
 ### Method 3: Clone to Skills Directory
@@ -60,7 +60,7 @@ npx skills add caesar0301/platonic-coding-skills
 Clone this repository to your agent's skills directory:
 
 ```bash
-git clone https://github.com/caesar0301/platonic-coding-skills.git ~/.claude/skills/platonic-coding-skills
+git clone https://github.com/caesar0301/platonic-coding.git ~/.claude/skills/platonic-coding
 ```
 
 The unified `platonic-coding` skill provides all functionality in a single, intelligent orchestrator.

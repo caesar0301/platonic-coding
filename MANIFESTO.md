@@ -211,7 +211,7 @@ A system that cannot explain *why* something is wrong does not understand its ow
 
 Platonic Coding becomes practical through structured agent workflows.
 
-The [**Platonic Coding Skills**](https://github.com/caesar0301/platonic-coding-skills) system operationalizes this philosophy through complementary skills. This turns agents from conversational tools into **lawful participants** in a shared formal system.
+The [**Platonic Coding Skills**](https://github.com/caesar0301/platonic-coding) system operationalizes this philosophy through complementary skills. This turns agents from conversational tools into **lawful participants** in a shared formal system.
 
 ---
 

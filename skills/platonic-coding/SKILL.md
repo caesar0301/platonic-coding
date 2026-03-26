@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
 license: MIT
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:

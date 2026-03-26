@@ -1,6 +1,6 @@
 # Project Restructuring Summary
 
-This document summarizes the changes made to align the platonic-coding-skills project with the [Agent Skills](https://agentskills.io) standard.
+This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
 ## Version 2.1.0 — Superpower Brainstorming Integration (2026-03-26)
 
