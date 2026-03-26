@@ -10,7 +10,7 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
 
 ## Inputs
 
-- **RFC spec**: From Phase 1 (default `docs/specs/`, filename convention `RFC-NNNN.md`, e.g. `RFC-0001.md`).
+- **RFC spec**: From Phase 1 (default `docs/specs/`, filename convention `RFC-NNNN-<name>.md`, e.g. `RFC-0001-world-view.md`).
 - **RFC number/index** (optional): If the user has not specified for which RFC to implement, ask (e.g., "For which RFC should I create the implementation?").
 - **Target module/language/framework**: From user or inferred from codebase.
 
@@ -36,7 +36,7 @@ Produce a **concrete implementation guide** from the Phase 1 RFC spec, then **im
   4. **Coding**: Implement all tasks, write unit and integration tests
 
 - Inputs to impl-full:
-  - RFC document path (e.g., `docs/specs/RFC-0001.md`)
+  - RFC document path (e.g., `docs/specs/RFC-0001-world-view.md`)
   - Target module name
   - Language and optional framework
   - Output path for guide: default `docs/impl/`

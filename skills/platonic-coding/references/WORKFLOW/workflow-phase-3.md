@@ -11,7 +11,7 @@
 ## Inputs
 
 - **Code**: Implemented in Phase 2 (relevant directories/modules).
-- **RFC spec(s)**: From Phase 1 (filename `RFC-NNNN.md`, e.g. `docs/specs/RFC-0001.md`).
+- **RFC spec(s)**: From Phase 1 (filename `RFC-NNNN-<name>.md`, e.g. `docs/specs/RFC-0001-world-view.md`).
 - **Implementation guide(s)**: From Phase 2, using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `docs/impl/IG-001-user-authentication.md`).
 
 ## Process

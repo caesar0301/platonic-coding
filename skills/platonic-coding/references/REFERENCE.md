@@ -201,7 +201,7 @@ Use platonic-coding init-plan-modular-specs from the scan results.
 
 **Reference**: `references/INIT/init-recover-conceptual.md`
 
-**Purpose**: Generate a conceptual design RFC (RFC-0001) from codebase analysis.
+**Purpose**: Generate a conceptual design RFC (RFC-0001-world-view) from codebase analysis.
 
 **When to use**: After user confirms the RFC plan, as the first RFC to generate.
 
@@ -211,12 +211,12 @@ Use platonic-coding init-plan-modular-specs from the scan results.
 - Project configuration
 
 **Output**:
-- `docs/specs/RFC-0001.md` (Conceptual Design, Status: Draft)
+- `docs/specs/RFC-0001-world-view.md` (Conceptual Design, Status: Draft)
 - Vision, principles, terminology, invariants
 
 **Example**:
 ```
-Use platonic-coding init-recover-conceptual to generate RFC-0001.
+Use platonic-coding init-recover-conceptual to generate RFC-0001-world-view.
 ```
 
 ---
@@ -235,7 +235,7 @@ Use platonic-coding init-recover-conceptual to generate RFC-0001.
 - Conceptual design RFC
 
 **Output**:
-- One RFC per major subsystem (RFC-0002, RFC-0003, etc.)
+- One RFC per major subsystem (RFC-0002-message-queue, RFC-0003-api-gateway, etc.)
 - Each with Status: Draft
 - Components, layers, data flow, constraints
 
@@ -471,10 +471,10 @@ All implementation operations are in `references/IMPL/`.
 **Example**:
 ```
 # With confirmations (default)
-Use platonic-coding impl-full for RFC-0042 in the acme-queue module.
+Use platonic-coding impl-full for RFC-0042-message-queue in the acme-queue module.
 
 # Auto-mode (no confirmations)
-Use platonic-coding impl-full for RFC-0042 without stopping for confirmation.
+Use platonic-coding impl-full for RFC-0042-message-queue without stopping for confirmation.
 ```
 
 ---
@@ -497,7 +497,7 @@ Use platonic-coding impl-full for RFC-0042 without stopping for confirmation.
 
 **Example**:
 ```
-Use platonic-coding impl-create-guide for RFC-0001, guide only, no coding.
+Use platonic-coding impl-create-guide for RFC-0001-world-view, guide only, no coding.
 ```
 
 ---
@@ -566,7 +566,7 @@ Use platonic-coding impl-validate-guide for docs/impl/IG-042-message-queue-proto
 
 **Example**:
 ```
-Use platonic-coding impl-update-guide after RFC-0042 was revised.
+Use platonic-coding impl-update-guide after RFC-0042-message-queue was revised.
 ```
 
 ---
@@ -605,7 +605,7 @@ Use platonic-coding impl-update-guide after RFC-0042 was revised.
 **Example**:
 ```
 # Review specific RFC implementation
-Use platonic-coding review to check src/auth/ against RFC-0001.md.
+Use platonic-coding review to check src/auth/ against RFC-0001-world-view.md.
 
 # Comprehensive review
 Use platonic-coding review to audit all code against all RFCs in docs/specs/.
@@ -660,7 +660,7 @@ Use platonic-coding workflow --phase 0 to design a user authentication feature.
 ```
 # Typically runs automatically after Phase 0
 # Or explicit start:
-Use platonic-coding workflow --phase 1 with RFC-0042.
+Use platonic-coding workflow --phase 1 with RFC-0042-message-queue.
 ```
 
 ---
@@ -684,7 +684,7 @@ Call `impl-full` operation which runs:
 
 **Example**:
 ```
-Use platonic-coding workflow --phase 2 to implement RFC-0042.
+Use platonic-coding workflow --phase 2 to implement RFC-0042-message-queue.
 ```
 
 ---
@@ -705,7 +705,7 @@ Call `review` operation to validate code compliance
 ```
 # Typically runs automatically after Phase 2
 # Or explicit start:
-Use platonic-coding workflow --phase 3 to review RFC-0042 implementation.
+Use platonic-coding workflow --phase 3 to review RFC-0042-message-queue implementation.
 ```
 
 ---
@@ -745,8 +745,8 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │   │   ├── rfc-history.md           # Change history
 │   │   ├── rfc-index.md             # Spec index
 │   │   ├── rfc-namings.md           # Terminology reference
-│   │   ├── RFC-0001.md              # Individual RFC
-│   │   ├── RFC-0002.md
+│   │   ├── RFC-0001-world-view.md   # Individual RFC
+│   │   ├── RFC-0002-message-queue.md
 │   │   └── templates/               # Templates for future RFCs
 │   │       ├── rfc-template.md
 │   │       ├── conceptual-design.md
@@ -755,8 +755,8 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │   │
 │   ├── impl/                       # Implementation guides
 │   │   ├── README.md
-│   │   ├── IG-001-user-authentication.md         # Impl guide for RFC-0001
-│   │   └── IG-002-data-storage.md                # Impl guide for RFC-0002
+│   │   ├── IG-001-user-authentication.md         # Impl guide for RFC-0001-user-auth
+│   │   └── IG-002-data-storage.md                # Impl guide for RFC-0002-data-storage
 │   │
 │   └── drafts/                     # Phase 0 design drafts
 │       ├── README.md
@@ -859,7 +859,7 @@ Implementation guides should be named using the pattern `IG-<number>-semantic-sh
 ### Specs not showing in index
 
 **Solution**:
-1. Ensure RFC files follow `RFC-NNNN.md` naming convention
+1. Ensure RFC files follow `RFC-NNNN-<name>.md` naming convention
 2. Run `specs-generate-index` to update the index
 
 ---
@@ -887,7 +887,7 @@ Implementation guides should be named using the pattern `IG-<number>-semantic-sh
 
 **To skip confirmations**:
 ```
-Use platonic-coding impl-full for RFC-0042 without confirmation.
+Use platonic-coding impl-full for RFC-0042-message-queue without confirmation.
 ```
 
 ---

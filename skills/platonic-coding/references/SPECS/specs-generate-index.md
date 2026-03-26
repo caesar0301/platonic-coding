@@ -13,19 +13,19 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 1. **Scan RFC Files**
    - Find all files matching pattern `RFC-*.md` in the specs directory
    - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
-   - Separate base RFCs (e.g., `RFC-0001.md`) from versioned RFCs (e.g., `RFC-0001-001.md`)
+   - Separate base RFCs (e.g., `RFC-0001-world-view.md`) from versioned RFCs (e.g., `RFC-0001-world-view-001.md`)
 
 2. **Extract Metadata from Base RFCs**
    For each base RFC file (not versioned), extract:
-   - RFC number (from filename, e.g., `RFC-0001.md` → `0001`)
-   - Title (from `# RFC-NNNN: Title`)
+   - RFC number (from filename, e.g., `RFC-0001-world-view.md` → `0001`)
+   - Title (from `# RFC-NNNN-<name>: Title`)
    - Status (from `**Status**: ...`)
    - Created date (from `**Created**: YYYY-MM-DD`)
    - Last Updated date (from `**Last Updated**: YYYY-MM-DD`)
 
 3. **Collect Version Information**
    For each base RFC, find all versioned files:
-   - Pattern: `RFC-NNNN-VVV.md` where NNNN matches the base RFC number
+   - Pattern: `RFC-NNNN-<name>-VVV.md` where NNNN and <name> match the base RFC
    - Extract version numbers (VVV)
    - Sort versions numerically
 
@@ -42,14 +42,14 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
    ```markdown
    | RFC | Title | Status | Created | Last Updated | Version |
    |-----|-------|--------|---------|--------------|---------|
-   | [RFC-0001](RFC-0001.md) | Title | Draft | 2026-01-26 | 2026-01-28 | 001 |
+   | [RFC-0001-world-view](RFC-0001-world-view.md) | Title | Draft | 2026-01-26 | 2026-01-28 | 001 |
    ```
 
 5. **Generate Quick Links**
    Create a list of links to all base RFCs:
    ```markdown
-   - [RFC-0001: Title](RFC-0001.md)
-   - [RFC-0002: Another Title](RFC-0002.md)
+   - [RFC-0001-world-view: Title](RFC-0001-world-view.md)
+   - [RFC-0002-message-queue: Another Title](RFC-0002-message-queue.md)
    ```
 
 6. **Update rfc-index.md**
@@ -64,9 +64,9 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 ## Table Generation Rules
 
 - **Sort RFCs** by RFC number (numerically, ascending)
-- **RFC Column**: Format as `[RFC-NNNN](RFC-NNNN.md)` where NNNN is zero-padded
-- **Version Column**: 
-  - If versions exist: `[v001](RFC-NNNN-001.md), [v002](RFC-NNNN-002.md)`
+- **RFC Column**: Format as `[RFC-NNNN-<name>](RFC-NNNN-<name>.md)` where NNNN is zero-padded
+- **Version Column**:
+  - If versions exist: `[v001](RFC-NNNN-<name>-001.md), [v002](RFC-NNNN-<name>-002.md)`
   - If no versions: `001` (default version)
 - **Status**: Use exact status from RFC metadata
 - **Dates**: Use YYYY-MM-DD format
@@ -74,7 +74,7 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 ## Quick Links Rules
 
 - Only include base RFCs (not versioned)
-- Format: `- [RFC-NNNN: Title](RFC-NNNN.md)`
+- Format: `- [RFC-NNNN-<name>: Title](RFC-NNNN-<name>.md)`
 - Sort by RFC number (ascending)
 - Use exact title from RFC
 
@@ -87,8 +87,8 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 
 | RFC | Title | Status | Created | Last Updated | Version |
 |-----|-------|--------|---------|--------------|---------|
-| [RFC-0001](RFC-0001.md) | MizarAlpha World View | Review | 2026-01-26 | 2026-01-28 | 001 |
-| [RFC-0002](RFC-0002.md) | Another RFC | Draft | 2026-01-27 | 2026-01-27 | [v001](RFC-0002-001.md), [v002](RFC-0002-002.md) |
+| [RFC-0001-world-view](RFC-0001-world-view.md) | MizarAlpha World View | Review | 2026-01-26 | 2026-01-28 | 001 |
+| [RFC-0002-message-queue](RFC-0002-message-queue.md) | Message Queue Protocol | Draft | 2026-01-27 | 2026-01-27 | [v001](RFC-0002-message-queue-001.md), [v002](RFC-0002-message-queue-002.md) |
 ```
 
 ### Quick Links
@@ -96,8 +96,8 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 ```markdown
 ## 5. Quick Links
 
-- [RFC-0001: MizarAlpha World View](RFC-0001.md)
-- [RFC-0002: Another RFC](RFC-0002.md)
+- [RFC-0001-world-view: MizarAlpha World View](RFC-0001-world-view.md)
+- [RFC-0002-message-queue: Message Queue Protocol](RFC-0002-message-queue.md)
 ```
 
 ## Verification

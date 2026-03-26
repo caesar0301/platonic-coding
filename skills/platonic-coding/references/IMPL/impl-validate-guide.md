@@ -107,7 +107,7 @@ Find statements that conflict with RFC.
 - [ ] Requirement 2: [description] - **NOT ADDRESSED**
 
 ### Contradictions Found
-1. **[CRITICAL]** Guide states X, but RFC-NNNN Section Y states Z
+1. **[CRITICAL]** Guide states X, but RFC-NNNN-<name> Section Y states Z
    - Guide: "[quote from guide]"
    - RFC: "[quote from RFC]"
    - Recommendation: [how to fix]

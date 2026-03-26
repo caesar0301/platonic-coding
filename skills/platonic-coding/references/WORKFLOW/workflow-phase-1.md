@@ -26,7 +26,7 @@ Convert the Phase 0 **design draft** into a formal **RFC specification** (Status
   - Follows the project's RFC format (see `docs/specs/rfc-standard.md` if present).
   - Includes: title, status (Draft), summary, motivation, detailed specification (entities, relations, invariants, constraints), terminology, and references.
   - Preserves all material from the design draft in a structured, formal form.
-- Write the RFC to the specs directory (default: `docs/specs/`), using the convention `RFC-NNNN.md` (e.g. `docs/specs/RFC-0001.md`).
+- Write the RFC to the specs directory (default: `docs/specs/`), using the convention `RFC-NNNN-<brief-semantic-name>.md` (e.g. `docs/specs/RFC-0001-world-view.md`).
 
 ### Step 3: Refine with SPECS Mode
 

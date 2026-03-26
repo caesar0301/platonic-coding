@@ -2,6 +2,47 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.2.0 — Enhanced RFC Naming with Semantic Identifiers (2026-03-27)
+
+### Improved RFC Naming Convention
+
+**Changed:** RFC filenames now include brief semantic names for better discoverability and self-documentation.
+
+**Previous format:** `RFC-NNNN.md` (e.g., `RFC-0001.md`, `RFC-0042.md`)
+
+**New format:** `RFC-NNNN-<brief-semantic-name>.md` (e.g., `RFC-0001-world-view.md`, `RFC-0042-message-queue.md`)
+
+**Versioned RFCs:**
+- Previous: `RFC-0001-001.md`
+- New: `RFC-0001-world-view-001.md`
+
+**Benefits:**
+- **Self-documenting filenames** — See what an RFC covers at a glance
+- **Better organization** — Easier to navigate large specs directories
+- **Improved discoverability** — Search by semantic name, not just numbers
+- **Clearer intent** — File name reflects RFC purpose
+
+**Naming Guidelines:**
+- Use kebab-case for semantic names (e.g., `message-queue`, `user-authentication`)
+- Keep names brief (2-4 words recommended)
+- Names should reflect the RFC's primary focus or domain
+- Semantic name is preserved across versions (e.g., `RFC-0001-world-view-001.md`)
+
+**Updated across all files:**
+- ✅ `assets/templates/template-rfc-standard.md` — Updated naming convention documentation
+- ✅ `assets/specs/rfc-template.md` — Updated template filename
+- ✅ `assets/templates/template-platonic.yml` — Updated config documentation
+- ✅ `references/WORKFLOW/*.md` — Updated all workflow examples
+- ✅ `references/SPECS/*.md` — Updated all spec operations
+- ✅ `references/IMPL/*.md` — Updated implementation examples
+- ✅ `references/REFERENCE.md` — Updated master reference
+- ✅ `skills/platonic-coding/SKILL.md` — Updated skill documentation
+- ✅ `README.md` — Updated examples
+
+**Migration:** Existing projects can continue using old naming, but new RFCs will use the enhanced format.
+
+---
+
 ## Version 2.1.0 — Superpower Brainstorming Integration (2026-03-26)
 
 ### Integrated with Superpower Brainstorming Skill

@@ -26,12 +26,12 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
    - **Required fields present**: Status, Authors, Created, Last Updated
    - **Status value valid**: Must be Draft, Review, Frozen, or Deprecated
    - **Date format**: Must be YYYY-MM-DD
-   - **RFC number format**: Must match RFC-NNNN pattern
+   - **RFC number format**: Must match RFC-NNNN-<name> pattern
    - **Optional fields**: Depends on, Supersedes (if present, must be valid format)
 
 4. **Check Structure**
    For each RFC, verify:
-   - **Title format**: `# RFC-NNNN: Title`
+   - **Title format**: `# RFC-NNNN-<name>: Title`
    - **Abstract section**: Section 1 should be Abstract
    - **Scope section**: Should have Scope and Non-Goals
    - **Proper heading levels**: Consistent use of ##, ###, etc.
@@ -39,11 +39,11 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 5. **Check Frozen RFC Rules**
    For RFCs with Status: Frozen:
    - **No direct edits**: File should not be modified (only via versions)
-   - **Version format**: If versioned, must follow RFC-NNNN-VVV.md format
+   - **Version format**: If versioned, must follow RFC-NNNN-<name>-VVV.md format
    - **Version metadata**: Must have Parent RFC, Version, Changes fields
 
 6. **Check Versioned RFC Rules**
-   For versioned RFCs (RFC-NNNN-VVV.md):
+   For versioned RFCs (RFC-NNNN-<name>-VVV.md):
    - **Parent exists**: Parent RFC must exist
    - **Version number**: Must be sequential (001, 002, 003...)
    - **Full content**: Must contain complete RFC, not just diffs
@@ -78,7 +78,7 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 
 ### Structure Rules
 
-- **Title**: Must start with `# RFC-NNNN: Title`
+- **Title**: Must start with `# RFC-NNNN-<name>: Title`
 - **Abstract**: Section 1 must be Abstract
 - **Scope**: Should have Scope and Non-Goals section
 - **Sections**: Use consistent numbering (1, 2, 3...)
@@ -86,7 +86,7 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 ### Frozen RFC Rules
 
 - **Immutability**: Frozen RFCs cannot be edited directly
-- **Versioning**: Changes require creating RFC-NNNN-VVV.md
+- **Versioning**: Changes require creating RFC-NNNN-<name>-VVV.md
 - **Version format**: VVV must be 3-digit zero-padded (001, 002...)
 
 ### Versioned RFC Rules

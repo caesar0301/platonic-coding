@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
 license: MIT
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -163,10 +163,10 @@ Use platonic-coding specs-refine to run all validation and generation operations
 **Examples**:
 ```
 # Auto-detect: implement from RFC
-Use platonic-coding to implement RFC-0042 (Message Queue) in the acme-queue module.
+Use platonic-coding to implement RFC-0042-message-queue (Message Queue) in the acme-queue module.
 
 # Explicit: create guide only
-Use platonic-coding impl-create-guide for RFC-0001, guide only, no coding.
+Use platonic-coding impl-create-guide for RFC-0001-user-authentication, guide only, no coding.
 
 # Explicit: implement from existing guide
 Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.
@@ -198,7 +198,7 @@ Use platonic-coding impl-full for RFC-003 without stopping for confirmation.
 **Examples**:
 ```
 # Auto-detect: review specific RFC implementation
-Use platonic-coding to review src/auth/ against RFC-0001.md.
+Use platonic-coding to review src/auth/ against RFC-0001-user-authentication.md.
 
 # Explicit: comprehensive review
 Use platonic-coding review to audit all code against all RFCs in docs/specs/.
@@ -234,7 +234,7 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 Use platonic-coding workflow to implement a user preferences feature.
 
 # Start at specific phase
-Use platonic-coding workflow --phase 2 to implement RFC-0042.
+Use platonic-coding workflow --phase 2 to implement RFC-0042-message-queue.
 
 # Resume workflow (auto-detected)
 Use platonic-coding to continue from where we left off.
@@ -247,7 +247,7 @@ Use platonic-coding to continue from where we left off.
 | Artifact | Default Path | Naming Convention | Configurable in .platonic.yml |
 |----------|--------------|-------------------|-------------------------------|
 | Design drafts | `docs/drafts/` | `<feature>-design.md` | Yes |
-| RFC specs | `docs/specs/` | `RFC-<NNNN>.md` | Yes |
+| RFC specs | `docs/specs/` | `RFC-<NNNN>-<brief-semantic-name>.md` (e.g., `RFC-0001-world-view.md`) | Yes |
 | Implementation guides | `docs/impl/` | `IG-<number>-semantic-short-desc.md` (e.g., `IG-053-cli-command-nesting.md`) | Yes |
 
 ## Templates

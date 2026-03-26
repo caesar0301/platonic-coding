@@ -19,7 +19,7 @@ Extract terminology from all active RFC files and update `rfc-namings.md` to ref
 1. **Identify Active RFCs**
    - Scan for files matching `RFC-*.md` pattern
    - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
-   - Exclude versioned RFCs (RFC-NNNN-VVV.md format)
+   - Exclude versioned RFCs (RFC-NNNN-<name>-VVV.md format)
    - Exclude RFCs with Status "Deprecated"
    - Only process RFCs with Status: Draft, Review, or Frozen
 
@@ -56,14 +56,14 @@ Extract terminology from all active RFC files and update `rfc-namings.md` to ref
 4. **Generate Terminology Index Table**
    Create a table with columns:
    - Term
-   - Source RFC (format: RFC-NNNN or RFC-NNNN §X.Y)
+   - Source RFC (format: RFC-NNNN-<name> or RFC-NNNN-<name> §X.Y)
    - Brief Description (first 100 characters of definition)
 
    Format:
    ```markdown
    | Term | Source RFC | Brief Description |
    |------|-----------|-------------------|
-   | World Model | RFC-0001 | A continuously running process... |
+   | World Model | RFC-0001-world-view | A continuously running process... |
    ```
 
 5. **Update rfc-namings.md**

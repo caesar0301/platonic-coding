@@ -13,16 +13,16 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
 1. **Scan RFC Files**
    - Find all files matching pattern `RFC-*.md` in the specs directory
    - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
-   - Include both base RFCs (e.g., `RFC-0001.md`) and versioned RFCs (e.g., `RFC-0001-001.md`)
+   - Include both base RFCs (e.g., `RFC-0001-world-view.md`) and versioned RFCs (e.g., `RFC-0001-world-view-001.md`)
 
 2. **Extract Metadata from Each RFC**
    For each RFC file, extract:
    - RFC number (from filename or title)
-   - Title (from `# RFC-NNNN: Title`)
+   - Title (from `# RFC-NNNN-<name>: Title`)
    - Status (from `**Status**: ...`)
    - Created date (from `**Created**: YYYY-MM-DD`)
    - Last Updated date (from `**Last Updated**: YYYY-MM-DD`)
-   - Version number (if versioned RFC, from filename `RFC-NNNN-VVV.md`)
+   - Version number (if versioned RFC, from filename `RFC-NNNN-<name>-VVV.md`)
 
 3. **Categorize Events**
    For each RFC, create events:
@@ -38,9 +38,9 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
    Format each date section as:
    ```markdown
    ### YYYY-MM-DD
-   - **Created**: RFC-NNNN - Title
-   - **Updated**: RFC-NNNN - Title
-   - **Version Released**: RFC-NNNN version VVV - RFC-NNNN-VVV.md
+   - **Created**: RFC-NNNN-<name> - Title
+   - **Updated**: RFC-NNNN-<name> - Title
+   - **Version Released**: RFC-NNNN-<name> version VVV - RFC-NNNN-<name>-VVV.md
    ```
 
 6. **Update rfc-history.md**
@@ -54,7 +54,7 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
 
 - **Created Event**: Always record when `Created` date exists
 - **Updated Event**: Only record if `Last Updated` differs from `Created` AND RFC is not versioned
-- **Version Released Event**: Record for all versioned RFC files (RFC-NNNN-VVV.md format)
+- **Version Released Event**: Record for all versioned RFC files (RFC-NNNN-<name>-VVV.md format)
 
 ## Date Format
 

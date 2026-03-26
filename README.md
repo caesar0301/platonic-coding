@@ -111,13 +111,13 @@ Phase 0: Design (uses brainstorming skill if installed) → Phase 1: RFC → Pha
 
 ### Implement Specific RFC
 ```
-Use platonic-coding --impl-full for RFC-0001 (Authentication).
+Use platonic-coding --impl-full for RFC-0001-user-authentication (Authentication).
 ```
 Creates impl guide (with confirmation) → generates coding plan (with confirmation) → writes code + tests.
 
 ### Review Code Against Specs
 ```
-Use platonic-coding to review src/auth/ against RFC-0001.md.
+Use platonic-coding to review src/auth/ against RFC-0001-user-authentication.md.
 ```
 Generates compliance report: implemented ✅, missing ❌, inconsistent ⚠️.
 

@@ -27,7 +27,7 @@ When an RFC is revised or versioned, the corresponding implementation guide must
 
 Determine what changed in the RFC:
 
-1. **If RFC was versioned**: Compare `RFC-NNNN.md` with `RFC-NNNN-VVV.md`
+1. **If RFC was versioned**: Compare `RFC-NNNN-<name>.md` with `RFC-NNNN-<name>-VVV.md`
 2. **If RFC was revised**: Check RFC revision history section
 3. **If change description provided**: Use as starting point
 
@@ -66,7 +66,7 @@ For each impacted section:
 Update guide header:
 
 ```markdown
-> **Source**: Derived from RFC-NNNN-VVV (Title) ← Update version
+> **Source**: Derived from RFC-NNNN-<name>-VVV (Title) ← Update version
 > **Last Updated**: YYYY-MM-DD ← Update date
 ```
 
@@ -79,8 +79,8 @@ Add entry to guide's revision history (if present) or create one:
 
 | Date | RFC Version | Changes |
 |------|-------------|---------|
-| YYYY-MM-DD | RFC-NNNN-VVV | Updated X, added Y, removed Z |
-| YYYY-MM-DD | RFC-NNNN | Initial guide |
+| YYYY-MM-DD | RFC-NNNN-<name>-VVV | Updated X, added Y, removed Z |
+| YYYY-MM-DD | RFC-NNNN-<name> | Initial guide |
 ```
 
 ### Step 6: Re-validate
