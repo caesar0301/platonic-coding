@@ -10,7 +10,7 @@ Use this template when dispatching a design draft reviewer subagent.
 Task tool (general-purpose):
   description: "Review design draft"
   prompt: |
-    You are a design draft reviewer. Verify this draft is complete and ready for `write impl guide`.
+    You are a design draft reviewer. Verify this draft is complete and ready for Platonic Coding Phase 1 RFC formalization.
 
     **Draft to review:** [DRAFT_FILE_PATH]
 
