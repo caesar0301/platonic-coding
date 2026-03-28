@@ -10,18 +10,18 @@ Produce a **design draft** that captures the conceptual design: principles, cons
 
 ## Method
 
-### Primary: Superpower Brainstorming Integration
+### Primary: Platonic Brainstorming Integration
 
-**Check for installed brainstorming skill** and use it if available:
+**Check for installed `platonic-brainstorming`** and use it if available:
 
-1. **Detect brainstorming skill**: Use Skill tool with `skill: "brainstorming"` to check if the official Superpower Brainstorming skill is installed.
-2. **Invoke brainstorming**: If available, use the Skill tool to invoke the brainstorming skill:
+1. **Detect `platonic-brainstorming`**: Use Skill tool with `skill: "platonic-brainstorming"` to check whether the adapted Platonic Brainstorming skill is installed.
+2. **Invoke `platonic-brainstorming`**: If available, use the Skill tool to invoke `platonic-brainstorming`:
    - The skill will guide the collaborative dialogue
-   - Follow the brainstorming checklist: explore context, ask clarifying questions, propose approaches, present design
-   - The skill will produce a design spec at `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
-   - Copy/move the design spec to the Platonic Coding draft location (`docs/drafts/`)
+   - Follow the Platonic Brainstorming checklist: explore context, ask clarifying questions, propose approaches, present design
+   - The skill will produce a design draft at `docs/drafts/YYYY-MM-DD-<topic>-design.md`
+   - Treat that design draft as the direct Phase 1 input
 
-3. **Benefits of brainstorming skill**:
+3. **Benefits of `platonic-brainstorming`**:
    - Structured exploration of requirements and constraints
    - Multiple approach comparison with trade-offs
    - Incremental validation through section-by-section presentation
@@ -29,7 +29,7 @@ Produce a **design draft** that captures the conceptual design: principles, cons
 
 ### Fallback: Bundled Interactive Method
 
-If the brainstorming skill is **not installed**, use the bundled interactive approach:
+If `platonic-brainstorming` is **not installed**, use the bundled interactive approach:
 
 - **Interactive chat** with the user
 - Use **optional items** to clarify:
@@ -52,7 +52,7 @@ A **design draft** document that includes:
 ## Location
 
 - **Default**: Save the design draft under `docs/drafts/`.
-- **From brainstorming**: If using the brainstorming skill, it saves to `docs/superpowers/specs/` — copy to `docs/drafts/` for Platonic Coding workflow continuity.
+- **From `platonic-brainstorming`**: If using `platonic-brainstorming`, it already saves to `docs/drafts/`.
 - The user may provide an existing design draft from another location; in that case, use it as the Phase 1 input and do not require creating a new one in Phase 0.
 
 ## Optional Items (Examples for Fallback Mode)

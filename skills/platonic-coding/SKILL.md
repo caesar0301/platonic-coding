@@ -13,12 +13,12 @@ metadata:
     - platonic-code-review
     - platonic-workflow
   integrates:
-    - brainstorming (optional)
+    - platonic-brainstorming (optional)
 ---
 
 # Platonic Coding
 
-Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with Superpower Brainstorming skill for enhanced design exploration in Phase 0.
+Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with `platonic-brainstorming` for enhanced design exploration in Phase 0.
 
 ## When to Use This Skill
 
@@ -216,17 +216,53 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 **Purpose**: Orchestrate the full 4-phase workflow from design to review
 
 **Phases**:
-- **Phase 0**: Conceptual design (invoke brainstorming skill if installed, or use bundled interactive method → design draft)
+- **Phase 0**: Conceptual design (invoke `platonic-brainstorming` if installed, or use bundled interactive method -> design draft)
 - **Phase 1**: Generate RFC from draft → call `specs-refine`
 - **Phase 2**: Call `impl-full` (guide → plan → code + tests)
 - **Phase 3**: Call `review` for spec compliance
 - **FINISHED**: Summary and recommendations
 
+### Process Flow
+
+```dot
+digraph platonic_coding {
+    "Start" [shape=circle];
+    "User override provided?" [shape=diamond];
+    "Route to explicit mode" [shape=box];
+    "Auto-detect project state" [shape=box];
+    ".platonic.yml exists?" [shape=diamond];
+    "INIT mode" [shape=box];
+    "Ready for workflow?" [shape=diamond];
+    "Phase 0:\n`platonic-brainstorming`\nor bundled method" [shape=box];
+    "Phase 1:\n`specs-refine`" [shape=box];
+    "Phase 2:\n`impl-full`" [shape=box];
+    "Phase 3:\n`review`" [shape=box];
+    "FINISHED" [shape=doublecircle];
+
+    "Start" -> "User override provided?";
+    "User override provided?" -> "Route to explicit mode" [label="yes"];
+    "User override provided?" -> "Auto-detect project state" [label="no"];
+    "Auto-detect project state" -> ".platonic.yml exists?";
+    ".platonic.yml exists?" -> "INIT mode" [label="no"];
+    ".platonic.yml exists?" -> "Ready for workflow?" [label="yes"];
+    "INIT mode" -> "Ready for workflow?";
+    "Ready for workflow?" -> "Phase 0:\n`platonic-brainstorming`\nor bundled method" [label="workflow / no drafts"];
+    "Ready for workflow?" -> "Phase 1:\n`specs-refine`" [label="draft exists"];
+    "Ready for workflow?" -> "Phase 2:\n`impl-full`" [label="RFC exists"];
+    "Ready for workflow?" -> "Phase 3:\n`review`" [label="specs + code exist"];
+    "Phase 0:\n`platonic-brainstorming`\nor bundled method" -> "Phase 1:\n`specs-refine`";
+    "Phase 1:\n`specs-refine`" -> "Phase 2:\n`impl-full`";
+    "Phase 2:\n`impl-full`" -> "Phase 3:\n`review`";
+    "Phase 3:\n`review`" -> "FINISHED";
+    "Route to explicit mode" -> "FINISHED";
+}
+```
+
 **Auto-detection**: Suggested when project is initialized and ready for new features
 
 **Phase Visibility**: Always shows current phase at each step
 
-**Brainstorming Integration**: Phase 0 automatically detects and uses the Superpower Brainstorming skill if installed, providing structured design exploration with multiple approaches, trade-offs, and incremental validation. Falls back to bundled interactive method if not available.
+**Platonic Brainstorming Integration**: Phase 0 automatically detects and uses `platonic-brainstorming` if installed, providing structured design exploration with multiple approaches, trade-offs, and incremental validation. Falls back to bundled interactive method if not available.
 
 **Examples**:
 ```

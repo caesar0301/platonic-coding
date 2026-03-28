@@ -13,22 +13,22 @@ A professional collection of Agent Skills for AI-powered [Platonic Coding](https
 
 See a full description in [Manifesto](https://github.com/caesar0301/platonic-coding/blob/main/MANIFESTO.md).
 
-## 🔗 Combine with Superpowers for Maximum Impact
+## Complementary Skills
 
-**Platonic Coding + [Superpowers](https://github.com/obra/superpowers) = Ultimate Spec-Driven Development**
+**Platonic Coding + Platonic Brainstorming = Stronger Phase 0 Design**
 
-For the most powerful spec-driven development experience, install both skill collections:
+For the best in-repo spec-driven development experience, use both skills together:
 
 - **Platonic Coding**: Orchestrates the full specification-to-code lifecycle with intelligent auto-detection
-- **Superpowers Brainstorming**: Provides structured design exploration with multiple approaches and trade-off analysis
+- **Platonic Brainstorming**: Provides structured Phase 0 design exploration with multiple approaches and trade-off analysis
 
-**How they work together**: When you run Phase 0 of the Platonic Coding workflow, it automatically invokes the Superpower Brainstorming skill (if installed) to enhance your design process with:
+**How they work together**: When you run Phase 0 of the Platonic Coding workflow, it automatically invokes `platonic-brainstorming` (if installed) to enhance your design process with:
 - Structured requirements exploration
 - 2-3 design approaches with trade-off analysis
 - Incremental design validation
 - Built-in spec review loops
 
-If Superpowers isn't installed, Platonic Coding seamlessly falls back to its bundled interactive design method.
+If `platonic-brainstorming` isn't installed, Platonic Coding seamlessly falls back to its bundled interactive design method.
 
 ## Available Skill
 
@@ -37,6 +37,7 @@ All skills follow the [Agent Skills specification](https://agentskills.io/specif
 | Skill | Purpose | Docs |
 |-------|---------|------|
 | 🎯 **platonic-coding** | Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for specification-driven development. | [SKILL.md](skills/platonic-coding/SKILL.md) |
+| 🧠 **platonic-brainstorming** | Phase 0 design companion for Platonic Coding. Guides collaborative exploration, compares approaches, validates design incrementally, and hands off to `write impl guide`. | [SKILL.md](skills/platonic-brainstorming/SKILL.md) |
 
 ## Installation
 
@@ -72,7 +73,7 @@ Platonic Coding follows a **four-phase workflow** with intelligent auto-detectio
 ```
 Init → Bootstrap infrastructure (new or recover from existing code)
 
-Phase 0 → Conceptual Design (invoke brainstorming skill if available)
+Phase 0 → Conceptual Design (invoke `platonic-brainstorming` if available)
 Phase 1 → RFC Specification (formalize requirements)
 Phase 2 → Implementation (guide + code + tests)
 Phase 3 → Spec Compliance Review (verify code against RFCs)
@@ -107,7 +108,7 @@ Auto-detects existing code → scans → proposes RFC dependency graph → gener
 ```
 Use platonic-coding workflow to implement user preferences.
 ```
-Phase 0: Design (uses brainstorming skill if installed) → Phase 1: RFC → Phase 2: Code + tests → Phase 3: Review.
+Phase 0: Design (uses `platonic-brainstorming` if installed) → Phase 1: RFC → Phase 2: Code + tests → Phase 3: Review.
 
 ### Implement Specific RFC
 ```
@@ -123,7 +124,7 @@ Generates compliance report: implemented ✅, missing ❌, inconsistent ⚠️.
 
 ## Acknowledgments
 
-This project integrates with the [Superpowers](https://github.com/obra/superpowers) skill collection by [Will Barton](https://github.com/obra). The **Brainstorming** skill enhances Phase 0 design exploration with structured requirements gathering, multiple approach comparison, and incremental validation—making Platonic Coding even more powerful for spec-driven development.
+`platonic-brainstorming` is adapted from the upstream [Superpowers](https://github.com/obra/superpowers) skill collection by [Will Barton](https://github.com/obra). It enhances Phase 0 design exploration with structured requirements gathering, multiple approach comparison, and incremental validation while aligning the handoff to Platonic Coding stages.
 
 ## License
 
