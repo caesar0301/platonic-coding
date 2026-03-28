@@ -21,7 +21,7 @@ This document provides detailed information about all operations available in th
 
 ## Operation Overview
 
-The skill provides **24 operations** organized into five domains:
+The skill provides **23 operations** organized into five domains:
 
 ### INITIALIZATION (6 operations)
 - `init-scaffold` — Create directories, config, templates for new project
@@ -67,27 +67,28 @@ When invoked without specific instructions, the skill detects project state and 
 ```
 Step 1: Check for .platonic.yml
 ├─ NOT FOUND → INIT Mode
-│  ├─ Has source code? → init-recover (generate specs from code)
-│  └─ No code? → init-scaffold (create infrastructure)
+│  ├─ Has source code? → run recovery flow (`init-scan` -> recovery operations)
+│  └─ No code? → `init-scaffold`
 │
 └─ FOUND → Continue to Step 2
 
 Step 2: Check specs directory
 ├─ No RFCs found
-│  ├─ Has design drafts? → WORKFLOW Phase 1 (generate RFCs)
+│  ├─ Has design drafts? → WORKFLOW Phase 1 (`design draft` -> RFC -> `specs-refine`)
 │  └─ No drafts? → WORKFLOW Phase 0 (conceptual design)
 │
 └─ RFCs exist → Continue to Step 3
 
 Step 3: Check implementation guides
-├─ No impl guides found → WORKFLOW Phase 2 (implement specs)
+├─ No impl guides found → WORKFLOW Phase 2 (`impl-full` or `impl-create-guide`)
 │
 └─ Guides exist → Continue to Step 4
 
 Step 4: Check codebase state
-├─ Has both specs and code → REVIEW Mode (check compliance)
+├─ Implementation still in progress → Resume IMPL mode
+├─ Implementation appears complete or review requested → REVIEW Mode
 │
-└─ Well-initialized → SPECS Mode (refine specs)
+└─ Otherwise → `specs-refine` or resume current workflow phase
 ```
 
 ### Confidence Levels
@@ -98,17 +99,24 @@ Step 4: Check codebase state
 
 ### User Override Behavior
 
-Users can bypass auto-detection by providing explicit flags:
+Users can bypass auto-detection by invoking canonical operation names directly. Common examples:
 
 ```
---init              → Run init-scaffold
---init-recover      → Run init-scan + recovery operations
---specs-<operation> → Run specific specs operation
---impl-<operation>  → Run specific impl operation
---review            → Run spec compliance review
---workflow          → Run full 4-phase workflow
---phase <N>         → Start workflow at specific phase
+init-scaffold
+init-scan
+init-plan-modular-specs
+init-recover-conceptual
+init-recover-architecture
+init-recover-impl-interface
+specs-refine
+specs-generate-index
+impl-full
+impl-create-guide
+review
+workflow --phase <N>
 ```
+
+If your environment also supports convenience wrappers like `--init` or `--workflow`, treat them as shorthand around these canonical operations.
 
 ---
 
@@ -497,7 +505,7 @@ Use platonic-coding impl-full for RFC-0042-message-queue without stopping for co
 
 **Example**:
 ```
-Use platonic-coding impl-create-guide for RFC-0001-world-view, guide only, no coding.
+Use platonic-coding impl-create-guide for RFC-0042-message-queue, guide only, no coding.
 ```
 
 ---
@@ -605,7 +613,7 @@ Use platonic-coding impl-update-guide after RFC-0042-message-queue was revised.
 **Example**:
 ```
 # Review specific RFC implementation
-Use platonic-coding review to check src/auth/ against RFC-0001-world-view.md.
+Use platonic-coding review to check src/auth/ against RFC-0001-user-authentication.md.
 
 # Comprehensive review
 Use platonic-coding review to audit all code against all RFCs in docs/specs/.
@@ -659,8 +667,8 @@ Use platonic-coding workflow --phase 0 to design a user authentication feature.
 **Example**:
 ```
 # Typically runs automatically after Phase 0
-# Or explicit start:
-Use platonic-coding workflow --phase 1 with RFC-0042-message-queue.
+# Or explicit start from an approved design draft:
+Use platonic-coding workflow --phase 1 with docs/drafts/YYYY-MM-DD-message-queue-design.md.
 ```
 
 ---
@@ -794,12 +802,12 @@ Use platonic-coding to refine all specs.
 ```
 # Initialize and recover specs
 Use platonic-coding to adopt Platonic Coding for this existing project.
-→ Auto-detects no .platonic.yml + has code → runs init-recover
+→ Auto-detects no .platonic.yml + has code → runs recovery flow (`init-scan` -> recovery operations)
 → Scans code, plans RFCs, generates Draft RFCs
 
 # Review current implementation
 Use platonic-coding to check if code matches recovered specs.
-→ Auto-detects specs + code → runs review
+→ Auto-detects recovered specs + implementation state → resumes implementation or runs review, depending on what is complete
 
 # Implement new feature
 Use platonic-coding workflow --phase 0 to add notifications.
@@ -828,12 +836,12 @@ Use platonic-coding impl-validate-guide for docs/impl/IG-042-message-queue-proto
 
 ### Auto-detection suggests wrong action
 
-**Solution**: Use explicit mode flags (`--init`, `--specs`, `--impl`, `--review`, `--workflow`)
+**Solution**: Use explicit operation names or workflow phase selectors (`init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`)
 
 Example:
 ```
 # Instead of relying on auto-detection
-Use platonic-coding --init-recover
+Use platonic-coding init-scan, then recover the core specs for this codebase.
 ```
 
 ---
@@ -894,7 +902,7 @@ Use platonic-coding impl-full for RFC-0042-message-queue without confirmation.
 
 ## Summary
 
-The Platonic Coding skill provides a unified, intelligent entry point for specification-driven development. Use auto-detection to guide next steps, or invoke specific operations explicitly with mode flags.
+The Platonic Coding skill provides a unified, intelligent entry point for specification-driven development. Use auto-detection to guide next steps, or invoke specific operations explicitly with canonical operation names or workflow phase selectors.
 
 For detailed operation guides, see the reference files in each domain directory:
 - `references/INIT/` — Initialization operations

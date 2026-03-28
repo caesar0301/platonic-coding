@@ -136,10 +136,10 @@ Find statements that conflict with RFC.
 
 **Input**:
 - Guide: `docs/impl/IG-042-message-queue-protocol.md`
-- RFC: `docs/specs/RFC-0042.md`
+- RFC: `docs/specs/RFC-0042-message-queue.md`
 
 **Validation**:
-1. Check RFC-0042 invariants (at-least-once delivery, message ordering)
+1. Check RFC-0042-message-queue invariants (at-least-once delivery, message ordering)
 2. Verify all Message Queue requirements are in the guide
 3. Confirm type definitions match RFC schemas
 4. Check terminology against project naming conventions

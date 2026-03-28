@@ -131,13 +131,13 @@ Are there ambiguous RFC requirements with multiple valid interpretations?
 ## Example
 
 **Input**:
-- RFC: `docs/specs/RFC-0042.md` (Message Queue Protocol)
+- RFC: `docs/specs/RFC-0042-message-queue.md` (Message Queue Protocol)
 - Target Module: `acme-queue`
 - Language: Rust
 - Framework: Tokio
 
 **Sub-Workflow Execution**:
-1. Spec Analysis: Extract 15 requirements, 4 invariants, 6 types from RFC-0042
+1. Spec Analysis: Extract 15 requirements, 4 invariants, 6 types from RFC-0042-message-queue
 2. Impl Guide: Present `docs/impl/IG-042-message-queue-protocol.md` → user confirms
 3. Coding Plan: 8 tasks (4 implementation + 4 test tasks) → user confirms
 4. Coding: Implement all tasks, run tests, verify build

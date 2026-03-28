@@ -11,13 +11,13 @@ Convert the Phase 0 **design draft** into a formal **RFC specification** (Status
 ## Inputs
 
 - **Design draft**: From Phase 0 (default path `docs/drafts/` or user-provided).
-- **RFC number/index** (optional): If the user has not specified which RFC number to use, ask for it (e.g., next index in `docs/specs/` or a specific number).
+- **RFC number/index** (optional): If the user has not specified which RFC number to use, ask for it (e.g., the next index in `docs/specs/` or a specific number).
 
 ## Process
 
 ### Step 1: Determine RFC Index
 
-- If the user has not specified an RFC number/index, ask: e.g., "Which RFC number should this be (e.g., RFC-001)?" or suggest the next available index based on existing files in `docs/specs/`.
+- If the user has not specified an RFC number/index, ask: e.g., "Which RFC number should this be (e.g., RFC-0001)?" or suggest the next available index based on existing files in `docs/specs/`.
 
 ### Step 2: Generate RFC from Design Draft
 
@@ -45,5 +45,5 @@ Convert the Phase 0 **design draft** into a formal **RFC specification** (Status
 
 ## Handoff to Phase 2
 
-- Confirm the RFC path and identifier (e.g., RFC-001).
+- Confirm the RFC path and identifier (e.g., RFC-0001).
 - Proceed to Phase 2 to create the implementation guide for this RFC (or ask which RFC to use if multiple exist).

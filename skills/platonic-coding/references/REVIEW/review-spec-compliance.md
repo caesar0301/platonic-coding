@@ -240,7 +240,7 @@ Action: Create spec or remove code
 
 ## Example: Simple Review
 
-**Spec** (RFC-005, Section 2.1):
+**Spec** (RFC-0005, Section 2.1):
 ```
 GET /api/users/:id returns user name, email, registrationDate
 ```
@@ -260,7 +260,7 @@ GET /api/users/:id returns user name, email, registrationDate
    ```markdown
    ### Finding: Missing Registration Date
    **Severity**: Medium
-   **Spec**: RFC-005, Section 2.1
+   **Spec**: RFC-0005, Section 2.1
    **Code**: src/api/users.controller.ts:49
    **Issue**: Response missing required `registrationDate` field
    **Recommendation**: Add `registrationDate: user.createdAt` to response
@@ -346,8 +346,8 @@ Quick reference for thorough review:
 
 **Example**:
 ```
-1. Refine specs: "Use platonic-coding --specs-refine"
-2. Review code: "Use platonic-coding --review to validate src/ against specs/"
+1. Refine specs: "Use platonic-coding specs-refine"
+2. Review code: "Use platonic-coding review to validate src/ against specs/"
 3. Get report with findings
 4. Fix code or update specs as appropriate
 5. Update spec history with changes
