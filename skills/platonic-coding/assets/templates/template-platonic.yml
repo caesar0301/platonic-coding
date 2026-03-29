@@ -11,7 +11,7 @@ project:
 paths:
   specs: "docs/specs"             # Where RFC specifications live
   impl: "docs/impl"              # Where implementation guides live
-  drafts: "docs/drafts"          # Where Phase 0 design drafts live
+  drafts: "docs/drafts"          # Where Phase 1 design drafts live
 
 specs:
   numbering: "RFC-NNNN-<name>"   # RFC numbering format (NNNN = 4-digit zero-padded, name = brief semantic description)

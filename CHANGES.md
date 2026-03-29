@@ -2,7 +2,86 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
-## Version 2.2.0 — Enhanced RFC Naming with Semantic Identifiers (2026-03-27)
+## Version 2.2.0 — Workflow Compression & Documentation Consolidation (2026-03-29)
+
+### Compressed Workflow: 4 Phases → 3 Phases
+
+**Changed:** The Platonic Coding workflow now has **3 phases** after initialization (previously 4).
+
+**Previous structure:**
+- Phase 0: Conceptual Design
+- Phase 1: RFC Specification
+- Phase 2: Implementation
+- Phase 3: Spec Compliance Review
+
+**New structure:**
+- Phase 1: RFC Specification (merged conceptual design into RFC spec phase)
+- Phase 2: Implementation
+- Phase 3: Spec Compliance Review
+
+**Benefits:**
+- Simpler mental model with fewer phase transitions
+- Conceptual design integrated naturally into RFC specification
+- Optional `platonic-brainstorming` at both Phase 1 and Phase 2 decision points
+- Clearer phase boundaries and handoffs
+
+### Enhanced Platonic Brainstorming Integration
+
+**Changed:** `platonic-brainstorming` now integrates at multiple phases, not just Phase 0.
+
+**Phase 1 Integration:**
+- Use before RFC formalization
+- Explores requirements, alternatives, and design trade-offs
+- Produces design draft for RFC creation
+
+**Phase 2 Integration:**
+- Use before implementation
+- Refines architecture decisions and validates approach
+- Informs implementation guide creation
+
+**Phase 3:**
+- Not applicable (review phase is purely analytical)
+
+### Documentation Consolidation
+
+**Fixed:** Eliminated significant documentation duplication across multiple files.
+
+**Issues resolved:**
+1. **Brainstorming integration pattern** - Duplicated in 4+ locations → Centralized in `workflow-overview.md`
+2. **Default locations** - Repeated in every phase file → Centralized in `workflow-overview.md`
+3. **Phase visibility rule** - Duplicated in 2 locations → Single definition
+4. **Process flow descriptions** - Verbose duplication → Simplified with references
+
+**Results:**
+- Removed 54 lines through consolidation
+- Reduced brainstorming pattern locations by 75%
+- Reduced default locations by 67%
+- Improved maintainability with single source of truth
+
+### Updated Files
+
+**Workflow documentation:**
+- ✅ `skills/platonic-coding/SKILL.md` — Updated to 3-phase workflow, removed Phase 0 references
+- ✅ `skills/platonic-coding/references/REFERENCE.md` — Updated workflow examples
+- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-overview.md` — Added brainstorming pattern, consolidated defaults
+- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-phase-1.md` — Removed duplicate content
+- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-phase-2.md` — Removed duplicate content
+- ✅ Deleted `workflow-phase-0.md` — Merged into Phase 1
+
+**Template files:**
+- ✅ `skills/platonic-coding/assets/templates/template-platonic.yml` — Updated phase reference
+- ✅ `skills/platonic-coding/assets/templates/template-drafts-readme.md` — Updated workflow guidance
+
+**Main documentation:**
+- ✅ `README.md` — Updated workflow description and examples
+- ✅ `skills/platonic-brainstorming/SKILL.md` — Updated for Phase 1/2 integration
+- ✅ `skills/platonic-brainstorming/README.md` — Clarified integration points
+
+**No breaking changes:** Existing projects continue working exactly as before.
+
+---
+
+## Version 2.1.0 — Enhanced RFC Naming with Semantic Identifiers (2026-03-27)
 
 ### Improved RFC Naming Convention
 

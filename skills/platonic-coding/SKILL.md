@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and routes to the right next step—initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
 license: MIT
 metadata:
-  version: "2.1.3"
+  version: "2.2.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -18,7 +18,7 @@ metadata:
 
 # Platonic Coding
 
-Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with `platonic-brainstorming` as an optional Phase 0 accelerator when you want structured design exploration before RFC formalization.
+Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with `platonic-brainstorming` as an optional accelerator in Phases 1 and 2 for structured design exploration and refinement.
 
 ## When to Use This Skill
 
@@ -47,14 +47,14 @@ When invoked without specific instructions, this skill **automatically detects**
 
 2. Has specs directory but no RFCs?
    → Has design drafts? → WORKFLOW Phase 1 (draft -> RFC -> `specs-refine`)
-   → No drafts? → WORKFLOW Phase 0 (conceptual design)
+   → No drafts? → WORKFLOW Phase 1 (start from conceptual design, optionally with `platonic-brainstorming`)
 
 3. Has RFCs but no implementation guides?
-   → WORKFLOW Phase 2 (`impl-full` or `impl-create-guide`)
+   → WORKFLOW Phase 2 (`impl-full` or `impl-create-guide`, optionally with `platonic-brainstorming` first)
 
 4. Has RFCs and implementation guides?
-   → If implementation is still in progress, resume IMPL mode
-   → If implementation appears complete or the user asks for verification, run REVIEW mode
+   → If implementation is still in progress, resume Phase 2 (IMPL mode)
+   → If implementation appears complete or the user asks for verification, run Phase 3 (REVIEW mode)
 
 5. Has specs but the next step is ambiguous?
    → Resume from the current workflow phase or ask whether the user wants refine / implement / review
@@ -79,14 +79,18 @@ If you support shorthand like `--init` or `--workflow`, treat it as a convenienc
 
 ## Core Workflow Phases
 
-The Platonic Coding workflow follows four phases:
+After initialization, the Platonic Coding workflow has three phases:
 
-| Phase | Focus | Output | Mode |
-|-------|-------|--------|------|
-| **0** | Conceptual Design | Design draft (`docs/drafts/`) | WORKFLOW |
-| **1** | RFC Specification | RFCs (`docs/specs/`) | WORKFLOW / SPECS |
-| **2** | Implementation | Guide + Code + Tests | WORKFLOW / IMPL |
-| **3** | Spec Compliance Review | Review report | WORKFLOW / REVIEW |
+| Phase | Focus | Output | Platonic Brainstorming (Optional) |
+|-------|-------|--------|-----------------------------------|
+| **1** | RFC Specification | Design draft → RFC → `specs-refine` | ✅ Use for conceptual exploration before formalization |
+| **2** | Implementation | Implementation guide + Code + Tests | ✅ Use for design refinement before coding |
+| **3** | Spec Compliance Review | Review report | ❌ Not applicable |
+
+**Phase Flow**:
+- Each phase optionally integrates `platonic-brainstorming` at the beginning for structured exploration
+- All phases can run sequentially (full workflow) or independently (explicit invocation)
+- Phase 1 and 2 can start from scratch or resume from existing artifacts (drafts, RFCs, guides)
 
 ## Operation Modes
 
@@ -219,67 +223,55 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 
 ### WORKFLOW Mode
 
-**Purpose**: Orchestrate the full 4-phase workflow from design to review
+**Purpose**: Orchestrate the full 3-phase workflow from RFC specification to review
 
 **Phases**:
-- **Phase 0**: Conceptual design (invoke `platonic-brainstorming` if available and desired, or use the bundled interactive method -> design draft)
-- **Phase 1**: Generate RFC from the approved draft, then run `specs-refine`
-- **Phase 2**: Call `impl-full` (guide -> plan -> code + tests)
-- **Phase 3**: Call `review` for spec compliance
-- **FINISHED**: Summary and recommendations
+
+**Phase 1: RFC Specification**
+- Optional: `platonic-brainstorming` for conceptual design (see workflow-overview.md)
+- Create design draft → generate RFC → run `specs-refine`
+
+**Phase 2: Implementation**
+- Optional: `platonic-brainstorming` for design refinement (see workflow-overview.md)
+- Call `impl-full` (guide → plan → code + tests) or `impl-code` from existing guide
+
+**Phase 3: Spec Compliance Review**
+- Call `review` to validate implementation against specs
+- Generate compliance report
+
+**FINISHED**: Summary and next steps
+
+**Phase Visibility**: Always show current phase at each step (see workflow-overview.md for details)
 
 ### Process Flow
 
-```dot
-digraph platonic_coding {
-    "Start" [shape=circle];
-    "User override provided?" [shape=diamond];
-    "Route to explicit mode" [shape=box];
-    "Auto-detect project state" [shape=box];
-    ".platonic.yml exists?" [shape=diamond];
-    "INIT mode" [shape=box];
-    "Ready for workflow?" [shape=diamond];
-    "Phase 0:\n`platonic-brainstorming`\nor bundled method" [shape=box];
-    "Phase 1:\ndraft -> RFC -> `specs-refine`" [shape=box];
-    "Phase 2:\n`impl-full`" [shape=box];
-    "Phase 3:\n`review`" [shape=box];
-    "FINISHED" [shape=doublecircle];
-
-    "Start" -> "User override provided?";
-    "User override provided?" -> "Route to explicit mode" [label="yes"];
-    "User override provided?" -> "Auto-detect project state" [label="no"];
-    "Auto-detect project state" -> ".platonic.yml exists?";
-    ".platonic.yml exists?" -> "INIT mode" [label="no"];
-    ".platonic.yml exists?" -> "Ready for workflow?" [label="yes"];
-    "INIT mode" -> "Ready for workflow?";
-    "Ready for workflow?" -> "Phase 0:\n`platonic-brainstorming`\nor bundled method" [label="workflow / no drafts"];
-    "Ready for workflow?" -> "Phase 1:\ndraft -> RFC -> `specs-refine`" [label="approved draft exists"];
-    "Ready for workflow?" -> "Phase 2:\n`impl-full`" [label="RFC exists / implementation needed"];
-    "Ready for workflow?" -> "Phase 3:\n`review`" [label="implementation complete / verification requested"];
-    "Phase 0:\n`platonic-brainstorming`\nor bundled method" -> "Phase 1:\ndraft -> RFC -> `specs-refine`";
-    "Phase 1:\ndraft -> RFC -> `specs-refine`" -> "Phase 2:\n`impl-full`";
-    "Phase 2:\n`impl-full`" -> "Phase 3:\n`review`";
-    "Phase 3:\n`review`" -> "FINISHED";
-    "Route to explicit mode" -> "FINISHED";
-}
-```
+For detailed workflow diagram and process flow, see `references/WORKFLOW/workflow-overview.md`.
 
 **Auto-detection**: Suggested when project is initialized and ready for new features
 
-**Phase Visibility**: Always shows current phase at each step
+**Platonic Brainstorming Integration**: Optional in Phases 1 and 2 (see workflow-overview.md for pattern)
 
-**Platonic Brainstorming Integration**: Phase 0 can invoke `platonic-brainstorming` when it is available and you want the structured design flow. It provides requirement exploration, multiple approaches, trade-offs, and incremental validation before the workflow hands off to RFC formalization. Otherwise, fall back to the bundled interactive method.
+**Platonic Brainstorming Integration**:
+- Phase 1: Use before RFC formalization to explore requirements, alternatives, and design trade-offs
+- Phase 2: Use before implementation to refine architecture decisions and validate approach
+- Phase 3: Not applicable (review phase is purely analytical)
 
 **Examples**:
 ```
-# Run full workflow from Phase 0
+# Run full workflow from Phase 1
 Use platonic-coding workflow to implement a user preferences feature.
+
+# Start at Phase 1 with brainstorming
+Use platonic-coding workflow to design and implement a user authentication system, starting with platonic-brainstorming.
 
 # Start at specific phase
 Use platonic-coding workflow --phase 2 to implement RFC-0042-message-queue.
 
 # Resume workflow (auto-detected)
 Use platonic-coding to continue from where we left off.
+
+# Phase 2 with design refinement
+Use platonic-coding workflow --phase 2 for RFC-0042, use platonic-brainstorming to refine the implementation approach first.
 ```
 
 **Reference**: See `references/REFERENCE.md` → WORKFLOW section
@@ -327,17 +319,23 @@ Complete workflow from greenfield to reviewed implementation:
 # Day 1: Initialize
 Use platonic-coding to set up my new project "Acme" (TypeScript/Next.js).
 
-# Day 2: Start workflow (Phase 0)
-Use platonic-coding workflow to design a user authentication feature.
+# Day 2: Start workflow (Phase 1)
+Use platonic-coding workflow to implement a user authentication feature.
+→ Phase 1: RFC Specification (design draft → RFC → specs-refine)
+→ Phase 2: Implementation (impl-full: guide → code → tests)
+→ Phase 3: Spec Compliance Review (review report)
 
-# Day 2: Continue workflow (Phase 1-3)
-# Agent auto-runs: Phase 1 (RFC) → Phase 2 (impl) → Phase 3 (review)
+# Day 2: Alternative with brainstorming
+Use platonic-coding workflow to design a notification system, starting each phase with platonic-brainstorming.
+→ Phase 1: platonic-brainstorming → design draft → RFC → specs-refine
+→ Phase 2: platonic-brainstorming (design refinement) → impl-full
+→ Phase 3: review
 
 # Day 3: Maintenance
 Use platonic-coding to refine all specs and validate consistency.
 
 # Day 4: New feature
-Use platonic-coding workflow --phase 0 to add a notification system.
+Use platonic-coding workflow --phase 1 to add a notification system.
 ```
 
 See `references/REFERENCE.md` for detailed operation guides.

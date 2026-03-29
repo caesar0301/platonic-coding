@@ -50,11 +50,10 @@ The skill provides **23 operations** organized into five domains:
 ### REVIEW (1 comprehensive operation)
 - `review` — Spec compliance review with 6-step process
 
-### WORKFLOW (4 phases)
-- `workflow-phase-0` — Conceptual design and design draft
-- `workflow-phase-1` — RFC generation and refinement
-- `workflow-phase-2` — Implementation (guide + code + tests)
-- `workflow-phase-3` — Spec compliance review
+### WORKFLOW (3 phases after INIT)
+- `workflow-phase-1` — RFC Specification (optional brainstorming → draft → RFC → specs-refine)
+- `workflow-phase-2` — Implementation (optional brainstorming → impl-full)
+- `workflow-phase-3` — Spec Compliance Review
 
 ---
 
@@ -75,7 +74,7 @@ Step 1: Check for .platonic.yml
 Step 2: Check specs directory
 ├─ No RFCs found
 │  ├─ Has design drafts? → WORKFLOW Phase 1 (`design draft` -> RFC -> `specs-refine`)
-│  └─ No drafts? → WORKFLOW Phase 0 (conceptual design)
+│  └─ No drafts? → WORKFLOW Phase 1 (start from conceptual design, optionally with `platonic-brainstorming`)
 │
 └─ RFCs exist → Continue to Step 3
 
@@ -628,47 +627,32 @@ Use platonic-coding review to identify gaps between specs/ and src/.
 
 All workflow phase references are in `references/WORKFLOW/`.
 
-#### workflow-phase-0
-
-**Reference**: `references/WORKFLOW/workflow-phase-0.md`
-
-**Purpose**: Conduct interactive conceptual design and create design draft.
-
-**Activities**:
-- Clarify problem space, goals, constraints
-- Explore domain knowledge
-- Identify core abstractions
-- Resolve ambiguity
-- Create design draft document
-
-**Output**:
-- Design draft in `docs/drafts/`
-
-**Example**:
-```
-Use platonic-coding workflow --phase 0 to design a user authentication feature.
-```
-
----
-
 #### workflow-phase-1
 
 **Reference**: `references/WORKFLOW/workflow-phase-1.md`
 
-**Purpose**: Turn design draft into formal RFC and refine it.
+**Purpose**: Create RFC specification from conceptual design and refine it.
 
 **Activities**:
-1. Generate RFC from Phase 0 design draft
-2. Call `specs-refine` to validate and update RFC
+1. Optional: Use `platonic-brainstorming` for conceptual design exploration
+2. Create design draft (from brainstorming output or interactively)
+3. Generate RFC from approved draft
+4. Call `specs-refine` to validate and update RFC
 
 **Output**:
+- Design draft in `docs/drafts/` (if created during this phase)
 - RFC(s) in `docs/specs/` with Status: Draft
 
 **Example**:
 ```
-# Typically runs automatically after Phase 0
-# Or explicit start from an approved design draft:
+# Phase 1 with brainstorming
+Use platonic-coding workflow --phase 1 to design user authentication, starting with platonic-brainstorming.
+
+# Phase 1 from existing draft
 Use platonic-coding workflow --phase 1 with docs/drafts/YYYY-MM-DD-message-queue-design.md.
+
+# Phase 1 without brainstorming
+Use platonic-coding workflow --phase 1 to create RFC for notification system.
 ```
 
 ---
@@ -766,7 +750,7 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │   │   ├── IG-001-user-authentication.md         # Impl guide for RFC-0001-user-auth
 │   │   └── IG-002-data-storage.md                # Impl guide for RFC-0002-data-storage
 │   │
-│   └── drafts/                     # Phase 0 design drafts
+│   └── drafts/                     # Phase 1 design drafts
 │       ├── README.md
 │       └── user-auth-design.md
 │
@@ -786,10 +770,9 @@ Use platonic-coding to set up my new project "Acme" (TypeScript/Next.js).
 
 # Start full workflow
 Use platonic-coding workflow to design user authentication.
-→ Phase 0: Interactive design → design draft
-→ Phase 1: Generate RFC → specs-refine
-→ Phase 2: impl-full (guide + code + tests)
-→ Phase 3: review
+→ Phase 1: RFC Specification (design draft → RFC → specs-refine)
+→ Phase 2: Implementation (impl-full: guide → code → tests)
+→ Phase 3: Spec Compliance Review (review report)
 → FINISHED
 
 # Periodic maintenance
@@ -810,8 +793,8 @@ Use platonic-coding to check if code matches recovered specs.
 → Auto-detects recovered specs + implementation state → resumes implementation or runs review, depending on what is complete
 
 # Implement new feature
-Use platonic-coding workflow --phase 0 to add notifications.
-→ Full workflow from design through implementation
+Use platonic-coding workflow --phase 1 to add notifications.
+→ Full workflow from RFC specification through implementation
 ```
 
 ### Example 3: Specific Operations

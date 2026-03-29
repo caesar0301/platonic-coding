@@ -1,6 +1,6 @@
 # {{PROJECT_NAME}} Design Drafts
 
-This directory contains design drafts produced during Phase 0 (Conceptual Design) of the Platonic Coding workflow.
+This directory contains design drafts produced during Phase 1 (RFC Specification) of the Platonic Coding workflow.
 
 ## Purpose
 
@@ -29,20 +29,20 @@ Code
 
 ## Creating a New Draft
 
-Use the **platonic-workflow** skill starting at Phase 0:
+Use the **platonic-coding** skill starting at Phase 1:
 
 ```
-Use platonic-workflow to start Phase 0 for a new feature.
+Use platonic-coding workflow to start Phase 1 for a new feature.
 ```
 
 Or create a draft manually -- any markdown file in this directory works.
 
 ## After a Draft is Complete
 
-Once a draft captures the shared understanding, proceed to Phase 1:
+Once a draft captures the shared understanding, continue Phase 1 to formalize it into an RFC:
 
 ```
-Use platonic-workflow to proceed to Phase 1 with the draft at docs/drafts/<name>.md
+Use platonic-coding workflow to proceed with the draft at docs/drafts/<name>.md
 ```
 
-This converts the draft into a formal RFC specification.
+This converts the draft into a formal RFC specification within Phase 1.

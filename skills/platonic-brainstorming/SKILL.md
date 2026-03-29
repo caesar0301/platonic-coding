@@ -1,9 +1,9 @@
 ---
 name: platonic-brainstorming
-description: "Recommended for Platonic Coding Phase 0 conceptual design. Explores user intent, requirements, alternatives, and design before formalizing an approved draft for Phase 1 RFC work."
+description: "Optional design exploration for Platonic Coding Phases 1 and 2. Explores user intent, requirements, alternatives, and design before RFC formalization or implementation."
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   author: "Xiaming Chen"
   category: "workflow"
   integrates:
@@ -12,9 +12,9 @@ metadata:
 
 # Platonic Brainstorming
 
-Help turn ideas into fully formed designs and Phase 0 drafts through natural collaborative dialogue.
+Help turn ideas into fully formed designs through natural collaborative dialogue.
 
-Use this skill when you want structured design exploration before RFC formalization. Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design, validate it with the user, and hand off the approved draft to Platonic Coding Phase 1.
+Use this skill when you want structured design exploration before RFC formalization (Phase 1) or design refinement before implementation (Phase 2). Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design, validate it with the user, and hand off to the next Platonic Coding workflow phase.
 
 <HARD-GATE>
 Within this brainstorming flow, do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has explicitly approved it.
@@ -22,7 +22,7 @@ Within this brainstorming flow, do NOT invoke any implementation skill, write an
 
 ## Anti-Pattern: "This Is Too Simple To Need A Design"
 
-For work that enters Platonic Phase 0, even "simple" changes deserve an explicit design pass so assumptions are surfaced early. The design can be short (a few sentences for truly simple projects), but it should still be presented and approved before the workflow advances.
+For work that enters Platonic Coding phases, even "simple" changes deserve an explicit design pass so assumptions are surfaced early. The design can be short (a few sentences for truly simple projects), but it should still be presented and approved before the workflow advances.
 
 ## Checklist
 
@@ -36,7 +36,7 @@ Create tasks for the applicable steps below and follow them in process order:
 6. **Write design draft** - save to `docs/drafts/YYYY-MM-DD-<topic>-design.md` by default, or update the user-provided draft if one already exists
 7. **Draft self-review** - quick inline check for placeholders, contradictions, ambiguity, scope (see below)
 8. **User reviews written draft** - ask user to review the draft file before proceeding
-9. **Transition to the next Platonic stage** - hand off to Platonic Coding Phase 1 RFC formalization (`design draft -> RFC -> specs-refine`)
+9. **Transition to the next Platonic stage** - hand off to Platonic Coding workflow phase (Phase 1 RFC formalization or Phase 2 implementation)
 
 ## Process Flow
 
@@ -78,7 +78,7 @@ digraph platonic_brainstorming {
 
 - Check out the current project state first (files, docs, recent commits)
 - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
-- If the project is too large for a single Phase 0 draft, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own draft -> downstream Platonic stages -> implementation cycle.
+- If the project is too large for a single design draft, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own draft -> downstream Platonic stages -> implementation cycle.
 - For appropriately-scoped projects, ask questions one at a time to refine the idea
 - Prefer multiple choice questions when possible, but open-ended is fine too
 - Only one clarifying or design question per message - if a topic needs more exploration, break it into multiple questions. Standalone setup or consent messages, like the visual companion offer, are exempt.
