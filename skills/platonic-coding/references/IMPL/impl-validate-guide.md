@@ -107,7 +107,7 @@ Find statements that conflict with RFC.
 - [ ] Requirement 2: [description] - **NOT ADDRESSED**
 
 ### Contradictions Found
-1. **[CRITICAL]** Guide states X, but RFC-NNNN-<name> Section Y states Z
+1. **[CRITICAL]** Guide states X, but RFC-NNN-<name> Section Y states Z
    - Guide: "[quote from guide]"
    - RFC: "[quote from RFC]"
    - Recommendation: [how to fix]
@@ -136,10 +136,10 @@ Find statements that conflict with RFC.
 
 **Input**:
 - Guide: `docs/impl/IG-042-message-queue-protocol.md`
-- RFC: `docs/specs/RFC-0042-message-queue.md`
+- RFC: `docs/specs/RFC-042-message-queue.md`
 
 **Validation**:
-1. Check RFC-0042-message-queue invariants (at-least-once delivery, message ordering)
+1. Check RFC-042-message-queue invariants (at-least-once delivery, message ordering)
 2. Verify all Message Queue requirements are in the guide
 3. Confirm type definitions match RFC schemas
 4. Check terminology against project naming conventions

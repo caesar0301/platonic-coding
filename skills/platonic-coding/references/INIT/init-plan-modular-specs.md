@@ -12,7 +12,7 @@ Design a small, focused graph of Draft RFCs that captures the existing system's 
 |-------|--------|
 | Scan synthesis | From scan-project.md Phase 5 |
 | Max RFC count | Default: 5. User may override |
-| RFC numbering start | Default: 0001. User may override |
+| RFC numbering start | Default: 001. User may override |
 
 ## Modular Planning Principles
 
@@ -20,7 +20,7 @@ Design a small, focused graph of Draft RFCs that captures the existing system's 
 
 Always produce **exactly 1** Conceptual Design spec:
 
-- RFC-0001 (or user-specified start number)
+- RFC-001 (or user-specified start number)
 - Covers the entire system's vision, principles, taxonomy, and invariants
 - Every other RFC depends on this one
 
@@ -74,17 +74,17 @@ Present the proposed RFC graph to the user as a table and dependency diagram:
 ```markdown
 | RFC | Title | Kind | Summary | Depends On |
 |-----|-------|------|---------|------------|
-| RFC-0001 | [System] Vision and Principles | Conceptual | System goals, core principles, taxonomy | — |
-| RFC-0002 | [Subsystem A] Architecture | Architecture | Components, data flow, constraints for A | RFC-0001 |
-| RFC-0003 | [Subsystem B] Architecture | Architecture | Components, data flow, constraints for B | RFC-0001 |
+| RFC-001 | [System] Vision and Principles | Conceptual | System goals, core principles, taxonomy | — |
+| RFC-002 | [Subsystem A] Architecture | Architecture | Components, data flow, constraints for A | RFC-001 |
+| RFC-003 | [Subsystem B] Architecture | Architecture | Components, data flow, constraints for B | RFC-001 |
 ```
 
 ### Dependency Diagram
 
 ```
-RFC-0001 (Conceptual: System Vision)
-├── RFC-0002 (Architecture: Subsystem A)
-└── RFC-0003 (Architecture: Subsystem B)
+RFC-001 (Conceptual: System Vision)
+├── RFC-002 (Architecture: Subsystem A)
+└── RFC-003 (Architecture: Subsystem B)
 ```
 
 ### Confirmation Prompt
@@ -119,8 +119,8 @@ After adjustments, re-present the updated plan for confirmation.
 ```
 | RFC | Title | Kind |
 |-----|-------|------|
-| RFC-0001 | System Vision and Principles | Conceptual |
-| RFC-0002 | System Architecture | Architecture |
+| RFC-001 | System Vision and Principles | Conceptual |
+| RFC-002 | System Architecture | Architecture |
 ```
 
 Total: 2 RFCs.
@@ -130,10 +130,10 @@ Total: 2 RFCs.
 ```
 | RFC | Title | Kind |
 |-----|-------|------|
-| RFC-0001 | System Vision and Principles | Conceptual |
-| RFC-0002 | Core Engine Architecture | Architecture |
-| RFC-0003 | API Layer Architecture | Architecture |
-| RFC-0004 | Storage Layer Architecture | Architecture |
+| RFC-001 | System Vision and Principles | Conceptual |
+| RFC-002 | Core Engine Architecture | Architecture |
+| RFC-003 | API Layer Architecture | Architecture |
+| RFC-004 | Storage Layer Architecture | Architecture |
 ```
 
 Total: 4 RFCs.
@@ -143,11 +143,11 @@ Total: 4 RFCs.
 ```
 | RFC | Title | Kind |
 |-----|-------|------|
-| RFC-0001 | System Vision and Principles | Conceptual |
-| RFC-0002 | Core Domain Architecture | Architecture |
-| RFC-0003 | Service Layer Architecture | Architecture |
-| RFC-0004 | Infrastructure Architecture | Architecture |
-| RFC-0005 | API and Integration Architecture | Architecture |
+| RFC-001 | System Vision and Principles | Conceptual |
+| RFC-002 | Core Domain Architecture | Architecture |
+| RFC-003 | Service Layer Architecture | Architecture |
+| RFC-004 | Infrastructure Architecture | Architecture |
+| RFC-005 | API and Integration Architecture | Architecture |
 ```
 
 Total: 5 RFCs (at default max).

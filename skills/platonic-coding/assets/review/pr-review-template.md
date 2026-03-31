@@ -140,7 +140,7 @@
 
 ## Specifications Reviewed
 
-- [RFC-0001-brief-semantic-name](path) - v1.2, Section X.Y
+- [RFC-001-brief-semantic-name](path) - v1.2, Section X.Y
 - [requirements.md](path) - Updated YYYY-MM-DD
 - [API-spec.yaml](path) - v2.0
 

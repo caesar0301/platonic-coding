@@ -12,7 +12,7 @@ Produce a Draft RFC that captures the system's vision, principles, taxonomy, and
 |-------|--------|
 | Scan synthesis | From scan-project.md |
 | Confirmed RFC plan | From plan-modular-specs.md |
-| RFC number | From plan (default: 0001) |
+| RFC number | From plan (default: 001) |
 | Spec-kind template | `assets/specs/template-conceptual-design.md` |
 
 ## Recovery Process
@@ -90,7 +90,7 @@ Using the `template-conceptual-design.md`:
 
 Show the complete Draft RFC to the user:
 
-> "Here is the recovered Conceptual Design spec (RFC-0001). Key points:
+> "Here is the recovered Conceptual Design spec (RFC-001). Key points:
 > - Vision: [1-sentence summary]
 > - Principles: [list principle names]
 > - Terms defined: [count]

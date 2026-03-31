@@ -240,7 +240,7 @@ Action: Create spec or remove code
 
 ## Example: Simple Review
 
-**Spec** (RFC-0005, Section 2.1):
+**Spec** (RFC-005, Section 2.1):
 ```
 GET /api/users/:id returns user name, email, registrationDate
 ```
@@ -260,7 +260,7 @@ GET /api/users/:id returns user name, email, registrationDate
    ```markdown
    ### Finding: Missing Registration Date
    **Severity**: Medium
-   **Spec**: RFC-0005, Section 2.1
+   **Spec**: RFC-005, Section 2.1
    **Code**: src/api/users.controller.ts:49
    **Issue**: Response missing required `registrationDate` field
    **Recommendation**: Add `registrationDate: user.createdAt` to response

@@ -34,7 +34,7 @@ For design refinement and architecture validation before coding, optionally invo
   4. **Coding**: Implement all tasks, write unit and integration tests
 
 - Inputs to impl-full:
-  - RFC document path (e.g., `docs/specs/RFC-0001-world-view.md`)
+  - RFC document path (e.g., `docs/specs/RFC-001-world-view.md`)
   - Target module name
   - Language and optional framework
   - Output path for guide: default `docs/impl/`
@@ -71,10 +71,10 @@ For design refinement and architecture validation before coding, optionally invo
 
 ```
 # Phase 2 with brainstorming for design refinement
-Use platonic-coding workflow --phase 2 for RFC-0042-message-queue, use platonic-brainstorming to refine the implementation approach.
+Use platonic-coding workflow --phase 2 for RFC-042-message-queue, use platonic-brainstorming to refine the implementation approach.
 
 # Phase 2 standard flow
-Use platonic-coding workflow --phase 2 to implement RFC-0001-user-authentication.
+Use platonic-coding workflow --phase 2 to implement RFC-001-user-authentication.
 
 # Phase 2 from existing guide (impl-code operation)
 Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.

@@ -35,6 +35,31 @@ RFCs serve as:
 - **Reference documentation** for users
 - **Historical record** of design decisions
 
+### Important: RFC Purpose and Scope
+
+RFCs are designed to record **high-level design decisions**, not implementation details. Focus on:
+
+- **Abstract**: Clear summary of the design intent and rationale
+- **Architecture**: Component structure, responsibilities, and interactions
+- **Protocol**: Communication patterns, message formats, and flow control
+- **Data structures**: Key entities, relationships, and invariants
+
+RFCs should **NOT** include:
+
+- Detailed code examples beyond interface signatures
+- Step-by-step implementation instructions
+- Language-specific optimizations
+- Testing strategies (those belong in implementation guides)
+
+### File Size Limit
+
+Each RFC file should be **under 800 lines**. If an RFC exceeds this limit:
+
+- Split into multiple RFCs with clear dependencies
+- Move detailed specifications to child RFCs
+- Keep the parent RFC focused on high-level architecture
+- Consider if the RFC is too detailed (it may belong in an implementation guide instead)
+
 ---
 
 ## Spec Kinds
@@ -134,7 +159,7 @@ stateDiagram-v2
     end note
 
     note right of Amendment
-        Creates RFC-NNNN-VVV.md
+        Creates RFC-NNN-<letter>.md
         Version increments by 1
     end note
 ```
@@ -175,18 +200,18 @@ stateDiagram-v2
 
 ### Numbered RFCs
 
-**Filename convention**: RFC spec files MUST be named `RFC-NNNN-<brief-semantic-name>.md`.
+**Filename convention**: RFC spec files MUST be named `RFC-NNN-<brief-semantic-name>.md`.
 
 - `RFC`: Capital letters (literal)
-- `NNNN`: 4-digit zero-padded number (0001, 0002, etc.)
+- `NNN`: 3-digit zero-padded number (001, 002, etc.)
 - `<brief-semantic-name>`: Kebab-case brief description (e.g., `message-queue`, `user-auth`)
 - Sequential numbering
 - Numbers are reserved once assigned, even if RFC is deleted
 
 **Examples**:
-- `RFC-0001-world-view.md` - First RFC (conceptual: world view)
-- `RFC-0042-message-queue.md` - Forty-second RFC (architecture: message queue)
-- `RFC-0100-api-gateway.md` - One hundredth RFC (impl-interface: API gateway)
+- `RFC-001-world-view.md` - First RFC (conceptual: world view)
+- `RFC-042-message-queue.md` - Forty-second RFC (architecture: message queue)
+- `RFC-100-api-gateway.md` - One hundredth RFC (impl-interface: API gateway)
 
 ### Special RFCs
 
@@ -196,17 +221,17 @@ Used for cross-cutting RFCs: `rfc-namings.md`, `rfc-index.md`, etc.
 
 ### Versioned RFC Updates
 
-**Format**: `RFC-NNNN-<brief-semantic-name>-VVV.md`
+**Format**: `RFC-NNN-<brief-semantic-name>-<letter>.md`
 
-- `NNNN`: Original RFC number (4-digit padded)
+- `NNN`: Original RFC number (3-digit padded)
 - `<brief-semantic-name>`: Same semantic name from base RFC (preserved across versions)
-- `VVV`: Version number (3-digit padded, starting at 001)
+- `<letter>`: Single lowercase letter (a, b, c, ... z) for minor versions
 - Used only for updates to frozen RFCs
 
 **Examples**:
-- `RFC-0001-world-view-001.md` - First update to RFC-0001-world-view.md
-- `RFC-0001-world-view-002.md` - Second update to RFC-0001-world-view.md
-- `RFC-0042-message-queue-015.md` - Fifteenth update to RFC-0042-message-queue.md
+- `RFC-001-world-view-a.md` - First update to RFC-001-world-view.md
+- `RFC-001-world-view-b.md` - Second update to RFC-001-world-view.md
+- `RFC-042-message-queue-j.md` - Tenth update to RFC-042-message-queue.md
 
 ---
 
@@ -224,8 +249,8 @@ Used for cross-cutting RFCs: `rfc-namings.md`, `rfc-index.md`, etc.
 ### Changing Status
 
 - **Draft → Review**: Complete the RFC, update status, request review
-- **Review → Frozen**: Address feedback, ensure consensus, update status, commit with `docs: freeze RFC-NNNN-<name>`
-- **Frozen → Amendment**: Create new file `RFC-NNNN-<name>-VVV.md` with full content, commit with `docs: add RFC-NNNN-<name> version VVV`
+- **Review → Frozen**: Address feedback, ensure consensus, update status, commit with `docs: freeze RFC-NNN-<name>`
+- **Frozen → Amendment**: Create new file `RFC-NNN-<name>-<letter>.md` with full content, commit with `docs: add RFC-NNN-<name> version <letter>`
 
 ---
 
@@ -242,33 +267,34 @@ Used for cross-cutting RFCs: `rfc-namings.md`, `rfc-index.md`, etc.
 
 Frozen RFCs are **immutable**. To make updates:
 
-1. Create `RFC-NNNN-<name>-VVV.md` (next sequential version; first version is 001)
+1. Create `RFC-NNN-<name>-<letter>.md` (next sequential letter; first version is a)
 2. Copy full content from original (version files are standalone and complete, not diffs)
 3. Make changes
 4. Update metadata:
 
 ```markdown
-# RFC-NNNN-<name>-VVV: [Title] (Update [V])
+# RFC-NNN-<name>-<letter>: [Title] (Update <letter>)
 
 **Status**: Frozen
-**Parent RFC**: RFC-NNNN-<name>
-**Version**: VVV
+**Parent RFC**: RFC-NNN-<name>
+**Version**: <letter>
 **Authors**: [Author names]
 **Created**: YYYY-MM-DD
 **Changes**: [Brief summary]
-**Supersedes**: RFC-NNNN-<name> or RFC-NNNN-<name>-002
-**Depends on**: [RFC-XXXX-<name>, RFC-YYYY-<name>]
+**Supersedes**: RFC-NNN-<name> or RFC-NNN-<name>-b
+**Depends on**: [RFC-XXX-<name>, RFC-YYY-<name>]
 ```
 
 5. Update [rfc-index.md](rfc-index.md) with the new version entry
 
 ### Version Increment Rules
 
-- Versions are sequential: 001, 002, 003, ...
-- No gaps in version numbers
-- Version 001 supersedes the base RFC-NNNN-<name>
-- Version 002 supersedes RFC-NNNN-<name>-001
+- Versions are sequential letters: a, b, c, ... z
+- No gaps in version letters
+- Version a supersedes the base RFC-NNN-<name>
+- Version b supersedes RFC-NNN-<name>-a
 - And so on
+- Maximum 26 versions per RFC (a-z); after z, create a new RFC number
 
 ---
 
@@ -277,14 +303,14 @@ Frozen RFCs are **immutable**. To make updates:
 Use this template when creating new RFCs:
 
 ```markdown
-# RFC-NNNN-<brief-semantic-name>: [Title]
+# RFC-NNN-<brief-semantic-name>: [Title]
 
 **Status**: Draft
 **Authors**: [Your name(s)]
 **Created**: YYYY-MM-DD
 **Last Updated**: YYYY-MM-DD
-**Depends on**: [RFC-XXXX-<name>, RFC-YYYY-<name>, or "---" if none]
-**Supersedes**: [RFC-ZZZZ-<name> or "---" if none]
+**Depends on**: [RFC-XXX-<name>, RFC-YYY-<name>, or "---" if none]
+**Supersedes**: [RFC-ZZZ-<name> or "---" if none]
 **Stage**: [Optional: e.g. Core | Storage | API]
 **Kind**: [Conceptual Design | Architecture Design | Implementation Interface Design]
 
@@ -350,8 +376,8 @@ This RFC does **not** define:
 
 [How this RFC relates to and depends on other RFCs]
 
-* **RFC-XXXX-<name>**: [Relationship]
-* **RFC-YYYY-<name>**: [Relationship]
+* **RFC-XXX-<name>**: [Relationship]
+* **RFC-YYY-<name>**: [Relationship]
 
 ---
 
@@ -374,16 +400,16 @@ This RFC does **not** define:
 ### Template for Versioned RFCs
 
 ```markdown
-# RFC-NNNN-<name>-VVV: [Title] (Update [V])
+# RFC-NNN-<name>-<letter>: [Title] (Update <letter>)
 
 **Status**: Frozen
-**Parent RFC**: RFC-NNNN-<name>
-**Version**: VVV
+**Parent RFC**: RFC-NNN-<name>
+**Version**: <letter>
 **Authors**: [Author names]
 **Created**: YYYY-MM-DD
 **Changes**: [Brief summary of what changed in this version]
-**Supersedes**: RFC-NNNN-<name> or RFC-NNNN-<name>-002
-**Depends on**: [RFC-XXXX-<name>, RFC-YYYY-<name>]
+**Supersedes**: RFC-NNN-<name> or RFC-NNN-<name>-b
+**Depends on**: [RFC-XXX-<name>, RFC-YYY-<name>]
 
 ---
 
@@ -456,9 +482,9 @@ Follow RFC 2119 conventions:
 
 Use markdown links for all RFC references:
 
-- Link to RFCs: `[RFC-NNNN-<name>](RFC-NNNN-<name>.md)`
-- Link to sections: `[RFC-NNNN-<name>, Section 4](RFC-NNNN-<name>.md#4-design-principles)`
-- Link to versions: `[RFC-NNNN-<name>-VVV](RFC-NNNN-<name>-VVV.md)`
+- Link to RFCs: `[RFC-NNN-<name>](RFC-NNN-<name>.md)`
+- Link to sections: `[RFC-NNN-<name>, Section 4](RFC-NNN-<name>.md#4-design-principles)`
+- Link to versions: `[RFC-NNN-<name>-<letter>](RFC-NNN-<name>-<letter>.md)`
 
 ### Terminology Management
 
@@ -481,8 +507,8 @@ The [rfc-namings.md](rfc-namings.md) file **MUST** always reflect the latest ter
 | `Authors` | Free text | RFC author(s) |
 | `Created` | `YYYY-MM-DD` | Date RFC was created |
 | `Last Updated` | `YYYY-MM-DD` | Date of most recent change |
-| `Depends on` | `RFC-NNNN-<name>, RFC-MMMM-<name>` or `---` | RFC dependencies |
-| `Supersedes` | `RFC-NNNN-<name>` or `---` | RFC this replaces |
+| `Depends on` | `RFC-NNN-<name>, RFC-MMM-<name>` or `---` | RFC dependencies |
+| `Supersedes` | `RFC-NNN-<name>` or `---` | RFC this replaces |
 
 ### Optional Fields
 
@@ -495,8 +521,8 @@ The [rfc-namings.md](rfc-namings.md) file **MUST** always reflect the latest ter
 
 | Field | Format | Description |
 |-------|--------|-------------|
-| `Parent RFC` | `RFC-NNNN-<name>` | Original RFC being updated |
-| `Version` | `VVV` | Version number (001, 002, etc.) |
+| `Parent RFC` | `RFC-NNN-<name>` | Original RFC being updated |
+| `Version` | `<letter>` | Version letter (a, b, c, ... z) |
 | `Changes` | Free text | Summary of changes |
 
 ---
@@ -517,15 +543,15 @@ The [rfc-namings.md](rfc-namings.md) file **MUST** always reflect the latest ter
 
 ### Q: What if I need to make a small change to a frozen RFC?
 
-**A**: Create a new version (`RFC-NNNN-<name>-001.md`) with the full content. Even small changes require versions. This maintains consistency and traceability.
+**A**: Create a new version (`RFC-NNN-<name>-a.md`) with the full content. Even small changes require versions. This maintains consistency and traceability.
 
-### Q: How do I know what version number to use?
+### Q: How do I know what version letter to use?
 
-**A**: Find the highest existing version and add 1. If no versions exist, use 001. Check both the filesystem and [rfc-index.md](rfc-index.md).
+**A**: Find the highest existing version letter and use the next letter. If no versions exist, use a. Check both the filesystem and [rfc-index.md](rfc-index.md).
 
-### Q: Can I skip version numbers?
+### Q: Can I skip version letters?
 
-**A**: No. Versions must be sequential with no gaps (001, 002, 003, ...).
+**A**: No. Versions must be sequential letters with no gaps (a, b, c, ...).
 
 ### Q: Should I delete old versions?
 

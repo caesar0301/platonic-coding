@@ -13,16 +13,16 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
 1. **Scan RFC Files**
    - Find all files matching pattern `RFC-*.md` in the specs directory
    - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
-   - Include both base RFCs (e.g., `RFC-0001-world-view.md`) and versioned RFCs (e.g., `RFC-0001-world-view-001.md`)
+   - Include both base RFCs (e.g., `RFC-001-world-view.md`) and versioned RFCs (e.g., `RFC-001-world-view-001.md`)
 
 2. **Extract Metadata from Each RFC**
    For each RFC file, extract:
    - RFC number (from filename or title)
-   - Title (from `# RFC-NNNN-<name>: Title`)
+   - Title (from `# RFC-NNN-<name>: Title`)
    - Status (from `**Status**: ...`)
    - Created date (from `**Created**: YYYY-MM-DD`)
    - Last Updated date (from `**Last Updated**: YYYY-MM-DD`)
-   - Version number (if versioned RFC, from filename `RFC-NNNN-<name>-VVV.md`)
+   - Version number (if versioned RFC, from filename `RFC-NNN-<name>-<letter>.md`)
 
 3. **Categorize Events**
    For each RFC, create events:
@@ -38,9 +38,9 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
    Format each date section as:
    ```markdown
    ### YYYY-MM-DD
-   - **Created**: RFC-NNNN-<name> - Title
-   - **Updated**: RFC-NNNN-<name> - Title
-   - **Version Released**: RFC-NNNN-<name> version VVV - RFC-NNNN-<name>-VVV.md
+   - **Created**: RFC-NNN-<name> - Title
+   - **Updated**: RFC-NNN-<name> - Title
+   - **Version Released**: RFC-NNN-<name> version <letter> - RFC-NNN-<name>-<letter>.md
    ```
 
 6. **Update rfc-history.md**
@@ -54,7 +54,7 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
 
 - **Created Event**: Always record when `Created` date exists
 - **Updated Event**: Only record if `Last Updated` differs from `Created` AND RFC is not versioned
-- **Version Released Event**: Record for all versioned RFC files (RFC-NNNN-<name>-VVV.md format)
+- **Version Released Event**: Record for all versioned RFC files (RFC-NNN-<name>-<letter>.md format)
 
 ## Date Format
 
@@ -70,12 +70,12 @@ The generated history section should follow this structure:
 ## 3. Change History
 
 ### 2026-01-28
-- **Created**: RFC-0001 - Title of RFC
-- **Updated**: RFC-0002 - Another RFC Title
-- **Version Released**: RFC-0001 version 001 - RFC-0001-001.md
+- **Created**: RFC-001 - Title of RFC
+- **Updated**: RFC-002 - Another RFC Title
+- **Version Released**: RFC-001 version 001 - RFC-001-001.md
 
 ### 2026-01-27
-- **Created**: RFC-0002 - Another RFC Title
+- **Created**: RFC-002 - Another RFC Title
 ```
 
 ## Verification

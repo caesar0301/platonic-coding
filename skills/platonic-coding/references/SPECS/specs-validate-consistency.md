@@ -11,7 +11,7 @@ Check consistency between RFC files, including cross-references, dependencies, a
 ## Steps
 
 1. **Scan All RFC Files**
-   - Find all files matching `RFC-*.md` pattern (convention: RFC-NNNN-<name>.md, e.g. RFC-0001-world-view.md)
+   - Find all files matching `RFC-*.md` pattern (convention: RFC-NNN-<name>.md, e.g. RFC-001-world-view.md)
    - Exclude supporting files: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
 
 2. **Extract Metadata from Each RFC**
@@ -26,7 +26,7 @@ Check consistency between RFC files, including cross-references, dependencies, a
    For each RFC:
    - Parse dependencies from "Depends on" field
    - Check if each dependency exists as an RFC file
-   - Verify dependency format (should be RFC-NNNN-<name>)
+   - Verify dependency format (should be RFC-NNN-<name>)
    - Report missing dependencies
 
 4. **Check Cross-References**
@@ -65,7 +65,7 @@ Check consistency between RFC files, including cross-references, dependencies, a
 - **Patterns to find**: 
   - `RFC-XXXX`
   - `[RFC-XXXX](filename.md)`
-  - `RFC-XXXX-VVV` (versioned references)
+  - `RFC-XXXX-<letter>` (versioned references)
 - **Existence**: Referenced RFCs must exist
 - **Link validity**: Links should point to correct files
 
@@ -82,18 +82,18 @@ Check consistency between RFC files, including cross-references, dependencies, a
 
 ```
 ❌ Errors Found:
-- RFC-0002: Depends on RFC-9999 which doesn't exist
-- RFC-0003: References RFC-8888 which doesn't exist
-- RFC-0004: Invalid status "InvalidStatus" (must be Draft, Review, Frozen, or Deprecated)
+- RFC-002: Depends on RFC-999 which doesn't exist
+- RFC-003: References RFC-888 which doesn't exist
+- RFC-004: Invalid status "InvalidStatus" (must be Draft, Review, Frozen, or Deprecated)
 ```
 
 ### Warnings
 
 ```
 ⚠️  Warnings:
-- RFC-0001: Depends on RFC-0002 which is Draft (prefer Frozen dependencies)
-- RFC-0003: RFC number in title (0003) doesn't match filename (RFC-0004.md)
-- RFC-0005: Missing "Last Updated" field
+- RFC-001: Depends on RFC-002 which is Draft (prefer Frozen dependencies)
+- RFC-003: RFC number in title (0003) doesn't match filename (RFC-004.md)
+- RFC-005: Missing "Last Updated" field
 ```
 
 ## Verification Checklist

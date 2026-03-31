@@ -30,7 +30,7 @@ If not using `platonic-brainstorming`, or if continuing from an approved draft:
 ### Step 2: Determine RFC Index
 
 - If the user has not specified an RFC number/index:
-  - Ask: "Which RFC number should this be (e.g., RFC-0001)?"
+  - Ask: "Which RFC number should this be (e.g., RFC-001)?"
   - Or suggest the next available index based on existing files in `docs/specs/`
 
 ### Step 3: Generate RFC from Design Draft
@@ -40,7 +40,7 @@ If not using `platonic-brainstorming`, or if continuing from an approved draft:
   - Follows the project's RFC format (see `docs/specs/rfc-standard.md` if present)
   - Includes: title, status (Draft), summary, motivation, detailed specification (entities, relations, invariants, constraints), terminology, and references
   - Preserves all material from the design draft in a structured, formal form
-- Write the RFC to the specs directory using convention `RFC-NNNN-<brief-semantic-name>.md`
+- Write the RFC to the specs directory using convention `RFC-NNN-<brief-semantic-name>.md`
 
 ### Step 4: Refine with SPECS Mode
 
@@ -62,7 +62,7 @@ If not using `platonic-brainstorming`, or if continuing from an approved draft:
 
 ## Handoff to Phase 2
 
-- Confirm the RFC path and identifier (e.g., RFC-0001)
+- Confirm the RFC path and identifier (e.g., RFC-001)
 - Proceed to Phase 2 to create the implementation guide and code for this RFC
 - Optionally use `platonic-brainstorming` again in Phase 2 for design refinement before coding
 

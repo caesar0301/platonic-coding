@@ -14,5 +14,5 @@ paths:
   drafts: "docs/drafts"          # Where Phase 1 design drafts live
 
 specs:
-  numbering: "RFC-NNNN-<name>"   # RFC numbering format (NNNN = 4-digit zero-padded, name = brief semantic description)
+  numbering: "RFC-NNN-<name>"    # RFC numbering format (NNN = 3-digit zero-padded, name = brief semantic description)
   stages: []                     # Custom stages, e.g. ["Core", "Storage", "API", "Infra"]

@@ -173,16 +173,16 @@ Use platonic-coding specs-refine to run all validation and generation operations
 **Examples**:
 ```
 # Auto-detect: implement from RFC
-Use platonic-coding to implement RFC-0042-message-queue (Message Queue) in the acme-queue module.
+Use platonic-coding to implement RFC-042-message-queue (Message Queue) in the acme-queue module.
 
 # Explicit: create guide only
-Use platonic-coding impl-create-guide for RFC-0001-user-authentication, guide only, no coding.
+Use platonic-coding impl-create-guide for RFC-001-user-authentication, guide only, no coding.
 
 # Explicit: implement from existing guide
 Use platonic-coding impl-code from docs/impl/IG-001-user-authentication.md.
 
 # Auto-mode: no confirmations
-Use platonic-coding impl-full for RFC-0003-notification-routing without stopping for confirmation.
+Use platonic-coding impl-full for RFC-003-notification-routing without stopping for confirmation.
 ```
 
 **Reference**: See `references/REFERENCE.md` → IMPLEMENTATION section
@@ -208,7 +208,7 @@ Use platonic-coding impl-full for RFC-0003-notification-routing without stopping
 **Examples**:
 ```
 # Auto-detect: review specific RFC implementation
-Use platonic-coding to review src/auth/ against RFC-0001-user-authentication.md.
+Use platonic-coding to review src/auth/ against RFC-001-user-authentication.md.
 
 # Explicit: comprehensive review
 Use platonic-coding review to audit all code against all RFCs in docs/specs/.
@@ -265,13 +265,13 @@ Use platonic-coding workflow to implement a user preferences feature.
 Use platonic-coding workflow to design and implement a user authentication system, starting with platonic-brainstorming.
 
 # Start at specific phase
-Use platonic-coding workflow --phase 2 to implement RFC-0042-message-queue.
+Use platonic-coding workflow --phase 2 to implement RFC-042-message-queue.
 
 # Resume workflow (auto-detected)
 Use platonic-coding to continue from where we left off.
 
 # Phase 2 with design refinement
-Use platonic-coding workflow --phase 2 for RFC-0042, use platonic-brainstorming to refine the implementation approach first.
+Use platonic-coding workflow --phase 2 for RFC-042, use platonic-brainstorming to refine the implementation approach first.
 ```
 
 **Reference**: See `references/REFERENCE.md` → WORKFLOW section
@@ -281,7 +281,7 @@ Use platonic-coding workflow --phase 2 for RFC-0042, use platonic-brainstorming 
 | Artifact | Default Path | Naming Convention | Configurable in .platonic.yml |
 |----------|--------------|-------------------|-------------------------------|
 | Design drafts | `docs/drafts/` | `YYYY-MM-DD-<topic>-design.md` | Yes |
-| RFC specs | `docs/specs/` | `RFC-<NNNN>-<brief-semantic-name>.md` (e.g., `RFC-0001-world-view.md`) | Yes |
+| RFC specs | `docs/specs/` | `RFC-<NNN>-<brief-semantic-name>.md` (e.g., `RFC-001-world-view.md`) | Yes |
 | Implementation guides | `docs/impl/` | `IG-<number>-semantic-short-desc.md` (e.g., `IG-053-cli-command-nesting.md`) | Yes |
 
 ## Templates

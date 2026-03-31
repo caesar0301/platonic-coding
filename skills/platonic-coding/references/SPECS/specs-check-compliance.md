@@ -26,12 +26,12 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
    - **Required fields present**: Status, Authors, Created, Last Updated
    - **Status value valid**: Must be Draft, Review, Frozen, or Deprecated
    - **Date format**: Must be YYYY-MM-DD
-   - **RFC number format**: Must match RFC-NNNN-<name> pattern
+   - **RFC number format**: Must match RFC-NNN-<name> pattern
    - **Optional fields**: Depends on, Supersedes (if present, must be valid format)
 
 4. **Check Structure**
    For each RFC, verify:
-   - **Title format**: `# RFC-NNNN-<name>: Title`
+   - **Title format**: `# RFC-NNN-<name>: Title`
    - **Abstract section**: Section 1 should be Abstract
    - **Scope section**: Should have Scope and Non-Goals
    - **Proper heading levels**: Consistent use of ##, ###, etc.
@@ -39,11 +39,11 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 5. **Check Frozen RFC Rules**
    For RFCs with Status: Frozen:
    - **No direct edits**: File should not be modified (only via versions)
-   - **Version format**: If versioned, must follow RFC-NNNN-<name>-VVV.md format
+   - **Version format**: If versioned, must follow RFC-NNN-<name>-<letter>.md format
    - **Version metadata**: Must have Parent RFC, Version, Changes fields
 
 6. **Check Versioned RFC Rules**
-   For versioned RFCs (RFC-NNNN-<name>-VVV.md):
+   For versioned RFCs (RFC-NNN-<name>-<letter>.md):
    - **Parent exists**: Parent RFC must exist
    - **Version number**: Must be sequential (001, 002, 003...)
    - **Full content**: Must contain complete RFC, not just diffs
@@ -78,7 +78,7 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 
 ### Structure Rules
 
-- **Title**: Must start with `# RFC-NNNN-<name>: Title`
+- **Title**: Must start with `# RFC-NNN-<name>: Title`
 - **Abstract**: Section 1 must be Abstract
 - **Scope**: Should have Scope and Non-Goals section
 - **Sections**: Use consistent numbering (1, 2, 3...)
@@ -86,8 +86,8 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 ### Frozen RFC Rules
 
 - **Immutability**: Frozen RFCs cannot be edited directly
-- **Versioning**: Changes require creating RFC-NNNN-<name>-VVV.md
-- **Version format**: VVV must be 3-digit zero-padded (001, 002...)
+- **Versioning**: Changes require creating RFC-NNN-<name>-<letter>.md
+- **Version format**: <letter> must be a single lowercase letter (a, b, c, ... z)
 
 ### Versioned RFC Rules
 
@@ -102,21 +102,21 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 
 ```
 ❌ Errors Found:
-- RFC-0001: Missing required field "Authors"
-- RFC-0002: Invalid status "Invalid" (must be Draft, Review, Frozen, or Deprecated)
-- RFC-0003: Frozen RFC was modified directly (should create version instead)
-- RFC-0004-001: Missing "Parent RFC" field
-- RFC-0005: Date format invalid "2026/01/28" (must be YYYY-MM-DD)
+- RFC-001: Missing required field "Authors"
+- RFC-002: Invalid status "Invalid" (must be Draft, Review, Frozen, or Deprecated)
+- RFC-003: Frozen RFC was modified directly (should create version instead)
+- RFC-004-001: Missing "Parent RFC" field
+- RFC-005: Date format invalid "2026/01/28" (must be YYYY-MM-DD)
 ```
 
 ### Warnings
 
 ```
 ⚠️  Warnings:
-- RFC-0001: Missing "Abstract" section
-- RFC-0002: Section numbering inconsistent
-- RFC-0003: Depends on Draft RFC (prefer Frozen dependencies)
-- RFC-0004: Last Updated date is older than Created date
+- RFC-001: Missing "Abstract" section
+- RFC-002: Section numbering inconsistent
+- RFC-003: Depends on Draft RFC (prefer Frozen dependencies)
+- RFC-004: Last Updated date is older than Created date
 ```
 
 ## Verification Checklist

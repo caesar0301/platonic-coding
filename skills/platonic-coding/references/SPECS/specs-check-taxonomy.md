@@ -67,17 +67,17 @@ Verify consistent use of terminology across all RFC files and check against cano
 
 ```
 ❌ Errors Found:
-- RFC-0002: Uses deprecated term "OldTerm" (replaced by "NewTerm")
-- RFC-0003: Inconsistent term "WorldModel" (canonical: "World Model")
+- RFC-002: Uses deprecated term "OldTerm" (replaced by "NewTerm")
+- RFC-003: Inconsistent term "WorldModel" (canonical: "World Model")
 ```
 
 ### Warnings
 
 ```
 ⚠️  Warnings:
-- RFC-0001: Term "NewConcept" is used but not defined in rfc-namings.md
-- RFC-0002: Term "Stream" used inconsistently (sometimes "stream", sometimes "Stream")
-- RFC-0004: Similar term "DataModel" might conflict with canonical "Data Model"
+- RFC-001: Term "NewConcept" is used but not defined in rfc-namings.md
+- RFC-002: Term "Stream" used inconsistently (sometimes "stream", sometimes "Stream")
+- RFC-004: Similar term "DataModel" might conflict with canonical "Data Model"
 ```
 
 ## Verification Checklist

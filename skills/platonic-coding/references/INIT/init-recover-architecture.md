@@ -13,7 +13,7 @@ Produce Draft RFCs that capture each major subsystem's component structure, resp
 | Scan synthesis | From scan-project.md |
 | Confirmed RFC plan | From plan-modular-specs.md |
 | Conceptual Design RFC | Generated in recover-conceptual.md |
-| RFC numbers | From plan (e.g., 0002, 0003, ...) |
+| RFC numbers | From plan (e.g., 002, 003, ...) |
 | Spec-kind template | `assets/specs/template-architecture-design.md` |
 
 ## Recovery Process
@@ -86,7 +86,7 @@ From the scan's type catalog, identify the conceptual data models for this subsy
 
 Using the `template-architecture-design.md`:
 
-1. Fill in metadata (RFC number, title, authors, date, depends on: RFC-0001)
+1. Fill in metadata (RFC number, title, authors, date, depends on: RFC-001)
 2. Write Abstract (what this subsystem is and its role)
 3. Write Scope (which modules, what's in/out)
 4. Write Background & Motivation (why this subsystem exists)
@@ -105,7 +105,7 @@ Show each Draft RFC to the user:
 > - Components: [list names]
 > - Data flow: [1-sentence summary]
 > - Invariants: [count]
-> - Depends on: RFC-0001
+> - Depends on: RFC-001
 >
 > Please review. Should I adjust anything before saving?"
 
@@ -123,7 +123,7 @@ Before presenting each spec:
 - [ ] Dependency constraints reflect actual code dependency direction
 - [ ] Abstract schemas are language-neutral (no generics syntax, no lifetimes)
 - [ ] No concrete API signatures or method-level detail (those belong in interface specs)
-- [ ] Depends on RFC-0001 (conceptual design)
+- [ ] Depends on RFC-001 (conceptual design)
 
 ## Common Pitfalls
 
@@ -137,13 +137,13 @@ Before presenting each spec:
 
 After generating all architecture specs:
 
-1. Ensure each references the conceptual design (RFC-0001)
+1. Ensure each references the conceptual design (RFC-001)
 2. Ensure sibling architecture specs reference each other where they interact
 3. Update the conceptual design's "Relationship to Other RFCs" section if needed
 
 ## Notes
 
 - Each spec is **Status: Draft**
-- Generate architecture specs in RFC number order (0002, 0003, ...)
+- Generate architecture specs in RFC number order (002, 003, ...)
 - After writing each file, update rfc-history.md with a "Created" event
 - After all architecture specs are generated, update rfc-index.md and rfc-namings.md
