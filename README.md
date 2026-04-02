@@ -13,6 +13,28 @@ A professional collection of Agent Skills for AI-powered [Platonic Coding](https
 
 See a full description in [Manifesto](https://github.com/caesar0301/platonic-coding/blob/main/MANIFESTO.md).
 
+
+## Installation
+
+### Method 1: Claude Code Marketplace (Easiest)
+
+If using Claude Code CLI with marketplace support:
+
+```bash
+claude-code marketplace add caesar0301/platonic-coding
+```
+
+### Method 2: Install using npx skills (Recommended for Most)
+
+```bash
+npx skills add caesar0301/platonic-coding
+```
+
+### Method 3: ClawHub
+
+- 📦 ClawHub: `clawhub install platonic-coding`
+- 📦 ClawHub: `clawhub install platonic-brainstorming`
+
 ## Complementary Skills
 
 **Platonic Coding + Platonic Brainstorming = Stronger Design Process**
@@ -38,33 +60,6 @@ All skills follow the [Agent Skills specification](https://agentskills.io/specif
 |-------|---------|------|
 | 🎯 **platonic-coding** | Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects project state and routes to the right next step: initialize a project, run recovery for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. | [SKILL.md](skills/platonic-coding/SKILL.md) |
 | 🧠 **platonic-brainstorming** | Optional design companion for Platonic Coding Phases 1 and 2. Guides collaborative exploration, compares approaches, validates designs, and integrates seamlessly with RFC specification and implementation workflows. | [SKILL.md](skills/platonic-brainstorming/SKILL.md) |
-
-## Installation
-
-### Method 1: Claude Code CLI Marketplace (Easiest)
-
-If using Claude Code CLI with marketplace support:
-
-```bash
-# Add the skills marketplace
-claude-code marketplace add caesar0301/platonic-coding
-```
-
-### Method 2: Install using npx skills (Recommended for Most)
-
-```bash
-npx skills add caesar0301/platonic-coding
-```
-
-### Method 3: Clone to Skills Directory
-
-Clone this repository to your agent's skills directory:
-
-```bash
-git clone https://github.com/caesar0301/platonic-coding.git ~/.claude/skills/platonic-coding
-```
-
-The unified `platonic-coding` skill provides all functionality in a single, intelligent orchestrator.
 
 ## General Workflow
 
