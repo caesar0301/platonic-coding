@@ -29,22 +29,19 @@ For work that enters Platonic Coding phases, even "simple" changes deserve an ex
 Create tasks for the applicable steps below and follow them in process order:
 
 1. **Explore project context** - check files, docs, recent commits
-2. **Offer visual companion** (only if upcoming questions will benefit from visual treatment) - this is its own message, not combined with a clarifying question. See the Visual Companion section below.
-3. **Ask clarifying questions** - one at a time, understand purpose/constraints/success criteria
-4. **Propose 2-3 approaches** - with trade-offs and your recommendation
-5. **Present design** - validate sections incrementally as needed, then get explicit approval on the overall design before drafting
-6. **Write design draft** - save to `docs/drafts/YYYY-MM-DD-<topic>-design.md` by default, or update the user-provided draft if one already exists
-7. **Draft self-review** - quick inline check for placeholders, contradictions, ambiguity, scope (see below)
-8. **User reviews written draft** - ask user to review the draft file before proceeding
-9. **Transition to the next Platonic stage** - hand off to Platonic Coding workflow phase (Phase 1 RFC formalization or Phase 2 implementation)
+2. **Ask clarifying questions** - one at a time, understand purpose/constraints/success criteria
+3. **Propose 2-3 approaches** - with trade-offs and your recommendation
+4. **Present design** - validate sections incrementally as needed, then get explicit approval on the overall design before drafting
+5. **Write design draft** - save to `docs/drafts/YYYY-MM-DD-<topic>-design.md` by default, or update the user-provided draft if one already exists
+6. **Draft self-review** - quick inline check for placeholders, contradictions, ambiguity, scope (see below)
+7. **User reviews written draft** - ask user to review the draft file before proceeding
+8. **Transition to the next Platonic stage** - hand off to Platonic Coding workflow phase (Phase 1 RFC formalization or Phase 2 implementation)
 
 ## Process Flow
 
 ```dot
 digraph platonic_brainstorming {
     "Explore project context" [shape=box];
-    "Visual questions ahead?" [shape=diamond];
-    "Offer Visual Companion\n(own message, no other content)" [shape=box];
     "Ask clarifying questions" [shape=box];
     "Propose 2-3 approaches" [shape=box];
     "Present design sections" [shape=box];
@@ -54,10 +51,7 @@ digraph platonic_brainstorming {
     "User reviews draft?" [shape=diamond];
     "Route to Phase 1:\nRFC formalization + specs-refine" [shape=doublecircle];
 
-    "Explore project context" -> "Visual questions ahead?";
-    "Visual questions ahead?" -> "Offer Visual Companion\n(own message, no other content)" [label="yes"];
-    "Visual questions ahead?" -> "Ask clarifying questions" [label="no"];
-    "Offer Visual Companion\n(own message, no other content)" -> "Ask clarifying questions";
+    "Explore project context" -> "Ask clarifying questions";
     "Ask clarifying questions" -> "Propose 2-3 approaches";
     "Propose 2-3 approaches" -> "Present design sections";
     "Present design sections" -> "Overall design approved?";
@@ -81,7 +75,7 @@ digraph platonic_brainstorming {
 - If the project is too large for a single design draft, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own draft -> downstream Platonic stages -> implementation cycle.
 - For appropriately-scoped projects, ask questions one at a time to refine the idea
 - Prefer multiple choice questions when possible, but open-ended is fine too
-- Only one clarifying or design question per message - if a topic needs more exploration, break it into multiple questions. Standalone setup or consent messages, like the visual companion offer, are exempt.
+- Only one clarifying or design question per message - if a topic needs more exploration, break it into multiple questions
 - Focus on understanding: purpose, constraints, success criteria
 
 **Exploring approaches:**
@@ -152,21 +146,3 @@ Wait for the user's response. If they request changes, make them and re-run the 
 - **Incremental validation** - Use section-by-section checkpoints to keep alignment, then get explicit approval on the overall design before drafting
 - **Be flexible** - Go back and clarify when something doesn't make sense
 
-## Visual Companion
-
-A browser-based companion for showing mockups, diagrams, and visual options during Platonic Brainstorming. Available as a tool, not a mode. Accepting the companion means it's available for questions that benefit from visual treatment; it does NOT mean every question goes through the browser.
-
-**Offering the companion:** When you anticipate that upcoming questions will involve visual content (mockups, layouts, diagrams), offer it once for consent:
-> "Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)"
-
-**This offer MUST be its own message.** Do not combine it with clarifying questions, context summaries, or any other content. The message should contain ONLY the offer above and nothing else. Wait for the user's response before continuing. If they decline, proceed with text-only brainstorming.
-
-**Per-question decision:** Even after the user accepts, decide FOR EACH QUESTION whether to use the browser or the terminal. The test: **would the user understand this better by seeing it than reading it?**
-
-- **Use the browser** for content that IS visual, mockups, wireframes, layout comparisons, architecture diagrams, side-by-side visual designs
-- **Use the terminal** for content that is text, requirements questions, conceptual choices, tradeoff lists, A/B/C/D text options, scope decisions
-
-A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question, use the terminal. "Which wizard layout works better?" is a visual question, use the browser.
-
-If they agree to the companion, read the detailed guide before proceeding:
-`skills/platonic-brainstorming/visual-companion.md`

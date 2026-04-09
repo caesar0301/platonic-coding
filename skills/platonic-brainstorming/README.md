@@ -1,21 +1,12 @@
 # Platonic Brainstorming
 
-This skill is a Platonic Coding adaptation of the upstream [Superpowers Brainstorming](https://github.com/obra/superpowers/tree/main/skills/brainstorming) skill.
+Optional design exploration skill for Platonic Coding workflow, helping turn ideas into fully formed designs through collaborative dialogue before RFC formalization or implementation.
 
-It is modified from the upstream version to complement Platonic Coding Workflow Phases 1 and 2, while preserving the original brainstorming structure and visual companion support.
+## Usage
 
-## Upstream Attribution
-
-- Original upstream: [obra/superpowers `skills/brainstorming`](https://github.com/obra/superpowers/tree/main/skills/brainstorming)
-- Upstream license: MIT
-
-## What Is Adapted
-
-- Workflow integration: Used optionally in Phase 1 (RFC Specification) for conceptual design and Phase 2 (Implementation) for design refinement
-- Downstream handoff routes into Platonic Coding internal staging instead of the generic `writing-plans` handoff
-- Draft output language is tailored for Platonic Coding design artifacts
+Use this skill for structured design exploration before RFC formalization (Phase 1) or design refinement before implementation (Phase 2). The skill guides through project context exploration, clarifying questions, approach proposals, design validation, and handoff to the next Platonic Coding workflow phase.
 
 ## Files
 
-- `SKILL.md` contains the adapted Platonic Brainstorming workflow.
-- `visual-companion.md` contains the browser-based visual companion guide.
+- `SKILL.md` contains the Platonic Brainstorming workflow.
+- `spec-document-reviewer-prompt.md` contains the design draft reviewer template for subagent dispatch.
