@@ -3,7 +3,7 @@ name: platonic-brainstorming
 description: "Optional design exploration for Platonic Coding Phases 1 and 2. Explores user intent, requirements, alternatives, and design before RFC formalization or implementation."
 license: MIT
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   author: "Xiaming Chen"
   category: "workflow"
   integrates:
