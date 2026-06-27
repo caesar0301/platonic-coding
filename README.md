@@ -33,24 +33,15 @@ npx skills add caesar0301/platonic-coding
 ### Method 3: ClawHub
 
 - 📦 ClawHub: `clawhub install platonic-coding`
-- 📦 ClawHub: `clawhub install platonic-brainstorming`
 
-## Complementary Skills
+## Built-in Design Exploration (BRAINSTORM Mode)
 
-**Platonic Coding + Platonic Brainstorming = Stronger Design Process**
+**Platonic Coding now includes structured design exploration as a built-in mode** — no separate skill required. The former `platonic-brainstorming` skill has been merged into `platonic-coding` as **BRAINSTORM mode**.
 
-For the best in-repo spec-driven development experience, use both skills together:
+- **Phase 1 (RFC Specification)**: BRAINSTORM mode helps explore requirements, compare approaches, and validate design before RFC formalization
+- **Phase 2 (Implementation)**: BRAINSTORM mode helps refine architecture decisions and validate implementation approach against RFC constraints
 
-- **Platonic Coding**: The canonical orchestrator for the full RFC → implementation → review lifecycle
-- **Platonic Brainstorming**: An optional design companion for structured exploration before RFC formalization (Phase 1) and design refinement before implementation (Phase 2)
-
-**How they work together**:
-- **Phase 1 (RFC Specification)**: `platonic-brainstorming` helps explore requirements, compare approaches, and validate design before RFC formalization
-- **Phase 2 (Implementation)**: `platonic-brainstorming` helps refine architecture decisions and validate implementation approach against RFC constraints
-
-This adds structured exploration, multiple approaches with trade-off analysis, and incremental validation at key decision points.
-
-If `platonic-brainstorming` is not available or you prefer lightweight interaction, Platonic Coding uses bundled interactive methods for design creation and refinement.
+It activates automatically when your request signals exploration (e.g., "brainstorm", "discuss", "investigate", "deep analysis"), or when you invoke it explicitly. After a design draft is approved, the skill presents alternative paths to continue: pause at each phase gate, quick-pass multiple phases for a fast fix, or update vs. create an RFC/IG.
 
 ## Available Skills
 
@@ -58,8 +49,7 @@ All skills follow the [Agent Skills specification](https://agentskills.io/specif
 
 | Skill | Purpose | Docs |
 |-------|---------|------|
-| 🎯 **platonic-coding** | Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects project state and routes to the right next step: initialize a project, run recovery for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. | [SKILL.md](skills/platonic-coding/SKILL.md) |
-| 🧠 **platonic-brainstorming** | Optional design companion for Platonic Coding Phases 1 and 2. Guides collaborative exploration, compares approaches, validates designs, and integrates seamlessly with RFC specification and implementation workflows. | [SKILL.md](skills/platonic-brainstorming/SKILL.md) |
+| 🎯 **platonic-coding** | Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects intent and project state, then routes to the right next step: brainstorm a design, initialize a project, run recovery for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. | [SKILL.md](skills/platonic-coding/SKILL.md) |
 
 ## General Workflow
 
@@ -67,24 +57,25 @@ Platonic Coding follows a **three-phase workflow** (after initialization) with i
 
 ```
 Init    → Bootstrap infrastructure (new project or recovery flow for existing code)
-Phase 1 → RFC Specification (optional brainstorming → design draft → RFC → specs-refine)
-Phase 2 → Implementation (optional brainstorming → impl-full: guide + code + tests)
+Phase 1 → RFC Specification (optional BRAINSTORM mode → design draft → RFC → specs-refine)
+Phase 2 → Implementation (optional BRAINSTORM mode → impl-full: guide + code + tests)
 Phase 3 → Spec Compliance Review (verify code against RFCs and guides)
 ```
 
-Each phase optionally integrates `platonic-brainstorming` for structured design exploration and validation.
+Each phase optionally enters BRAINSTORM mode for structured design exploration and validation.
 
 ### Auto-Detection
 
-The skill automatically detects your project state and suggests the next step:
+The skill automatically detects your **intent** and **project state**, then suggests the next step:
 
+- **Request mentions brainstorm / discuss / investigate / explore / deep analysis?** → Enter BRAINSTORM mode (design exploration first), then hand off to Phase 1 or 2
 - **No `.platonic.yml`?** → Initialize (`init-scaffold`) or start the recovery flow (`init-scan` → recovery operations)
 - **Has design drafts but no RFCs?** → Run Phase 1 (RFC Specification)
 - **Has RFCs but no implementation guides?** → Run Phase 2 (Implementation)
 - **Has RFCs and implementation guides?** → Resume Phase 2 implementation or run Phase 3 review, depending on completeness
 - **State is ambiguous?** → Resume the current phase or ask whether you want refine / implement / review
 
-Prefer canonical operation names when overriding auto-detection: `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`
+Prefer canonical operation names when overriding auto-detection: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`
 
 ## Examples
 
@@ -100,11 +91,17 @@ Use platonic-coding to recover design specs for this codebase.
 ```
 Auto-detects existing code → scans → proposes RFC dependency graph → generates Draft RFCs.
 
+### Brainstorm a Design
+```
+Use platonic-coding to brainstorm the message queue design.
+```
+Intent keyword detected → enters BRAINSTORM mode → collaborative dialogue → approved design draft → presents post-draft routing (pause / quick-pass / update or create RFC / update or create IG).
+
 ### Run Full Workflow (Phase 1-3)
 ```
 Use platonic-coding workflow to implement user preferences.
 ```
-Phase 1: RFC Specification (optional `platonic-brainstorming` for conceptual design → RFC → specs-refine) → Phase 2: Implementation (optional brainstorming → impl-full) → Phase 3: Review.
+Phase 1: RFC Specification (optional BRAINSTORM mode for conceptual design → RFC → specs-refine) → Phase 2: Implementation (optional BRAINSTORM mode → impl-full) → Phase 3: Review.
 
 ### Implement Specific RFC
 ```
@@ -120,7 +117,7 @@ Generates compliance report: implemented ✅, missing ❌, inconsistent ⚠️.
 
 ## Acknowledgments
 
-`platonic-brainstorming` is adapted from the upstream [Superpowers](https://github.com/obra/superpowers) skill collection by [Will Barton](https://github.com/obra). It enhances design exploration in Platonic Coding Phases 1 and 2 with structured requirements gathering, multiple approach comparison, and incremental validation at key decision points.
+BRAINSTORM mode (the built-in design exploration capability, formerly the standalone `platonic-brainstorming` skill) is adapted from the upstream [Superpowers](https://github.com/obra/superpowers) skill collection by [Will Barton](https://github.com/obra). It enhances design exploration in Platonic Coding Phases 1 and 2 with structured requirements gathering, multiple approach comparison, and incremental validation at key decision points.
 
 ## License
 

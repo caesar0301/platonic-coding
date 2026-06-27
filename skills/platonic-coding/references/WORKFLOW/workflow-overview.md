@@ -2,7 +2,7 @@
 
 ## Objective
 
-Execute the full three-phase Platonic Coding workflow with clear phase visibility and correct handoffs between RFC specification, implementation, and review. Platonic Brainstorming integration is optional at Phases 1 and 2.
+Execute the full three-phase Platonic Coding workflow with clear phase visibility and correct handoffs between RFC specification, implementation, and review. BRAINSTORM mode (internal design exploration) is optional at Phases 1 and 2.
 
 ## Phase Visibility Rule
 
@@ -17,12 +17,12 @@ Execute the full three-phase Platonic Coding workflow with clear phase visibilit
 
 ```
 Phase 1: RFC Specification
-    → Optional: platonic-brainstorming (conceptual design exploration)
+    → Optional: BRAINSTORM mode (conceptual design exploration)
     → Create design draft (docs/drafts/)
     → Generate RFC from draft
     → SPECS mode: specs-refine (validate + update supporting files)
 Phase 2: Implementation
-    → Optional: platonic-brainstorming (design refinement)
+    → Optional: BRAINSTORM mode (design refinement)
     → IMPL mode: impl-full (spec analysis → guide → plan → code + tests)
 Phase 3: Spec Compliance Review
     → REVIEW mode: review code against RFC + impl guides
@@ -38,18 +38,18 @@ FINISHED
 
 User may override any path via `.platonic.yml`.
 
-## Platonic Brainstorming Integration Pattern
+## BRAINSTORM Mode Integration Pattern
 
-All phases that integrate brainstorming follow this standard pattern:
+Brainstorming is an **internal mode** of this skill (formerly the standalone `platonic-brainstorming` skill). It is no longer invoked via the Skill tool as a separate skill. All phases that integrate brainstorming follow this standard pattern:
 
 ### Detection and Invocation
 
-1. **Detect**: Use Skill tool with `skill: "platonic-brainstorming"` to check availability
-2. **Invoke**: If available and user wants structured exploration:
-   - Skill guides collaborative dialogue
-   - Explores requirements, constraints, approaches, trade-offs
-   - Produces design artifacts (draft or refined insights)
-3. **Benefits**: Structured exploration, approach comparison, incremental validation
+1. **Detect**: Intent keywords in the user's request (brainstorm, discuss, investigate, explore, deep analysis, deep dive, think through, trade-offs, what's the best approach) → enter BRAINSTORM mode. Also enterable explicitly with `brainstorm`.
+2. **Run**: Follow `references/BRAINSTORM/brainstorm.md`:
+   - Collaborative dialogue explores requirements, constraints, approaches, trade-offs
+   - Produces an approved design draft in `docs/drafts/`
+   - Presents the post-draft routing menu (see `references/BRAINSTORM/brainstorm.md`)
+3. **Benefits**: Structured exploration, approach comparison, incremental validation before committing to an RFC or implementation
 
 ### Phase-Specific Usage
 
@@ -59,16 +59,16 @@ All phases that integrate brainstorming follow this standard pattern:
 
 ## When to Ask the User
 
-- **Phase 1**: RFC number/index for the new or updated RFC, if not specified. Whether to use `platonic-brainstorming` for conceptual design.
-- **Phase 2**: RFC number/index for which to implement, if not specified. Whether to use `platonic-brainstorming` for design refinement. The IMPL mode operation handles its own confirmation gates for impl guide and coding plan.
+- **Phase 1**: RFC number/index for the new or updated RFC, if not specified. Whether to use BRAINSTORM mode for conceptual design.
+- **Phase 2**: RFC number/index for which to implement, if not specified. Whether to use BRAINSTORM mode for design refinement. The IMPL mode operation handles its own confirmation gates for impl guide and coding plan.
 - **Phase 3**: Which code paths and RFC(s) to review, if not specified.
 
-## Skill/Mode Invocations
+## Mode Invocations
 
-| Phase | Optional Integration | Skill / Action |
-|-------|---------------------|----------------|
-| 1 | `platonic-brainstorming` | **SPECS mode** — draft → RFC → refine (validate + update supporting files) |
-| 2 | `platonic-brainstorming` | **IMPL mode** — impl-full: spec analysis → impl guide → coding plan → code with tests |
+| Phase | Optional Integration | Mode / Action |
+|-------|---------------------|---------------|
+| 1 | BRAINSTORM mode | **SPECS mode** — draft → RFC → refine (validate + update supporting files) |
+| 2 | BRAINSTORM mode | **IMPL mode** — impl-full: spec analysis → impl guide → coding plan → code with tests |
 | 3 | — | **REVIEW mode** — review code against RFC specs and impl guides |
 
 Read the phase-specific reference file before executing each phase:

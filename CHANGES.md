@@ -2,6 +2,57 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.4.0 — Merged Brainstorming + Intention Detection + Post-Draft Routing (2026-06-27)
+
+### Merged `platonic-brainstorming` into `platonic-coding`
+
+**Changed:** The standalone `platonic-brainstorming` skill is now a built-in **BRAINSTORM mode** of `platonic-coding`. There is one unified skill instead of two.
+
+- Brainstorming procedure moved to `references/BRAINSTORM/brainstorm.md`
+- Design-draft reviewer prompt moved to `assets/brainstorming/spec-document-reviewer-prompt.md`
+- `skills/platonic-brainstorming/` directory deleted
+- `metadata.replaces` now includes `platonic-brainstorming`
+
+### Intention Detection (auto-trigger brainstorming)
+
+**Added:** The skill now scans the user's natural-language request for intent keywords *before* project-state detection.
+
+- Trigger words: `brainstorm`, `discuss`, `investigate`, `explore`, `deep analysis`, `deep dive`, `think through`, `design exploration`, `trade-offs`, `what's the best approach`
+- Match → enter BRAINSTORM mode regardless of project state
+- Exception: canonical operation names (`impl-full`, `review`, `specs-refine`, `init-scaffold`, `workflow --phase <N>`, `brainstorm`) always win
+- Existing `.platonic.yml` project-state detection is unchanged and runs when no intent keywords are present
+
+### Post-Draft Alternative Paths
+
+**Added:** After an approved design draft, the skill no longer assumes "create a new RFC" is the only next step. It checks `docs/specs/` and `docs/impl/` for related RFCs/IGs, then presents a routing menu:
+
+1. Pause at each phase gate (careful, default)
+2. Quick pass — multiple phases, no further confirmations (quick fixes)
+3. Update an existing RFC
+4. Create a new RFC
+5. Update an existing IG
+6. Create a new IG
+
+Each path maps to existing canonical operations; the menu leads with a recommendation.
+
+### Visual Companion Not Restored
+
+**Note:** The browser-based Visual Companion and `scripts/` were previously removed from `platonic-brainstorming` (commit `a795961`). This merge does **not** restore them — BRAINSTORM mode is terminal/text-only, matching the repo's current direction.
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/SKILL.md` — BRAINSTORM mode, intention detection, post-draft paths, version 2.4.0
+- ✅ `skills/platonic-coding/references/BRAINSTORM/brainstorm.md` — new (brainstorming procedure)
+- ✅ `skills/platonic-coding/assets/brainstorming/spec-document-reviewer-prompt.md` — moved from `platonic-brainstorming/`
+- ✅ `skills/platonic-coding/references/REFERENCE.md` — BRAINSTORM op row, intent branch in decision tree
+- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-overview.md` — external→internal integration pattern
+- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-phase-1.md`, `workflow-phase-2.md` — "Enter BRAINSTORM mode"
+- ✅ `README.md` — single-skill framing, BRAINSTORM mode, brainstorm example
+- ✅ `.claude-plugin/marketplace.json` — version 2.4.0, brainstorm keyword/tag
+- ✅ `skills/platonic-brainstorming/` — deleted
+
+**No breaking changes for existing projects:** RFCs, IGs, drafts, and `.platonic.yml` continue to work as before. Users who invoked `platonic-brainstorming` as a separate skill should now use `platonic-coding` with `brainstorm` or intent keywords.
+
 ## Version 2.2.0 — Workflow Compression & Documentation Consolidation (2026-03-29)
 
 ### Compressed Workflow: 4 Phases → 3 Phases

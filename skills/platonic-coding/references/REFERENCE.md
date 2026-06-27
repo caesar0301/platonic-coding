@@ -2,7 +2,12 @@
 
 Detailed operation guide for Platonic Coding skill.
 
-## Operations (23 total)
+## Operations (24 total)
+
+### BRAINSTORM (`references/BRAINSTORM/`)
+| Operation | Purpose |
+|-----------|---------|
+| `brainstorm` | Collaborative design exploration → approved draft + post-draft routing |
 
 ### INITIALIZATION (`references/INIT/`)
 | Operation | Purpose |
@@ -42,8 +47,8 @@ Detailed operation guide for Platonic Coding skill.
 ### WORKFLOW (`references/WORKFLOW/`)
 | Phase | Activities |
 |-------|------------|
-| 1 | Optional brainstorming → draft → RFC → `specs-refine` |
-| 2 | Optional brainstorming → `impl-full` |
+| 1 | Optional BRAINSTORM mode → draft → RFC → `specs-refine` |
+| 2 | Optional BRAINSTORM mode → `impl-full` |
 | 3 | `review` → compliance report |
 
 ---
@@ -51,13 +56,21 @@ Detailed operation guide for Platonic Coding skill.
 ## Auto-Detection Decision Tree
 
 ```
+Intent keywords in request? (brainstorm, discuss, investigate, explore,
+                             deep analysis, deep dive, think through,
+                             trade-offs, what's the best approach)
+  → Yes (and no canonical op name) → BRAINSTORM mode
+      → approved draft → post-draft routing → Phase 1 or Phase 2
+
+Otherwise, inspect project state:
+
 No .platonic.yml?
   → Has code? → recovery flow (init-scan → recover)
   → No code? → init-scaffold
 
 Has specs but no RFCs?
   → Has drafts? → Phase 1 (draft → RFC)
-  → No drafts? → Phase 1 (start fresh, optional brainstorming)
+  → No drafts? → Phase 1 (start fresh, optional BRAINSTORM mode)
 
 Has RFCs but no guides?
   → Phase 2 (impl-full or impl-create-guide)
@@ -69,7 +82,7 @@ Has RFCs + guides?
 Ambiguous? → Ask or resume current phase
 ```
 
-**Override**: Use canonical operations (`init-scaffold`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`).
+**Override**: Use canonical operations (`brainstorm`, `init-scaffold`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`).
 
 ---
 
@@ -146,6 +159,7 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 
 ## Reference Files
 
+- `references/BRAINSTORM/` — Design exploration (brainstorm mode)
 - `references/INIT/` — Initialization
 - `references/SPECS/` — Specification management
 - `references/IMPL/` — Implementation

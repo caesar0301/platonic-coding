@@ -9,12 +9,14 @@
     "url": "https://github.com/caesar0301/platonic-coding"
   },
   "metadata": {
-    "version": "2.0.0",
-    "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill for specification-driven development.",
+    "version": "2.4.0",
+    "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill with built-in design exploration.",
     "keywords": [
       "agent-skills",
       "platonic-coding",
       "intelligent-orchestrator",
+      "brainstorm",
+      "design-exploration",
       "initialization",
       "code-review",
       "specifications",
@@ -33,13 +35,15 @@
     {
       "name": "platonic-coding",
       "path": "skills/platonic-coding",
-      "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and runs appropriate phases—init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.",
-      "version": "2.0.0",
+      "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with BRAINSTORM mode built in.",
+      "version": "2.4.0",
       "category": "workflow",
       "tags": [
         "intelligent-orchestrator",
         "auto-detection",
         "platonic-coding",
+        "brainstorm",
+        "design-exploration",
         "initialization",
         "specifications",
         "rfc",
