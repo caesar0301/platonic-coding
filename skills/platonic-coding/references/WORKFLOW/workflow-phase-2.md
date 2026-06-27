@@ -4,11 +4,11 @@
 
 ## Objective
 
-Produce implementation guide from RFC spec, then implement code with tests. Optional: `platonic-brainstorming` for design refinement.
+Produce implementation guide from RFC spec, then implement code with tests. Optional: BRAINSTORM mode for design refinement.
 
 ## Process
 
-1. **Optional brainstorming**: Invoke for architecture validation before coding
+1. **Optional brainstorming**: Enter BRAINSTORM mode (see `references/BRAINSTORM/brainstorm.md`) for architecture validation before coding. On approval, the post-draft routing menu may route into `impl-update-guide` (existing IG) or `impl-create-guide` (new IG).
 2. **Identify RFC**: Ask user if not specified; determine target module/language/framework
 3. **Run impl-full**: Read `references/IMPL/impl-full.md`
    - Spec Analysis: Extract requirements, constraints, invariants

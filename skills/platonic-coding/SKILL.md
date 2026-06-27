@@ -1,9 +1,9 @@
 ---
 name: platonic-coding
-description: Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and routes to the right next step—initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle.
+description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
 license: MIT
 metadata:
-  version: "2.3.0"
+  version: "2.4.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -12,18 +12,18 @@ metadata:
     - platonic-impl
     - platonic-code-review
     - platonic-workflow
-  integrates:
-    - platonic-brainstorming (optional)
+    - platonic-brainstorming
 ---
 
 # Platonic Coding
 
-Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects project state and executes the appropriate workflow phases—initialization, specification management, implementation, or review. Integrates with `platonic-brainstorming` as an optional accelerator in Phases 1 and 2 for structured design exploration and refinement.
+Intelligent orchestrator for the complete **specification-driven development lifecycle**. Auto-detects the user's intent and project state, then executes the appropriate workflow phase—brainstorming, initialization, specification management, implementation, or review. Structured design exploration (formerly the standalone `platonic-brainstorming` skill) is built in as **BRAINSTORM mode**.
 
 ## When to Use This Skill
 
 Use this skill when you need to:
 
+- **Brainstorm** a design through collaborative dialogue before committing to an RFC
 - **Bootstrap** a new project with Platonic Coding infrastructure
 - **Adopt** Platonic Coding for an existing codebase (recover specs from code)
 - **Manage** RFC specifications (validate, refine, generate indices)
@@ -31,30 +31,45 @@ Use this skill when you need to:
 - **Review** code for spec compliance
 - **Run** the full workflow from design → RFC → code → review
 
-**Keywords**: platonic coding, specs, RFC, implementation, review, workflow, spec-driven, initialization
+**Keywords**: platonic coding, brainstorm, discuss, investigate, specs, RFC, implementation, review, workflow, spec-driven, initialization
 
 ## Intelligent Auto-Detection
 
-Auto-detects project state when invoked without specific instructions. See `references/REFERENCE.md` for the full decision tree.
+Auto-detects intent and project state when invoked without specific instructions. See `references/REFERENCE.md` for the full decision tree.
+
+### Intention Detection (runs first)
+
+Before inspecting project state, scan the user's natural-language request for **intent keywords** that signal a desire to explore rather than immediately produce an artifact:
+
+- **Trigger words** (case-insensitive): `brainstorm`, `discuss`, `investigate`, `explore`, `deep analysis`, `deep dive`, `think through`, `design exploration`, `trade-offs`, `what's the best approach`.
+- **Match** → enter **BRAINSTORM mode** (`references/BRAINSTORM/brainstorm.md`), regardless of project state. The user wants to explore first; project-state detection resumes at handoff.
+- **Exception**: if the request uses a canonical operation name (`impl-full`, `review`, `specs-refine`, `init-scaffold`, `workflow --phase <N>`, `brainstorm`), the explicit operation wins — don't reroute it.
+
+### Project-State Detection (when no intent keywords)
 
 **Quick Reference**:
 - No `.platonic.yml` → INIT mode (scaffold new or recover existing)
 - RFCs but no guides → Phase 2 (implementation)
 - Guides + code → Phase 3 (review) or resume Phase 2
 
-**Override** with canonical operations: `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`.
+**Override** with canonical operations: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`.
 
 ## Core Workflow Phases
 
 | Phase | Focus | Output | Brainstorming |
 |-------|-------|--------|---------------|
-| **1** | RFC Specification | Draft → RFC → `specs-refine` | ✅ Optional |
-| **2** | Implementation | Guide → Code + Tests | ✅ Optional |
+| **1** | RFC Specification | Draft → RFC → `specs-refine` | ✅ Optional (BRAINSTORM mode) |
+| **2** | Implementation | Guide → Code + Tests | ✅ Optional (BRAINSTORM mode) |
 | **3** | Review | Compliance report | ❌ |
 
-Phases run sequentially (full workflow) or independently (explicit invocation). See `references/WORKFLOW/workflow-overview.md` for details.
+Phases run sequentially (full workflow) or independently (explicit invocation). BRAINSTORM mode is an optional entry ramp to Phases 1 and 2. See `references/WORKFLOW/workflow-overview.md` for details.
 
 ## Operation Modes
+
+### BRAINSTORM Mode
+Structured design exploration through collaborative dialogue. Produces an approved design draft (`docs/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved.
+
+**Examples**: `brainstorm the message queue design`, `discuss how auth should work`, `investigate options for caching`.
 
 ### INIT Mode
 Bootstrap Platonic Coding infrastructure. Operations: `init-scaffold`, `init-scan`, `init-plan-modular-specs`, `init-recover-*`.
@@ -81,11 +96,24 @@ Validate code against specs. Generates report-only by default (no code changes).
 ### WORKFLOW Mode
 Orchestrate full 3-phase flow. See `references/WORKFLOW/workflow-overview.md`.
 
-**Examples**: `workflow --phase 1`, `workflow with platonic-brainstorming`.
+**Examples**: `workflow --phase 1`, `workflow starting with brainstorm`.
 
 ---
 
 For detailed guides, see `references/REFERENCE.md`.
+
+## Post-Draft Alternative Paths
+
+After BRAINSTORM mode produces an approved design draft, the skill does **not** assume "create a new RFC" is the only next step. It checks `docs/specs/` and `docs/impl/` for related existing RFCs/IGs, then presents a routing menu (full table in `references/BRAINSTORM/brainstorm.md`):
+
+1. **Pause at each phase gate** — careful, default; approve every confirmation gate
+2. **Quick pass** — run multiple phases straight through, no further confirmations (quick fixes)
+3. **Update an existing RFC** — revise a related RFC instead of spawning a new one
+4. **Create a new RFC** — formalize the draft into a fresh `RFC-NNN`
+5. **Update an existing IG** — refine an existing implementation guide via `impl-update-guide`
+6. **Create a new IG** — generate a fresh `IG-NNN` via `impl-create-guide`
+
+The menu leads with a recommendation based on what was found. The user picks by number; each path maps to existing canonical operations.
 
 ## Default Paths & Templates
 
@@ -102,7 +130,7 @@ Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 1. Trust auto-detection; override with explicit operations when needed
 2. Review generated artifacts (all Draft status)
 3. Run `specs-refine` regularly
-4. Use confirmation gates—don't skip unless confident
+4. Use confirmation gates—don't skip unless confident (or use quick-pass routing)
 5. Review mode is report-only by default
 
 ## Dependencies
