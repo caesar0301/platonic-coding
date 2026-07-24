@@ -2,31 +2,33 @@
 
 ## Objective
 
-Validate that all RFC files comply with the conventions defined in rfc-standard.md.
+Validate that all RFC files comply with the conventions defined in `templates/rfc-standard.md`.
 
 ## Inputs
 
 - **Specs Directory**: Path to the specs directory
-- **Reference**: rfc-standard.md (for validation rules)
+- **Reference**: `templates/rfc-standard.md` (for validation rules; fall back to root `rfc-standard.md` if present in older projects)
 
 ## Steps
 
 1. **Read rfc-standard.md**
+   - Prefer `<specs-path>/templates/rfc-standard.md`
+   - Fall back to `<specs-path>/rfc-standard.md` for projects scaffolded before this layout
    - Understand required metadata fields
    - Understand status values and transitions
    - Understand structure requirements
    - Understand formatting conventions
 
 2. **Scan All RFC Files**
-   - Find all files matching `RFC-*.md` pattern
-   - Exclude supporting files: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
+   - Find all files matching `RFC-*.md` pattern (specs root only; skip `templates/`)
+   - Exclude supporting files: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`
 
 3. **Check Metadata Fields**
    For each RFC, verify:
    - **Required fields present**: Status, Authors, Created, Last Updated
    - **Status value valid**: Must be Draft, Review, Frozen, or Deprecated
    - **Date format**: Must be YYYY-MM-DD
-   - **RFC number format**: Must match RFC-NNN-<name> pattern
+   - **RFC number format**: Must match `RFC-NNN-<name>` where `NNN` is exactly three numeric characters (`001`–`999`)
    - **Optional fields**: Depends on, Supersedes (if present, must be valid format)
 
 4. **Check Structure**
@@ -49,13 +51,18 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
    - **Full content**: Must contain complete RFC, not just diffs
    - **Changes section**: Must document what changed
 
-7. **Check Formatting**
+7. **Check Number Format & Sequence**
+   - Every base RFC `NNN` is exactly three numeric characters (`001`–`999`), zero-padded
+   - Base RFC numbers form a contiguous sequence from `001` with no gaps
+   - Gap or non-padded number → **warning** (error only if clearly accidental; allow if user explicitly requested a non-sequential number)
+
+8. **Check Formatting**
    - **Markdown syntax**: Valid markdown
    - **Links**: Valid link format `[text](file.md)`
    - **Tables**: Valid table format
    - **Code blocks**: Properly formatted
 
-8. **Generate Report**
+9. **Generate Report**
    Create a report with:
    - **Errors**: Violations that must be fixed
    - **Warnings**: Issues that should be addressed
@@ -79,6 +86,8 @@ Validate that all RFC files comply with the conventions defined in rfc-standard.
 ### Structure Rules
 
 - **Title**: Must start with `# RFC-NNN-<name>: Title`
+- **Number format**: `NNN` MUST be exactly three numeric characters (`001`–`999`), zero-padded
+- **Strict sequence**: Base RFC numbers SHOULD form a contiguous sequence from `001` with no gaps (warn on gaps unless documented user intent)
 - **Abstract**: Section 1 must be Abstract
 - **Scope**: Should have Scope and Non-Goals section
 - **Sections**: Use consistent numbering (1, 2, 3...)
@@ -126,9 +135,11 @@ After checking, verify:
 - [ ] All required metadata fields are present
 - [ ] All status values are valid
 - [ ] All dates are in correct format
+- [ ] All `NNN` values are exactly three numeric characters
+- [ ] Base RFC numbers are contiguous from `001` (or gaps are intentional/user-requested)
 - [ ] Frozen RFCs are not modified directly
 - [ ] Versioned RFCs follow correct format
-- [ ] Structure follows rfc-standard.md conventions
+- [ ] Structure follows `templates/rfc-standard.md` conventions
 - [ ] Formatting is consistent
 
 ## Notes
@@ -141,7 +152,7 @@ After checking, verify:
 
 ## Reference
 
-Always refer to rfc-standard.md for:
+Always refer to `templates/rfc-standard.md` for:
 - Exact field requirements
 - Status transition rules
 - Versioning rules

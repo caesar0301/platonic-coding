@@ -110,6 +110,17 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 
 ---
 
+## Naming Conventions
+
+| Artifact | Pattern | Number field |
+|----------|---------|--------------|
+| RFC | `RFC-NNN-<name>.md` | `NNN`: exactly **three** numeric characters (`001`–`999`) |
+| IG | `IG-XXX-<name>.md` | `XXX`: exactly **three** numeric characters (`001`–`999`) |
+
+**Strict sequence**: When creating a new RFC or IG, assign the next unused number in order (`001`, `002`, `003`, …). Do not skip numbers unless the user explicitly requests a specific number or gap. RFC and IG sequences are independent.
+
+---
+
 ## File Structure
 
 ```
@@ -117,13 +128,13 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 ├── .platonic.yml                   # Project config
 ├── docs/
 │   ├── specs/                      # RFC specifications
-│   │   ├── rfc-standard.md          # RFC process & conventions
 │   │   ├── rfc-history.md           # Change history
 │   │   ├── rfc-index.md             # Spec index
 │   │   ├── rfc-namings.md           # Terminology reference
 │   │   ├── RFC-001-world-view.md   # Individual RFC
 │   │   ├── RFC-002-message-queue.md
-│   │   └── templates/               # Templates for future RFCs
+│   │   └── templates/               # Conventions & templates for future RFCs
+│   │       ├── rfc-standard.md      # RFC process & conventions
 │   │       ├── rfc-template.md
 │   │       ├── conceptual-design.md
 │   │       ├── architecture-design.md

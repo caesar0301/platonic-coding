@@ -47,10 +47,15 @@ Use the **platonic-impl** skill which includes its own template for generating i
 
 ## Naming Convention
 
-Implementation guides should follow the pattern `IG-<number>-semantic-short-desc.md`:
+Implementation guides MUST follow the pattern `IG-XXX-<semantic-short-desc>.md`:
 
+- `IG`: Capital letters (literal)
+- `XXX`: Exactly **three numeric characters**, zero-padded (`001`–`999`). Not `1`, `01`, or `0001`.
+- `<semantic-short-desc>`: Kebab-case brief description
+- **Strict sequence**: Assign the next unused IG number in order (`001`, `002`, `003`, …). Do not skip numbers unless the user explicitly requests a specific number or gap.
+- The IG number is independent of the source RFC number (they may match when convenient, but sequential IG allocation wins unless the user overrides)
+
+**Examples**:
 - `IG-001-user-authentication.md` - User authentication implementation
-- `IG-042-message-queue-protocol.md` - Message queue protocol implementation
-- `IG-053-cli-command-nesting.md` - CLI command nesting implementation
-
-The number typically corresponds to the RFC number it implements.
+- `IG-002-message-queue-protocol.md` - Message queue protocol implementation
+- `IG-003-cli-command-nesting.md` - CLI command nesting implementation

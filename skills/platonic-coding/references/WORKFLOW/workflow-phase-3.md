@@ -12,7 +12,7 @@
 
 - **Code**: Implemented in Phase 2 (relevant directories/modules).
 - **RFC spec(s)**: From Phase 1 (filename `RFC-NNN-<name>.md`, e.g. `docs/specs/RFC-001-world-view.md`).
-- **Implementation guide(s)**: From Phase 2, using naming convention `IG-<number>-semantic-short-desc.md` (e.g., `docs/impl/IG-001-user-authentication.md`).
+- **Implementation guide(s)**: From Phase 2, using `IG-XXX-<semantic-short-desc>.md` where `XXX` is exactly three numeric characters, allocated in strict sequence (e.g., `docs/impl/IG-001-user-authentication.md`).
 
 ## Process
 

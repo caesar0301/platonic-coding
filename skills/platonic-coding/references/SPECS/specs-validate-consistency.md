@@ -11,8 +11,8 @@ Check consistency between RFC files, including cross-references, dependencies, a
 ## Steps
 
 1. **Scan All RFC Files**
-   - Find all files matching `RFC-*.md` pattern (convention: RFC-NNN-<name>.md, e.g. RFC-001-world-view.md)
-   - Exclude supporting files: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
+   - Find all files matching `RFC-*.md` pattern (convention: RFC-NNN-<name>.md, e.g. RFC-001-world-view.md; specs root only, skip `templates/`)
+   - Exclude supporting files: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`
 
 2. **Extract Metadata from Each RFC**
    For each RFC, extract:

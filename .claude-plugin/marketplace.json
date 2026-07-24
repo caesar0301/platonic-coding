@@ -4,39 +4,24 @@
     "name": "Xiaming Chen",
     "url": "https://xiaming.site/"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/caesar0301/platonic-coding"
-  },
   "metadata": {
-    "version": "2.4.0",
-    "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill with built-in design exploration.",
-    "keywords": [
-      "agent-skills",
-      "platonic-coding",
-      "intelligent-orchestrator",
-      "brainstorm",
-      "design-exploration",
-      "initialization",
-      "code-review",
-      "specifications",
-      "rfc",
-      "implementation-guide",
-      "documentation",
-      "quality",
-      "ai-coding",
-      "development-tools",
-      "auto-detection",
-      "workflow"
-    ],
-    "license": "MIT"
+    "version": "2.4.1",
+    "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill with built-in design exploration."
   },
-  "skills": [
+  "plugins": [
     {
       "name": "platonic-coding",
-      "path": "skills/platonic-coding",
       "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with BRAINSTORM mode built in.",
-      "version": "2.4.0",
+      "version": "2.4.1",
+      "author": {
+        "name": "Xiaming Chen",
+        "url": "https://xiaming.site/"
+      },
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/platonic-coding"
+      ],
       "category": "workflow",
       "tags": [
         "intelligent-orchestrator",
@@ -53,13 +38,5 @@
         "spec-driven"
       ]
     }
-  ],
-  "compatibility": {
-    "agents": [
-      "claude-code",
-      "cursor",
-      "windsurf"
-    ],
-    "format": "agent-skills-1.0"
-  }
+  ]
 }

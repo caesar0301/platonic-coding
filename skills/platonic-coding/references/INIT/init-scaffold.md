@@ -50,7 +50,6 @@ If not provided:
 
 1. Create `<specs-path>/` directory
 2. Read and process RFC infrastructure templates from `assets/templates/`:
-   - `template-rfc-standard.md` → `rfc-standard.md`
    - `template-rfc-history.md` → `rfc-history.md`
    - `template-rfc-index.md` → `rfc-index.md`
    - `template-rfc-namings.md` → `rfc-namings.md`
@@ -61,13 +60,14 @@ If not provided:
 ### Step 4: Create Spec Templates
 
 1. Create `<specs-path>/templates/` directory
-2. Copy template files from `assets/specs/`:
+2. Read and process `assets/templates/template-rfc-standard.md` → `templates/rfc-standard.md`
+3. Copy template files from `assets/specs/`:
    - `rfc-template.md` → `templates/rfc-template.md`
    - `template-conceptual-design.md` → `templates/conceptual-design.md`
    - `template-architecture-design.md` → `templates/architecture-design.md`
    - `template-impl-interface-design.md` → `templates/impl-interface-design.md`
-3. Replace `{{PROJECT_NAME}}` in each template (except rfc-template.md which is generic)
-4. **Skip files that already exist**
+4. Replace `{{PROJECT_NAME}}` in each template (except rfc-template.md which is generic)
+5. **Skip files that already exist**
 
 ### Step 5: Create Impl Directory
 
@@ -89,11 +89,10 @@ If not provided:
 
 Confirm all expected files exist:
 - `.platonic.yml`
-- `<specs-path>/rfc-standard.md`
 - `<specs-path>/rfc-history.md`
 - `<specs-path>/rfc-index.md`
 - `<specs-path>/rfc-namings.md`
-- `<specs-path>/templates/` (4 template files)
+- `<specs-path>/templates/` (5 template files, including `rfc-standard.md`)
 - `<impl-path>/README.md`
 - `<drafts-path>/README.md`
 
@@ -113,4 +112,4 @@ Report any files that were skipped (already existed) vs. newly created.
 - If a file already exists, **skip it** (never overwrite without explicit user permission)
 - Use exact capitalization provided for project name
 - Create parent directories as needed
-- The specs templates directory contains copies of the spec-kind templates for user reference and customization
+- The specs templates directory contains `rfc-standard.md` plus copies of the spec-kind templates for user reference and customization

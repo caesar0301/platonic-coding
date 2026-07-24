@@ -74,7 +74,7 @@ After completion, verify:
 
 - All dynamic files (history, index, namings) are updated
 - No broken references exist
-- All RFCs comply with rfc-standard.md
+- All RFCs comply with `templates/rfc-standard.md`
 - Terminology is consistent across files
 
 ## Notes

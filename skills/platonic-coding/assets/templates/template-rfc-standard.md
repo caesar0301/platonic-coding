@@ -203,9 +203,9 @@ stateDiagram-v2
 **Filename convention**: RFC spec files MUST be named `RFC-NNN-<brief-semantic-name>.md`.
 
 - `RFC`: Capital letters (literal)
-- `NNN`: 3-digit zero-padded number (001, 002, etc.)
+- `NNN`: Exactly **three numeric characters**, zero-padded (`001`–`999`). Not `1`, `01`, or `0001`.
 - `<brief-semantic-name>`: Kebab-case brief description (e.g., `message-queue`, `user-auth`)
-- Sequential numbering
+- **Strict sequence**: Assign the next unused number in order (`001`, `002`, `003`, …). Do not skip numbers unless the user explicitly requests a specific number or gap.
 - Numbers are reserved once assigned, even if RFC is deleted
 
 **Examples**:
@@ -223,7 +223,7 @@ Used for cross-cutting RFCs: `rfc-namings.md`, `rfc-index.md`, etc.
 
 **Format**: `RFC-NNN-<brief-semantic-name>-<letter>.md`
 
-- `NNN`: Original RFC number (3-digit padded)
+- `NNN`: Original RFC number (exactly three numeric characters, zero-padded)
 - `<brief-semantic-name>`: Same semantic name from base RFC (preserved across versions)
 - `<letter>`: Single lowercase letter (a, b, c, ... z) for minor versions
 - Used only for updates to frozen RFCs

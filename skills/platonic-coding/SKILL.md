@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
 license: MIT
 metadata:
-  version: "2.4.0"
+  version: "2.4.1"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -109,9 +109,9 @@ After BRAINSTORM mode produces an approved design draft, the skill does **not** 
 1. **Pause at each phase gate** — careful, default; approve every confirmation gate
 2. **Quick pass** — run multiple phases straight through, no further confirmations (quick fixes)
 3. **Update an existing RFC** — revise a related RFC instead of spawning a new one
-4. **Create a new RFC** — formalize the draft into a fresh `RFC-NNN`
+4. **Create a new RFC** — formalize the draft into a fresh `RFC-NNN` (next sequential `NNN` unless user overrides)
 5. **Update an existing IG** — refine an existing implementation guide via `impl-update-guide`
-6. **Create a new IG** — generate a fresh `IG-NNN` via `impl-create-guide`
+6. **Create a new IG** — generate a fresh `IG-XXX` via `impl-create-guide` (next sequential `XXX` unless user overrides)
 
 The menu leads with a recommendation based on what was found. The user picks by number; each path maps to existing canonical operations.
 
@@ -120,8 +120,8 @@ The menu leads with a recommendation based on what was found. The user picks by 
 | Artifact | Path | Naming |
 |----------|------|--------|
 | Drafts | `docs/drafts/` | `YYYY-MM-DD-<topic>-design.md` |
-| RFCs | `docs/specs/` | `RFC-NNN-<name>.md` |
-| Guides | `docs/impl/` | `IG-NNN-<name>.md` |
+| RFCs | `docs/specs/` | `RFC-NNN-<name>.md` (`NNN` = exactly 3 digits; strict sequence) |
+| Guides | `docs/impl/` | `IG-XXX-<name>.md` (`XXX` = exactly 3 digits; strict sequence) |
 
 Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 

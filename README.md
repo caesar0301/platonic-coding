@@ -18,10 +18,19 @@ See a full description in [Manifesto](https://github.com/caesar0301/platonic-cod
 
 ### Method 1: Claude Code Marketplace (Easiest)
 
-If using Claude Code CLI with marketplace support:
+Inside a Claude Code session ([docs](https://code.claude.com/docs/en/discover-plugins)):
+
+```text
+/plugin marketplace add caesar0301/platonic-coding
+/plugin install platonic-coding@platonic-coding
+/reload-plugins
+```
+
+Or from the shell (non-interactive; user scope by default):
 
 ```bash
-claude-code marketplace add caesar0301/platonic-coding
+claude plugin marketplace add caesar0301/platonic-coding
+claude plugin install platonic-coding@platonic-coding
 ```
 
 ### Method 2: Install using npx skills (Recommended for Most)
@@ -105,13 +114,13 @@ Phase 1: RFC Specification (optional BRAINSTORM mode for conceptual design → R
 
 ### Implement Specific RFC
 ```
-Use platonic-coding impl-full for RFC-0001-user-authentication (Authentication).
+Use platonic-coding impl-full for RFC-001-user-authentication (Authentication).
 ```
 Creates impl guide (with confirmation) → generates coding plan (with confirmation) → writes code + tests.
 
 ### Review Code Against Specs
 ```
-Use platonic-coding to review src/auth/ against RFC-0001-user-authentication.md.
+Use platonic-coding to review src/auth/ against RFC-001-user-authentication.md.
 ```
 Generates compliance report: implemented ✅, missing ❌, inconsistent ⚠️.
 

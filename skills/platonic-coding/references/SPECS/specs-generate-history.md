@@ -11,8 +11,8 @@ Scan all RFC files in the specs directory and generate/update `rfc-history.md` w
 ## Steps
 
 1. **Scan RFC Files**
-   - Find all files matching pattern `RFC-*.md` in the specs directory
-   - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
+   - Find all files matching pattern `RFC-*.md` in the specs directory (specs root only; skip `templates/`)
+   - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`
    - Include both base RFCs (e.g., `RFC-001-world-view.md`) and versioned RFCs (e.g., `RFC-001-world-view-001.md`)
 
 2. **Extract Metadata from Each RFC**

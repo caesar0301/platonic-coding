@@ -2,6 +2,30 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.4.1 — Spec Layout, Numbering Rules & Marketplace Install Fix (2026-07-24)
+
+### Specs layout
+
+**Changed:** Scaffolded `rfc-standard.md` now lives under `docs/specs/templates/` with the other convention templates, keeping the specs root for living docs (`rfc-history`, `rfc-index`, `rfc-namings`) and RFCs. Compliance checks prefer `templates/rfc-standard.md` and fall back to the root path for older projects.
+
+### RFC / IG numbering
+
+**Changed:** `RFC-NNN` and `IG-XXX` are exactly three numeric characters (`001`–`999`). New RFCs and IGs use strict sequential numbering unless the user explicitly requests a different number or gap. Sequences are independent.
+
+### Claude Code marketplace install
+
+**Fixed:** README install instructions now use `/plugin marketplace add` + `/plugin install` (and the `claude plugin …` CLI equivalents). `.claude-plugin/marketplace.json` updated to the current `plugins` schema so marketplace install works.
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/SKILL.md` — version 2.4.1; naming table for RFC-NNN / IG-XXX
+- ✅ `.claude-plugin/marketplace.json` — version 2.4.1; `plugins` + `skills` schema
+- ✅ `README.md` — Claude Code marketplace install; 3-digit RFC examples
+- ✅ `references/INIT/init-scaffold.md` — `templates/rfc-standard.md`
+- ✅ `references/REFERENCE.md` — file layout + naming conventions
+- ✅ `assets/templates/template-rfc-*.md`, `template-impl-readme.md`, `template-platonic.yml` — paths and numbering rules
+- ✅ SPECS / IMPL / WORKFLOW / BRAINSTORM references — path, format, and sequence rules
+
 ## Version 2.4.0 — Merged Brainstorming + Intention Detection + Post-Draft Routing (2026-06-27)
 
 ### Merged `platonic-brainstorming` into `platonic-coding`

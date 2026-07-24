@@ -20,10 +20,17 @@ Before creating an implementation guide, ensure:
 | Language | Yes | Target programming language (e.g., Rust, Python, TypeScript) |
 | Framework | No | Framework if applicable (e.g., Tokio, Actix, React) |
 | Output Path | No | Where to save the guide (default: `docs/impl/`) |
+| IG Number | No | Explicit `XXX` override; default = next sequential unused IG number |
 
 ## Process
 
-### Step 1: Analyze RFC Specification
+### Step 1: Assign IG Number
+
+1. Scan `docs/impl/` for existing `IG-XXX-*.md` files
+2. Default: next unused number in strict sequence (`001`, `002`, `003`, …) — exactly three numeric characters, zero-padded
+3. Use a non-sequential or aligned-with-RFC number **only** if the user explicitly requests it
+
+### Step 2: Analyze RFC Specification
 
 Read the RFC document and extract:
 
@@ -37,7 +44,7 @@ Read the RFC document and extract:
 
 Create a checklist of all extractable requirements.
 
-### Step 2: Design Architecture
+### Step 3: Design Architecture
 
 Based on RFC analysis, design:
 
@@ -47,7 +54,7 @@ Based on RFC analysis, design:
 4. **Data Flow**: How data moves through the system
 5. **Error Strategy**: How errors are represented and handled
 
-### Step 3: Define Concrete Types
+### Step 4: Define Concrete Types
 
 For each RFC concept, define concrete types:
 
@@ -66,7 +73,7 @@ Include:
 - Visibility modifiers appropriate to the language
 - Generic parameters if needed
 
-### Step 4: Define Interfaces
+### Step 5: Define Interfaces
 
 For each required behavior, define interfaces:
 
@@ -85,7 +92,7 @@ Include:
 - Error types
 - Async markers if applicable
 
-### Step 5: Document Implementation Details
+### Step 6: Document Implementation Details
 
 For complex algorithms or protocols:
 
@@ -94,7 +101,7 @@ For complex algorithms or protocols:
 3. Reference RFC sections for requirements
 4. Note any implementation choices and rationale
 
-### Step 6: Generate Guide Document
+### Step 7: Generate Guide Document
 
 Use the template from `assets/impl-guide-template.md`:
 
@@ -117,7 +124,11 @@ A complete implementation guide document containing:
 - Configuration options
 - Testing strategy
 
-**Naming Convention**: Implementation guides should follow the naming pattern `IG-<number>-semantic-short-desc.md` (e.g., `IG-053-cli-command-nesting.md`).
+**Naming Convention**: Implementation guides MUST be named `IG-XXX-<semantic-short-desc>.md`.
+
+- `XXX`: Exactly **three numeric characters**, zero-padded (`001`–`999`)
+- **Strict sequence**: Use the next unused IG number (`max existing + 1`, zero-padded). Do not skip numbers unless the user explicitly requests a specific number or gap.
+- IG numbering is independent of RFC numbering unless the user explicitly requests alignment
 
 ## Validation
 
@@ -135,7 +146,7 @@ After creating the guide:
 - Language: Rust
 - Framework: Tokio (async runtime)
 
-**Output**: `docs/impl/IG-042-message-queue-protocol.md`
+**Output**: `docs/impl/IG-003-message-queue-protocol.md` (next sequential IG number; example assumes IG-001 and IG-002 already exist)
 
 The guide would include:
 - Crate structure for `acme-queue`

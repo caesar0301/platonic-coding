@@ -11,13 +11,13 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 ## Steps
 
 1. **Scan RFC Files**
-   - Find all files matching pattern `RFC-*.md` in the specs directory
-   - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`, `rfc-standard.md`
+   - Find all files matching pattern `RFC-*.md` in the specs directory (specs root only; skip `templates/`)
+   - Exclude: `rfc-history.md`, `rfc-index.md`, `rfc-namings.md`
    - Separate base RFCs (e.g., `RFC-001-world-view.md`) from versioned RFCs (e.g., `RFC-001-world-view-001.md`)
 
 2. **Extract Metadata from Base RFCs**
    For each base RFC file (not versioned), extract:
-   - RFC number (from filename, e.g., `RFC-001-world-view.md` → `0001`)
+   - RFC number (from filename, e.g., `RFC-001-world-view.md` → `001`)
    - Title (from `# RFC-NNN-<name>: Title`)
    - Status (from `**Status**: ...`)
    - Created date (from `**Created**: YYYY-MM-DD`)
@@ -64,7 +64,7 @@ Scan all RFC files in the specs directory and generate/update `rfc-index.md` wit
 ## Table Generation Rules
 
 - **Sort RFCs** by RFC number (numerically, ascending)
-- **RFC Column**: Format as `[RFC-NNN-<name>](RFC-NNN-<name>.md)` where NNN is zero-padded
+- **RFC Column**: Format as `[RFC-NNN-<name>](RFC-NNN-<name>.md)` where `NNN` is exactly three numeric characters, zero-padded
 - **Version Column**:
   - If versions exist: `[va](RFC-NNN-<name>-a.md), [vb](RFC-NNN-<name>-b.md)`
   - If no versions: `-` (no versions)

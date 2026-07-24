@@ -30,7 +30,7 @@ Spec Analysis → Impl Guide → Coding Plan → Coding + Tests
 Extract from RFC: core concepts, requirements (MUST/SHALL), constraints, interfaces, data structures, behaviors, dependencies. Create requirements checklist.
 
 ### Step 2: Impl Guide Design
-Create implementation guide (follow `create-guide.md`). Output: module structure, type definitions, interface signatures, error handling, testing strategy.
+Create implementation guide (follow `create-guide.md`). Assign the next sequential `IG-XXX` number (`XXX` = exactly three digits) unless the user explicitly requests a different number. Output: module structure, type definitions, interface signatures, error handling, testing strategy.
 
 **Confirmation Gate**: Present summary (module structure, key types, design decisions). Skip if auto-mode or "no confirmations".
 
@@ -46,6 +46,6 @@ If guide is incomplete: document gap, suggest update—don't invent behavior.
 
 ## Output
 
-- Implementation guide (`IG-NNN-<name>.md`)
+- Implementation guide (`IG-XXX-<name>.md`; `XXX` = exactly 3 digits, next sequential unless user overrides)
 - Source code
 - Unit + integration tests
