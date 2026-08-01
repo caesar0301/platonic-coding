@@ -106,9 +106,9 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 - `{{AUTHOR}}` — Author name
 
 ### Paths
-- `{{SPECS_PATH}}` — Specs directory path (default: `docs/specs`; from `.platonic.yml` if present)
-- `{{IMPL_PATH}}` — Implementation guides path (default: `docs/impl`; from `.platonic.yml` if present)
-- `{{DRAFTS_PATH}}` — Design drafts path (default: `docs/drafts`; from `.platonic.yml` if present)
+- `{{SPECS_PATH}}` — Specs directory path (from `.platonic.yml`)
+- `{{IMPL_PATH}}` — Implementation guides path
+- `{{DRAFTS_PATH}}` — Design drafts path
 
 ---
 
@@ -127,9 +127,9 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 
 ```
 <project-root>/
-├── .platonic.yml                   # OPTIONAL — only present when overriding defaults
+├── .platonic.yml                   # Project config
 ├── docs/
-│   ├── specs/                      # RFC specifications (default path)
+│   ├── specs/                      # RFC specifications
 │   │   ├── rfc-history.md           # Change history
 │   │   ├── rfc-index.md             # Spec index
 │   │   ├── rfc-namings.md           # Terminology reference
@@ -161,7 +161,7 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 | Issue | Solution |
 |-------|----------|
 | Wrong auto-detection | Use explicit operations (`init-scaffold`, `specs-refine`, `impl-full`, `review`) |
-| Wrong placeholders | Check `.platonic.yml` paths (if present) match template values; if absent, defaults apply |
+| Wrong placeholders | Check `.platonic.yml` paths match template values |
 | Guide contradicts RFC | Run `impl-validate-guide`, then update guide or modify RFC |
 | Specs not in index | Check `RFC-NNN-<name>.md` naming, run `specs-generate-index` |
 | Missing terminology | Check term format in RFCs, run `specs-generate-namings` |

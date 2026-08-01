@@ -2,41 +2,6 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
-## Version 2.5.0 — `.platonic.yml` Made Optional (2026-08-01)
-
-### `.platonic.yml` is now optional
-
-**Changed:** The `.platonic.yml` project config file is no longer created by default and is no longer required for the skill to operate. The skill auto-detects project metadata (name, language, framework) from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, `pom.xml`/`build.gradle`, `*.csproj`/`*.sln`) and uses built-in default paths:
-
-- Specs: `docs/specs`
-- Impl guides: `docs/impl`
-- Drafts: `docs/drafts`
-
-A `.platonic.yml` is only created when the user explicitly requests non-default paths or custom spec stages. This removes redundant config that duplicated info already available in the host project's manifest.
-
-### `init-scaffold` no longer writes `.platonic.yml` by default
-
-**Changed:** The scaffold operation now creates directories and templates but skips `.platonic.yml` creation unless overrides are requested. Step 2 of `init-scaffold.md` is explicitly marked as conditional.
-
-### Project-state detection updated
-
-**Changed:** Auto-detection no longer treats a missing `.platonic.yml` as the trigger for INIT mode. Instead, it checks for the absence of *both* `.platonic.yml` and `docs/specs/` (the Platonic infrastructure) before routing to INIT. Existing projects with `docs/specs/` but no `.platonic.yml` now route correctly to their phase.
-
-### Backward compatibility
-
-**No breaking changes for existing projects:** A `.platonic.yml` that already exists continues to be read and respected — its `paths:` and `specs:` overrides take precedence over defaults. Projects that never had a `.platonic.yml` now work out of the box.
-
-### Updated Files
-
-- ✅ `skills/platonic-coding/SKILL.md` — version 2.5.0; optional `.platonic.yml`, updated dependencies and auto-detection
-- ✅ `skills/platonic-coding/assets/templates/template-platonic.yml` — trimmed to override-only, all fields commented out by default
-- ✅ `skills/platonic-coding/references/INIT/init-scaffold.md` — Step 2 conditional, new inputs (`Custom stages`, `Create .platonic.yml`)
-- ✅ `skills/platonic-coding/references/INIT/init-scan.md` — auto-detect inputs, default paths
-- ✅ `skills/platonic-coding/references/REFERENCE.md` — decision tree, file structure, troubleshooting, path variables
-- ✅ `skills/platonic-coding/references/WORKFLOW/workflow-overview.md` — default vs override paths clarified
-- ✅ `README.md` — auto-detection section, init example
-- ✅ `.claude-plugin/marketplace.json` — version 2.5.0
-
 ## Version 2.4.1 — Spec Layout, Numbering Rules & Marketplace Install Fix (2026-07-24)
 
 ### Specs layout

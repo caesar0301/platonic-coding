@@ -161,7 +161,7 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 | Issue | Solution |
 |-------|----------|
 | Wrong auto-detection | Use explicit operations (`init-scaffold`, `specs-refine`, `impl-full`, `review`) |
-| Wrong placeholders | Check `.platonic.yml` paths (if present) match template values; if absent, defaults apply |
+| Wrong placeholders | Check `.platonic.yml` paths match template values |
 | Guide contradicts RFC | Run `impl-validate-guide`, then update guide or modify RFC |
 | Specs not in index | Check `RFC-NNN-<name>.md` naming, run `specs-generate-index` |
 | Missing terminology | Check term format in RFCs, run `specs-generate-namings` |

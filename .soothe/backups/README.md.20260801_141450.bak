@@ -94,7 +94,7 @@ Prefer canonical operation names when overriding auto-detection: `brainstorm`, `
 ```
 Use platonic-coding to set up my new project "Acme" (TypeScript/Next.js).
 ```
-Auto-detects missing infrastructure → scaffolds directories and templates. `.platonic.yml` is **not** created by default — it's only written when you request non-default paths or custom spec stages.
+Auto-detects missing infrastructure → scaffolds `.platonic.yml`, directories, templates.
 
 ### Recover Specs from Existing Code
 ```

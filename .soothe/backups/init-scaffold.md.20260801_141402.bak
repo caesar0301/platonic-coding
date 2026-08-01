@@ -92,7 +92,7 @@ If overrides are needed:
 ### Step 7: Verify
 
 Confirm all expected files exist:
-- `.platonic.yml` — **only if overrides were requested**; absent is the normal case
+- `.platonic.yml`
 - `<specs-path>/rfc-history.md`
 - `<specs-path>/rfc-index.md`
 - `<specs-path>/rfc-namings.md`
@@ -100,7 +100,7 @@ Confirm all expected files exist:
 - `<impl-path>/README.md`
 - `<drafts-path>/README.md`
 
-Report any files that were skipped (already existed) vs. newly created. Note whether `.platonic.yml` was created or skipped.
+Report any files that were skipped (already existed) vs. newly created.
 
 ## Template Processing Rules
 

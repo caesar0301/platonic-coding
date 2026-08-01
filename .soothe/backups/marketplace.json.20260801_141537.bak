@@ -12,7 +12,7 @@
     {
       "name": "platonic-coding",
       "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with BRAINSTORM mode built in.",
-      "version": "2.5.0",
+      "version": "2.4.1",
       "author": {
         "name": "Xiaming Chen",
         "url": "https://xiaming.site/"

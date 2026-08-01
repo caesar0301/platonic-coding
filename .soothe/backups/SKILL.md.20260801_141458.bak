@@ -140,6 +140,5 @@ Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 ## Dependencies
 
 - Read/write to project directories
-- Access to host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.) for auto-detection
-- `.platonic.yml` is **optional** — only read if present for path/stage overrides
+- Access to `.platonic.yml`
 - Understanding of target language/framework

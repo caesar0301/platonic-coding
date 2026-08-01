@@ -76,8 +76,6 @@ Structured design exploration through collaborative dialogue. Produces an approv
 ### INIT Mode
 Bootstrap Platonic Coding infrastructure. Operations: `init-scaffold`, `init-scan`, `init-plan-modular-specs`, `init-recover-*`.
 
-**Note**: `init-scaffold` creates directories and templates but does **not** create `.platonic.yml` by default — project metadata is auto-detected from host manifests and default paths are used. A `.platonic.yml` is only created when the user explicitly requests non-default paths or custom spec stages.
-
 **Examples**: `init-scaffold for project "Acme"`, `init-scan then recover specs`.
 
 ### SPECS Mode
@@ -140,6 +138,5 @@ Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 ## Dependencies
 
 - Read/write to project directories
-- Access to host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.) for auto-detection
-- `.platonic.yml` is **optional** — only read if present for path/stage overrides
+- Access to `.platonic.yml`
 - Understanding of target language/framework
