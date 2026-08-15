@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
 license: MIT
 metadata:
-  version: "2.5.0"
+  version: "2.5.1"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -88,7 +88,7 @@ Manage RFC specifications. Operations: `specs-refine` (comprehensive), `specs-ge
 ### IMPL Mode
 Translate RFCs to guides and code. Operations: `impl-full` (default), `impl-create-guide`, `impl-code`, `impl-validate-guide`, `impl-update-guide`.
 
-**Confirmation Gates**: Pauses after impl guide and coding plan. Override with "no confirmations".
+**Confirmation Gates**: Pauses after the impl guide (which includes the coding plan). Override with "no confirmations".
 
 **Examples**: `impl-full for RFC-042`, `impl-code from IG-001`.
 

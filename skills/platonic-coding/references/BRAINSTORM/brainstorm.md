@@ -136,7 +136,7 @@ Present the menu as a numbered list with a one-line description per option, and 
 
 | # | Path | When to use | Routes to |
 |---|------|-------------|-----------|
-| 1 | **Pause at each phase gate** (default, careful) | The change is non-trivial and the user wants to approve each step | Phase 1 RFC formalization, pausing at every confirmation gate (RFC number, impl guide, coding plan) |
+| 1 | **Pause at each phase gate** (default, careful) | The change is non-trivial and the user wants to approve each step | Phase 1 RFC formalization, pausing at every confirmation gate (RFC number, impl guide) |
 | 2 | **Quick pass** (multiple phases, no further confirm) | Small scope, quick fix, user is confident — wants draft → RFC → specs-refine → impl-full → (optional review) in one chain | Phase 1 → Phase 2 (auto-mode, gates skipped) → optional Phase 3, one approval covers the chain |
 | 3 | **Update an existing RFC** | A related RFC already exists; this draft should revise it rather than spawn a new one | Formalize draft as a revision to `RFC-NNN` (bump version / change history), then `specs-refine` |
 | 4 | **Create a new RFC** | No related RFC exists, or the draft is a distinct new concern | Formalize draft into a fresh `RFC-NNN-<name>.md` (next sequential `NNN` unless user overrides), then `specs-refine` |

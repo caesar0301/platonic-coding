@@ -12,8 +12,7 @@ Produce implementation guide from RFC spec, then implement code with tests. Opti
 2. **Identify RFC**: Ask user if not specified; determine target module/language/framework
 3. **Run impl-full**: Read `references/IMPL/impl-full.md`
    - Spec Analysis: Extract requirements, constraints, invariants
-   - Impl Guide Design: Create guide (**confirmation gate**)
-   - Coding Plan: Task breakdown (**confirmation gate**)
+   - Impl Guide Design: Create guide incl. coding plan (**confirmation gate**)
    - Coding: Implement + unit/integration tests
 4. **Verify**: Guide exists, code written, tests passing
 

@@ -4,7 +4,7 @@ Write code from an existing implementation guide, including unit and integration
 
 ## Purpose
 
-When an implementation guide already exists, this operation takes it and produces working code. It skips the guide creation step and starts from coding plan generation.
+When an implementation guide already exists, this operation takes it and produces working code. It skips the guide creation step and starts from the guide's coding plan (Section 10).
 
 ## Prerequisites
 
@@ -29,16 +29,16 @@ When an implementation guide already exists, this operation takes it and produce
 - Read the source RFC for context and requirements
 - Treat both as source of truth: code is a **realization**, not a source of new requirements
 
-### Step 2: Generate Coding Plan
+### Step 2: Read the Coding Plan
 
-Break the guide into ordered implementation tasks:
+The guide's coding plan (Section 10) already contains the ordered task breakdown. Review it to understand the implementation sequence:
 
-1. **Enumerate deliverables**: List all modules, types, interfaces, and tests from the guide
-2. **Define task order**: Order tasks by dependency (foundations first, then consumers)
+1. **Enumerate deliverables**: All modules, types, interfaces, and tests from the guide
+2. **Note task order**: Tasks are ordered by dependency (foundations first, then consumers)
 3. **Pair with tests**: Each functional task has a corresponding test task
-4. **Scope each task**: Describe what to create/modify, reference guide sections
+4. **Reference guide sections**: Each task points back to the relevant guide section
 
-Use the template from `assets/coding-plan-template.md`.
+If the guide lacks a coding plan, derive one and add it as Section 10 of the guide (never as a separate file).
 
 **Confirmation Gate**: Present the plan to the user unless auto mode is active.
 
@@ -94,7 +94,7 @@ If the implementation guide is incomplete or ambiguous:
 - Guide: `docs/impl/IG-001-user-authentication.md`
 - RFC: `docs/specs/RFC-001-user-authentication.md`
 
-**Coding Plan** (simplified):
+**Coding Plan** (Section 10 of the guide, simplified):
 1. Create `src/auth/types.ts` — User, Session, Token types
 2. Create `src/auth/service.ts` — AuthService with login, logout, verify
 3. Create `src/auth/middleware.ts` — Express middleware for route protection

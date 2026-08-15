@@ -33,7 +33,7 @@ Detailed operation guide for Platonic Coding skill.
 ### IMPLEMENTATION (`references/IMPL/`)
 | Operation | Purpose |
 |-----------|---------|
-| `impl-full` | End-to-end: spec → guide → plan → code + tests |
+| `impl-full` | End-to-end: spec → guide (incl. coding plan) → code + tests |
 | `impl-create-guide` | Create guide from RFC |
 | `impl-code` | Implement from existing guide |
 | `impl-validate-guide` | Check guide vs RFC contradictions |

@@ -110,6 +110,7 @@ Use the template from `assets/impl-guide-template.md`:
 3. Add diagrams where helpful
 4. Reference source RFC throughout
 5. Document any interpretations of ambiguous specs
+6. Author the coding plan (Section 10): ordered task breakdown with test pairing
 
 ## Output
 
@@ -123,6 +124,7 @@ A complete implementation guide document containing:
 - Error handling strategy
 - Configuration options
 - Testing strategy
+- Coding plan (ordered task breakdown with test pairing)
 
 **Naming Convention**: Implementation guides MUST be named `IG-XXX-<semantic-short-desc>.md`.
 

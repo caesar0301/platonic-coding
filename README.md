@@ -118,7 +118,7 @@ Phase 1: RFC Specification (optional BRAINSTORM mode for conceptual design → R
 ```
 Use platonic-coding impl-full for RFC-001-user-authentication (Authentication).
 ```
-Creates impl guide (with confirmation) → generates coding plan (with confirmation) → writes code + tests.
+Creates impl guide (with confirmation, includes coding plan) → writes code + tests.
 
 ### Review Code Against Specs
 ```

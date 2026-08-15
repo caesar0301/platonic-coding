@@ -23,7 +23,7 @@ Phase 1: RFC Specification
     → SPECS mode: specs-refine (validate + update supporting files)
 Phase 2: Implementation
     → Optional: BRAINSTORM mode (design refinement)
-    → IMPL mode: impl-full (spec analysis → guide → plan → code + tests)
+    → IMPL mode: impl-full (spec analysis → guide (incl. coding plan) → code + tests)
 Phase 3: Spec Compliance Review
     → REVIEW mode: review code against RFC + impl guides
     → Compliance report
@@ -60,7 +60,7 @@ Brainstorming is an **internal mode** of this skill (formerly the standalone `pl
 ## When to Ask the User
 
 - **Phase 1**: RFC number/index for the new or updated RFC, if not specified. Whether to use BRAINSTORM mode for conceptual design.
-- **Phase 2**: RFC number/index for which to implement, if not specified. Whether to use BRAINSTORM mode for design refinement. The IMPL mode operation handles its own confirmation gates for impl guide and coding plan.
+- **Phase 2**: RFC number/index for which to implement, if not specified. Whether to use BRAINSTORM mode for design refinement. The IMPL mode operation handles its own confirmation gates for the impl guide (which includes the coding plan).
 - **Phase 3**: Which code paths and RFC(s) to review, if not specified.
 
 ## Mode Invocations
@@ -68,7 +68,7 @@ Brainstorming is an **internal mode** of this skill (formerly the standalone `pl
 | Phase | Optional Integration | Mode / Action |
 |-------|---------------------|---------------|
 | 1 | BRAINSTORM mode | **SPECS mode** — draft → RFC → refine (validate + update supporting files) |
-| 2 | BRAINSTORM mode | **IMPL mode** — impl-full: spec analysis → impl guide → coding plan → code with tests |
+| 2 | BRAINSTORM mode | **IMPL mode** — impl-full: spec analysis → impl guide (incl. coding plan) → code with tests |
 | 3 | — | **REVIEW mode** — review code against RFC specs and impl guides |
 
 Read the phase-specific reference file before executing each phase:
