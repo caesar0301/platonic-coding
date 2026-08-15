@@ -2,6 +2,26 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 2.5.1 — Coding Plan Merged into Implementation Guide (2026-08-15)
+
+### Single IG artifact
+
+**Changed:** The implementation guide is now the sole Phase 2 artifact. The separate coding-plan file (`IG-XXX-coding-plan.md`) has been eliminated and its content folded into the guide as **Section 10: Coding Plan** (task breakdown, execution order, verification checklist).
+
+### Why
+
+The coding plan had no defined filename or location, so it was being persisted as `IG-XXX-coding-plan.md` in `docs/impl/`. That polluted the IG numbering sequence (the next-guide scan matched `IG-XXX-*.md`) and made a transient, guide-derived artifact look like a second guide.
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/assets/implementation/impl-guide-template.md` — new Section 10 (Coding Plan); Migration renumbered to Section 11
+- ✅ `skills/platonic-coding/assets/implementation/coding-plan-template.md` — removed (content merged into the guide)
+- ✅ `skills/platonic-coding/references/IMPL/impl-full.md` — pipeline collapsed to `Spec Analysis → Impl Guide (incl. Coding Plan) → Coding + Tests`, single confirmation gate
+- ✅ `skills/platonic-coding/references/IMPL/impl-code.md` — Step 2 now reads the guide's Section 10 instead of generating a separate plan
+- ✅ `skills/platonic-coding/references/IMPL/impl-create-guide.md` — authoring the coding plan is part of guide generation
+- ✅ `skills/platonic-coding/references/REFERENCE.md`, `SKILL.md`, `references/WORKFLOW/workflow-overview.md`, `references/WORKFLOW/workflow-phase-2.md`, `references/BRAINSTORM/brainstorm.md`, `README.md` — references to a separate coding-plan artifact removed
+- ✅ `skills/platonic-coding/SKILL.md`, `.claude-plugin/marketplace.json` — version 2.5.1
+
 ## Version 2.5.0 — `.platonic.yml` Made Optional (2026-08-01)
 
 ### `.platonic.yml` is now optional
