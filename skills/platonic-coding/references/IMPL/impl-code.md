@@ -26,8 +26,9 @@ When an implementation guide already exists, this operation takes it and produce
 ### Step 1: Read Guide and RFC
 
 - Read the implementation guide thoroughly
-- Read the source RFC for context and requirements
+- Read the source RFC for context and requirements (the guide's Source reference gives its path; in namespaced projects the RFC lives in `docs/specs/<ns>/` and the guide in `docs/impl/<ns>/`)
 - Treat both as source of truth: code is a **realization**, not a source of new requirements
+- Load **only the specs needed for this guide**: its source RFC (plus any RFCs it depends on) and the global `rfc-namings.md` — do not ingest other namespaces' specs
 
 ### Step 2: Read the Coding Plan
 

@@ -11,8 +11,8 @@
 ## Inputs
 
 - **Code**: Implemented in Phase 2 (relevant directories/modules).
-- **RFC spec(s)**: From Phase 1 (filename `RFC-NNN-<name>.md`, e.g. `docs/specs/RFC-001-world-view.md`).
-- **Implementation guide(s)**: From Phase 2, using `IG-XXX-<semantic-short-desc>.md` where `XXX` is exactly three numeric characters, allocated in strict sequence (e.g., `docs/impl/IG-001-user-authentication.md`).
+- **RFC spec(s)**: From Phase 1 (filename `RFC-NNN-<name>.md` at the specs root, or `RFC-<PREFIX>-NNN-<name>.md` inside a namespace directory; e.g. `docs/specs/RFC-001-world-view.md`, `docs/specs/auth/RFC-AUTH-001-session.md`).
+- **Implementation guide(s)**: From Phase 2, using `IG-XXX-<semantic-short-desc>.md` (root) or `IG-<PREFIX>-XXX-<semantic-short-desc>.md` (namespaced, mirrored directory) where `XXX` is exactly three numeric characters, allocated in strict sequence within the scope (e.g., `docs/impl/IG-001-user-authentication.md`, `docs/impl/auth/IG-AUTH-001-session.md`).
 
 ## Process
 

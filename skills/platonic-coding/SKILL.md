@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
 license: MIT
 metadata:
-  version: "2.7.0"
+  version: "3.0.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -52,7 +52,7 @@ Before inspecting project state, scan the user's natural-language request for **
 - RFCs but no guides → Phase 2 (implementation)
 - Guides + code → Phase 3 (review) or resume Phase 2
 
-**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`docs/specs`, `docs/impl`, `docs/drafts`). A `.platonic.yml` is only needed to override defaults or set custom spec stages.
+**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`docs/specs`, `docs/impl`, `docs/drafts`). A `.platonic.yml` is only needed to override defaults, set custom spec stages, or declare namespaces (multi-service projects).
 
 **Override** with canonical operations: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`.
 
@@ -93,9 +93,9 @@ Bootstrap Platonic Coding infrastructure. Operations: `init-scaffold`, `init-sca
 **Examples**: `init-scaffold for project "Acme"`, `init-scan then recover specs`.
 
 ### SPECS Mode
-Manage RFC specifications. Operations: `specs-refine` (comprehensive), `specs-generate-*`, `specs-validate-*`, `specs-check-*`.
+Manage RFC specifications. Operations: `specs-refine` (comprehensive), `specs-generate-*`, `specs-validate-*`, `specs-check-*`, `specs-partition` (migrate a flat layout into namespaces).
 
-**Examples**: `specs-refine`, `specs-generate-index`.
+**Examples**: `specs-refine`, `specs-generate-index`, `specs-partition`.
 
 ### IMPL Mode
 Translate RFCs to guides and code. Operations: `impl-full` (default), `impl-create-guide`, `impl-code`, `impl-validate-guide`, `impl-update-guide`.
@@ -125,9 +125,9 @@ After BRAINSTORM mode produces an approved design draft, the skill does **not** 
 1. **Pause at each phase gate** — careful, default; approve every confirmation gate
 2. **Quick pass** — run multiple phases straight through, no further confirmations (quick fixes)
 3. **Update an existing RFC** — revise a related RFC instead of spawning a new one
-4. **Create a new RFC** — formalize the draft into a fresh `RFC-NNN` (next sequential `NNN` unless user overrides)
+4. **Create a new RFC** — formalize the draft into a fresh RFC (root-level `RFC-NNN` or namespaced `RFC-<PREFIX>-NNN`; next sequential number within the chosen scope unless user overrides)
 5. **Update an existing IG** — refine an existing implementation guide via `impl-update-guide`
-6. **Create a new IG** — generate a fresh `IG-XXX` via `impl-create-guide` (next sequential `XXX` unless user overrides)
+6. **Create a new IG** — generate a fresh IG in the source RFC's scope (`IG-XXX` or `IG-<PREFIX>-XXX`) via `impl-create-guide` (next sequential number within that scope unless user overrides)
 
 The menu leads with a recommendation based on what was found. The user picks by number; each path maps to existing canonical operations.
 
@@ -140,6 +140,19 @@ The menu leads with a recommendation based on what was found. The user picks by 
 | Guides | `docs/impl/` | `IG-XXX-<name>.md` (`XXX` = exactly 3 digits; strict sequence) |
 
 Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
+
+## Namespaces (Multi-Service / Monorepo Projects)
+
+When a project has multiple services or modules (or ≥ 10 RFCs), specs and impl guides can be partitioned into **namespaces** declared in `.platonic.yml`:
+
+- Each namespace = one directory pair (`docs/specs/<ns>/` + `docs/impl/<ns>/`) + an ID prefix (1–4 uppercase letters, **always confirmed by the user via `ask_user` with candidates proposed** — never auto-assigned)
+- Namespaced IDs: `RFC-<PREFIX>-NNN` / `IG-<PREFIX>-NNN`, each namespace with its **own independent sequence** from `001`
+- Cross-cutting RFCs stay at the specs root with the `RFC-NNN` format
+- The root `rfc-index.md` is a one-screen rollup; every namespace gets its own local `rfc-index.md`
+- Namespace membership is derived from the file's directory (no metadata field)
+- Run `specs-partition` to migrate an existing flat layout (records a full old-ID → new-ID mapping in `rfc-history.md`)
+
+Projects without namespaces behave exactly as before (single flat sequence).
 
 ## Best Practices
 

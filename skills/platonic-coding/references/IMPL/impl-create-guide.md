@@ -26,9 +26,10 @@ Before creating an implementation guide, ensure:
 
 ### Step 1: Assign IG Number
 
-1. Scan `docs/impl/` for existing `IG-XXX-*.md` files
-2. Default: next unused number in strict sequence (`001`, `002`, `003`, …) — exactly three numeric characters, zero-padded
-3. Use a non-sequential or aligned-with-RFC number **only** if the user explicitly requests it
+1. Determine the **namespace scope from the source RFC**: a root-level RFC (`RFC-NNN`, at the specs root) produces a root-level IG; a namespaced RFC (`RFC-<PREFIX>-NNN`, in `docs/specs/<ns>/`) produces an IG in the same namespace
+2. Scan the relevant impl directory (`docs/impl/` at root, or `docs/impl/<ns>/` for the namespace) for existing `IG-*.md` files
+3. Default: next unused number in strict sequence (`001`, `002`, `003`, …) — exactly three numeric characters, zero-padded. **Sequences are independent per namespace** (and independent of the root sequence)
+4. Use a non-sequential or aligned-with-RFC number **only** if the user explicitly requests it
 
 ### Step 2: Analyze RFC Specification
 
@@ -126,11 +127,12 @@ A complete implementation guide document containing:
 - Testing strategy
 - Coding plan (ordered task breakdown with test pairing)
 
-**Naming Convention**: Implementation guides MUST be named `IG-XXX-<semantic-short-desc>.md`.
+**Naming Convention**: Implementation guides MUST be named `IG-XXX-<semantic-short-desc>.md` (root-level) or `IG-<PREFIX>-XXX-<semantic-short-desc>.md` (namespaced, mirroring the source RFC's namespace).
 
 - `XXX`: Exactly **three numeric characters**, zero-padded (`001`–`999`)
-- **Strict sequence**: Use the next unused IG number (`max existing + 1`, zero-padded). Do not skip numbers unless the user explicitly requests a specific number or gap.
+- **Strict sequence**: Use the next unused IG number in the guide's scope (`max existing + 1`, zero-padded). Do not skip numbers unless the user explicitly requests a specific number or gap.
 - IG numbering is independent of RFC numbering unless the user explicitly requests alignment
+- **Namespace mirroring**: an IG lives in the same namespace as its source RFC — root RFC → `docs/impl/IG-XXX-...`, namespaced RFC → `docs/impl/<ns>/IG-<PREFIX>-XXX-...`. Never split a namespace's RFC and its IG across directories.
 
 ## Validation
 
@@ -149,6 +151,8 @@ After creating the guide:
 - Framework: Tokio (async runtime)
 
 **Output**: `docs/impl/IG-003-message-queue-protocol.md` (next sequential IG number; example assumes IG-001 and IG-002 already exist)
+
+(Namespaced variant: RFC `docs/specs/auth/RFC-AUTH-003-message-queue.md` → `docs/impl/auth/IG-AUTH-001-message-queue-protocol.md`, numbering within the auth namespace's own IG sequence.)
 
 The guide would include:
 - Crate structure for `acme-queue`

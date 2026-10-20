@@ -24,7 +24,7 @@ Produce implementation guide from RFC spec, then implement code with tests. Opti
 
 ## Output
 
-- Implementation guide (`IG-XXX-<name>.md`; `XXX` = exactly 3 digits, next sequential unless user overrides)
+- Implementation guide (next sequential in the RFC's scope: `IG-XXX-<name>.md` at the impl root, or `IG-<PREFIX>-XXX-<name>.md` inside the source RFC's namespace impl directory; `XXX` = exactly 3 digits)
 - Source code
 - Unit + integration tests
 

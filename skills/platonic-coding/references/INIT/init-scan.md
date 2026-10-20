@@ -42,6 +42,8 @@ Trace data flow from entry points. Extract invariants (assertions, validation, i
 ### Phase 5: Synthesis
 Group findings into conceptual clusters. Identify subsystem boundaries and API surfaces. Prepare summary: system overview, subsystems, patterns, data flows, terminology. **Present to user for validation**.
 
+Namespace inputs: flag whether the project shows ≥ 3 independent services (distinct manifests/deployment units) or enough expected specs to warrant namespaced mode — `init-plan-modular-specs` uses this to decide and to draft namespace/prefix candidates.
+
 ## Scan Guidelines
 
 - Focus on public API surfaces, not implementation details

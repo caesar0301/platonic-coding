@@ -53,6 +53,15 @@ After completing all steps, provide:
 3. **Files Updated**: List of files that were modified
 4. **Recommendations**: Any suggestions for improvement
 
+## Structural Recommendation: Namespaces
+
+When reporting recommendations, apply this health check:
+
+- **Total RFC count ≥ 10, OR ≥ 3 clearly independent services/modules detected** (multiple language manifests, compose services, distinct top-level packages), AND no `namespaces:` declared in `.platonic.yml` → recommend partitioning the specs/impl tree into namespaces. Point the user to `specs-partition` for migrating an existing flat layout (or to `init-plan-modular-specs` for planning new namespaced specs).
+- Existing namespaces but RFCs piling up in undeclared subdirectories → suggest either declaring those directories as namespaces or moving the files via `specs-partition`.
+
+Do not execute the migration as part of `specs-refine` — it is a separate, user-confirmed operation.
+
 ## Execution Order
 
 **Important**: Execute steps in this exact order:

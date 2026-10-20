@@ -2,7 +2,7 @@
 
 Detailed operation guide for Platonic Coding skill.
 
-## Operations (24 total)
+## Operations (25 total)
 
 ### BRAINSTORM (`references/BRAINSTORM/`)
 | Operation | Purpose |
@@ -24,11 +24,12 @@ Detailed operation guide for Platonic Coding skill.
 |-----------|---------|
 | `specs-refine` | Comprehensive validation + update |
 | `specs-generate-history` | Update change history |
-| `specs-generate-index` | Update RFC index |
+| `specs-generate-index` | Update RFC index (root rollup + per-namespace local indexes) |
 | `specs-generate-namings` | Update terminology reference |
 | `specs-validate-consistency` | Check cross-references |
 | `specs-check-taxonomy` | Verify terminology usage |
 | `specs-check-compliance` | Validate against RFC standard |
+| `specs-partition` | Migrate flat specs/impl into namespaces (user-confirmed, mapping recorded) |
 
 ### IMPLEMENTATION (`references/IMPL/`)
 | Operation | Purpose |
@@ -82,7 +83,7 @@ Has RFCs + guides?
 Ambiguous? → Ask or resume current phase
 ```
 
-**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`docs/specs`, `docs/impl`, `docs/drafts`) are used unless overridden in `.platonic.yml`. The presence of `docs/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized.
+**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`docs/specs`, `docs/impl`, `docs/drafts`) are used unless overridden in `.platonic.yml`. The presence of `docs/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized. Create `.platonic.yml` only to override paths, set custom spec stages, or declare namespaces.
 
 **Override**: Use canonical operations (`brainstorm`, `init-scaffold`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`).
 
@@ -110,29 +111,39 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 - `{{IMPL_PATH}}` — Implementation guides path (default: `docs/impl`; from `.platonic.yml` if present)
 - `{{DRAFTS_PATH}}` — Design drafts path (default: `docs/drafts`; from `.platonic.yml` if present)
 
+### Namespace-Level
+- `{{NAMESPACE_NAME}}` — Namespace name (directory and declaration key)
+- `{{NAMESPACE_PREFIX}}` — Namespace prefix (1–4 uppercase letters, user-confirmed)
+
 ---
 
 ## Naming Conventions
 
-| Artifact | Pattern | Number field |
-|----------|---------|--------------|
-| RFC | `RFC-NNN-<name>.md` | `NNN`: exactly **three** numeric characters (`001`–`999`) |
-| IG | `IG-XXX-<name>.md` | `XXX`: exactly **three** numeric characters (`001`–`999`) |
+| Artifact | Scope | Pattern | Number field |
+|----------|-------|---------|--------------|
+| RFC | Root (cross-cutting) | `RFC-NNN-<name>.md` | `NNN`: exactly **three** numeric characters (`001`–`999`); global strict sequence |
+| RFC | Namespace `<ns>` (prefix `PFX`) | `docs/specs/<ns>/RFC-PFX-NNN-<name>.md` | `NNN`: exactly three numeric characters; **independent strict sequence per namespace** |
+| IG | Root | `IG-XXX-<name>.md` | `XXX`: exactly **three** numeric characters; global strict sequence |
+| IG | Namespace `<ns>` | `docs/impl/<ns>/IG-PFX-XXX-<name>.md` | Independent sequence per namespace; mirrors the source RFC's namespace |
 
-**Strict sequence**: When creating a new RFC or IG, assign the next unused number in order (`001`, `002`, `003`, …). Do not skip numbers unless the user explicitly requests a specific number or gap. RFC and IG sequences are independent.
+**Strict sequence**: When creating a new RFC or IG, assign the next unused number in order within its scope (root sequence and each namespace's sequence are independent). Do not skip numbers unless the user explicitly requests a specific number or gap. RFC and IG sequences are independent.
+
+**Namespace prefixes**: 1–4 uppercase ASCII letters, unique across the project, `RFC`/`IG` reserved. Declared in `.platonic.yml` under `namespaces:`. Prefixes are proposed by the skill (2–4 candidates) and **confirmed by the user via `ask_user`** — never auto-assigned. Namespace membership is derived from the file's directory (no metadata field).
 
 ---
 
 ## File Structure
 
+Single-namespace mode (default — no `namespaces:` declared):
+
 ```
 <project-root>/
-├── .platonic.yml                   # OPTIONAL — only present when overriding defaults
+├── .platonic.yml                   # OPTIONAL — only when overriding defaults, custom stages, or declaring namespaces
 ├── docs/
 │   ├── specs/                      # RFC specifications (default path)
-│   │   ├── rfc-history.md           # Change history
-│   │   ├── rfc-index.md             # Spec index
-│   │   ├── rfc-namings.md           # Terminology reference
+│   │   ├── rfc-history.md           # Change history (global)
+│   │   ├── rfc-index.md             # Index (flat table, or rollup in namespaced mode)
+│   │   ├── rfc-namings.md           # Terminology reference (global)
 │   │   ├── RFC-001-world-view.md   # Individual RFC
 │   │   └── RFC-002-message-queue.md
 │   │
@@ -146,6 +157,37 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 │       └── user-auth-design.md
 │
 └── <source-code>/                  # Your implementation
+```
+
+Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
+
+```
+<project-root>/
+├── .platonic.yml                   # Declares namespaces: name + prefix (+ optional paths)
+├── docs/
+│   ├── specs/
+│   │   ├── rfc-history.md           # Global timeline (partition mappings recorded here)
+│   │   ├── rfc-index.md             # One-screen ROLLUP: namespace summary + root RFC table
+│   │   ├── rfc-namings.md           # Terminology reference (global)
+│   │   ├── RFC-001-vision.md        # Cross-cutting RFCs stay at the root (RFC-NNN)
+│   │   ├── auth/
+│   │   │   ├── rfc-index.md         # Local index for this namespace
+│   │   │   └── RFC-AUTH-001-session.md    # Independent sequence from 001
+│   │   └── agentspace/
+│   │       ├── rfc-index.md
+│   │       └── RFC-AGSP-001-workspace.md
+│   │
+│   ├── impl/                       # Mirrors the specs namespaces
+│   │   ├── README.md
+│   │   ├── auth/
+│   │   │   └── IG-AUTH-001-session.md
+│   │   └── agentspace/
+│   │       └── IG-AGSP-001-workspace.md
+│   │
+│   └── drafts/
+│       └── ...
+│
+└── <source-code>/
 ```
 
 **Note**: Spec templates (`rfc-standard.md`, `rfc-template.md`, design templates) are **not** copied into the user project. They live in the skill's `assets/` directory and are read from there when needed (RFC generation, compliance checks). This avoids duplicating templates into every project.
@@ -163,6 +205,10 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 | Missing terminology | Check term format in RFCs, run `specs-generate-namings` |
 | Missing code refs in review | Use specific search terms, check naming conventions |
 | Workflow stops at gate | Expected—say "no confirmations" to skip |
+| `docs/specs/` too large to navigate (≥ 10 RFCs or ≥ 3 services) | Declare namespaces and run `specs-partition` (user-confirmed migration; mapping recorded in `rfc-history.md`) |
+| RFC in a subdirectory not picked up by scans | Declare the subdirectory as a namespace in `.platonic.yml`, or move the RFC to a declared namespace / the root |
+| Prefix mismatch (directory vs filename vs `.platonic.yml`) | `specs-check-compliance` reports the drift; fix the filename prefix or the declaration, then re-run |
+| Cross-namespace link broken | Check relative path from the referencing file (`../<ns>/...`, `<ns>/...`), run `specs-validate-consistency` |
 
 ---
 

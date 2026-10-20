@@ -30,7 +30,7 @@ Spec Analysis → Impl Guide (incl. Coding Plan) → Coding + Tests
 Extract from RFC: core concepts, requirements (MUST/SHALL), constraints, interfaces, data structures, behaviors, dependencies. Create requirements checklist.
 
 ### Step 2: Impl Guide Design
-Create implementation guide (follow `create-guide.md`). Assign the next sequential `IG-XXX` number (`XXX` = exactly three digits) unless the user explicitly requests a different number. Output: module structure, type definitions, interface signatures, error handling, testing strategy.
+Create implementation guide (follow `create-guide.md`). Assign the next sequential IG number in the RFC's namespace scope (`IG-XXX` at the impl root for root-level RFCs; `IG-<PREFIX>-XXX` inside the mirrored `docs/impl/<ns>/` directory for namespaced RFCs — sequences are independent per namespace) unless the user explicitly requests a different number. Output: module structure, type definitions, interface signatures, error handling, testing strategy.
 
 Also author the **coding plan** (Section 10 of the guide): break the guide into ordered tasks — one file per task, dependency order, test pairing. Use `assets/impl-guide-template.md`, which includes the Coding Plan section. The coding plan is part of the guide, not a separate artifact.
 
@@ -43,6 +43,6 @@ If guide is incomplete: document gap, suggest update—don't invent behavior.
 
 ## Output
 
-- Implementation guide (`IG-XXX-<name>.md`; `XXX` = exactly 3 digits, next sequential unless user overrides), including the coding plan
+- Implementation guide (next sequential in its scope: `IG-XXX-<name>.md` at the impl root, or `IG-<PREFIX>-XXX-<name>.md` in the source RFC's namespace impl directory), including the coding plan
 - Source code
 - Unit + integration tests

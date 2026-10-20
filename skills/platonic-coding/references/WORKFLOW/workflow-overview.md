@@ -36,7 +36,7 @@ FINISHED
 - RFC specs: `docs/specs/`
 - Implementation guides: `docs/impl/`
 
-These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths or to define custom spec stages. If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
+These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths, to define custom spec stages, or to declare namespaces (which partition `docs/specs` and `docs/impl` per service/module with independent `RFC-<PREFIX>-NNN` sequences; see `references/SPECS/specs-partition.md`). If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
 
 ## BRAINSTORM Mode Integration Pattern
 

@@ -6,7 +6,7 @@ Validate code implementation against specifications (NOT general code quality).
 
 ## 6-Step Process
 
-1. **Understand Specs**: Extract requirements (features, behaviors, interfaces, data structures, constraints)
+1. **Understand Specs**: Extract requirements (features, behaviors, interfaces, data structures, constraints). **Scope the spec load**: when the reviewed code belongs to one service/module, load only the root-level (cross-cutting) RFCs + that namespace's RFCs and IGs (+ any RFCs they depend on) — not other namespaces' specs. In single-namespace projects, load only the RFCs relevant to the reviewed paths.
 2. **Generate Checklist**: Create testable items with spec references
 3. **Map to Code**: Find implementation files, tests, config
 4. **Review**: Compare and assign status (✅ Full, ⚠️ Partial, ❌ Missing, 🔍 Unclear, ⚡ Inconsistent)

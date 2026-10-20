@@ -2,6 +2,49 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 3.0.0 — Namespaces: Multi-Service Specs/Impl Partitioning (2026-10-20)
+
+### Namespaced mode for complex projects
+
+**Added:** specs and impl guides can now be partitioned by service or module via **namespaces** declared in `.platonic.yml`. Previously all RFCs landed flat in `docs/specs/` and all IGs in `docs/impl/` with one global number sequence — unreadable and unnavigable for multi-service monorepos (the pain that motivated this release), and it also forced `review`/`impl` operations to load every spec in the project.
+
+**Design:**
+
+- **Dual ID format**: root-level (cross-cutting) RFCs keep `RFC-NNN` with the global sequence; namespaced RFCs use `RFC-<PREFIX>-NNN` (e.g., `RFC-AUTH-001-session.md`) with an **independent strict sequence per namespace** — the 999 cap becomes per-namespace. IGs mirror the same rule (`IG-<PREFIX>-NNN`) and land in the namespace's impl directory next to their source RFC.
+- **Prefixes**: 1–4 uppercase ASCII letters (`^[A-Z]{1,4}$`), unique, `RFC`/`IG` reserved. The skill proposes 2–4 candidates (name-initials / vowel-stripped heuristics) and the **user confirms via `ask_user`** — never auto-assigned.
+- **Namespace membership is derived from the file's directory** — no new metadata field.
+- **Layered indexes**: the root `rfc-index.md` becomes a one-screen rollup (one summary row per namespace + the root-level RFC table); every namespace directory gets its own local `rfc-index.md` (always generated).
+- **`specs-partition` (new operation)**: migrates an existing flat layout into namespaces — user-confirmed plan, `git mv` renames, full cross-reference rewrite, and a **mandatory old-ID → new-ID mapping table appended to `rfc-history.md`** (the only defense for external references citing pre-migration IDs).
+- **Scoped spec loading**: `review` and `impl-code` now load only the root-level + target namespace's specs instead of the whole tree.
+- **Threshold**: partitioning is recommended when total RFCs ≥ 10 or ≥ 3 independent services are detected (`specs-refine` health check + `init-plan-modular-specs` / `init-scaffold` auto-detection).
+- **Backward compatibility**: projects without a `namespaces:` section behave exactly as before (single-namespace mode, flat sequence, flat index).
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/SKILL.md` — version 3.0.0; new "Namespaces" section; `specs-partition` in SPECS mode; `.platonic.yml` creation reasons
+- ✅ `skills/platonic-coding/references/REFERENCE.md` — 25 operations; dual naming conventions; namespaced file-structure diagrams; namespace template variables; troubleshooting rows
+- ✅ `skills/platonic-coding/references/SPECS/specs-partition.md` — **new**: full migration operation (inventory → cluster plan → prefix confirmation → final gate → `git mv` → cross-reference rewrite → mapping record → index regeneration → verification, with rollback)
+- ✅ `skills/platonic-coding/references/SPECS/specs-generate-index.md` — rewritten: recursive scan (root + namespaces), rollup + per-namespace local index generation, undeclared-subdirectory warnings
+- ✅ `skills/platonic-coding/references/SPECS/specs-check-compliance.md` — dual ID formats; per-scope (root/namespace) sequence buckets; namespace-prefix three-way consistency (directory ↔ filename ↔ declaration); versioned-file location rules
+- ✅ `skills/platonic-coding/references/SPECS/specs-validate-consistency.md` — namespaced IDs in dependencies/cross-references; cross-namespace relative link validation
+- ✅ `skills/platonic-coding/references/SPECS/specs-generate-history.md`, `specs-generate-namings.md`, `specs-check-taxonomy.md` — recursive scan scope; qualified IDs in events and terminology sources
+- ✅ `skills/platonic-coding/references/SPECS/specs-refine.md` — namespace health-check recommendation (threshold-triggered, never auto-executed)
+- ✅ `skills/platonic-coding/references/INIT/init-scaffold.md` — multi-service detection signals; namespace proposal + prefix confirmation via `ask_user`; namespace directory/local-index scaffolding; `.platonic.yml` `namespaces:` section
+- ✅ `skills/platonic-coding/references/INIT/init-plan-modular-specs.md` — namespace decision (threshold + mode); prefix confirmation; plan tables carry Namespace/Prefix columns; per-namespace numbering
+- ✅ `skills/platonic-coding/references/INIT/init-scan.md` — Phase 5 flags namespace candidates for the planner
+- ✅ `skills/platonic-coding/references/IMPL/impl-create-guide.md`, `impl-full.md` — IG numbering per namespace scope; mirrored impl directories
+- ✅ `skills/platonic-coding/references/IMPL/impl-code.md` — namespace-scoped spec loading
+- ✅ `skills/platonic-coding/references/REVIEW/review-spec-compliance.md` — scoped spec loading (root + target namespace only)
+- ✅ `skills/platonic-coding/assets/templates/template-platonic.yml` — documented `namespaces:` section with rules and examples
+- ✅ `skills/platonic-coding/assets/templates/template-rfc-index.md` — rollup structure (Namespaces table + Root-Level RFCs table)
+- ✅ `skills/platonic-coding/assets/templates/template-namespace-index.md` — **new**: per-namespace local index template
+- ✅ `skills/platonic-coding/assets/templates/template-rfc-standard.md` — Naming Conventions: namespaced RFC format + prefix rules; cross-namespace link paths; versioned-file inheritance; metadata field formats; FAQ entries
+- ✅ `skills/platonic-coding/.claude-plugin/marketplace.json` — version 3.0.0
+
+### Migration for existing projects
+
+None required — single-namespace mode is the default and unchanged. Projects that want partitioning opt in by declaring `namespaces:` in `.platonic.yml` (via `init-scaffold` or by hand) and running `specs-partition`.
+
 ## Version 2.7.0 — Templates Kept in Skill, Not Copied to User Projects (2026-09-08)
 
 ### Spec templates no longer scaffolded into user projects

@@ -141,7 +141,7 @@ The `ask_user` call pauses the loop and resumes once the user answers. If they r
 
 ## Post-Draft Routing (alternative paths)
 
-Once the draft is approved, do **not** assume the only next step is "create a new RFC." First check `docs/specs/` and `docs/impl/` for existing RFCs or IGs related to this draft's topic (match by semantic name / topic keywords), then present a routing menu so the user chooses how to continue.
+Once the draft is approved, do **not** assume the only next step is "create a new RFC." First check `docs/specs/` (root **and** namespace directories, if `.platonic.yml` declares any) and `docs/impl/` for existing RFCs or IGs related to this draft's topic (match by semantic name / topic keywords), then present a routing menu so the user chooses how to continue.
 
 Present the menu as a numbered list with a one-line description per option, and lead with a recommendation based on what you found (e.g., "no existing RFC for this topic → recommend #4"). **Call `ask_user`** with the full numbered menu as the question text so the user can pick a number or describe a combination. The loop pauses and resumes on the same turn once they choose.
 
@@ -149,10 +149,10 @@ Present the menu as a numbered list with a one-line description per option, and 
 |---|------|-------------|-----------|
 | 1 | **Pause at each phase gate** (default, careful) | The change is non-trivial and the user wants to approve each step | Phase 1 RFC formalization, pausing at every confirmation gate (RFC number, impl guide) |
 | 2 | **Quick pass** (multiple phases, no further confirm) | Small scope, quick fix, user is confident — wants draft → RFC → specs-refine → impl-full → (optional review) in one chain | Phase 1 → Phase 2 (auto-mode, gates skipped) → optional Phase 3, one approval covers the chain |
-| 3 | **Update an existing RFC** | A related RFC already exists; this draft should revise it rather than spawn a new one | Formalize draft as a revision to `RFC-NNN` (bump version / change history), then `specs-refine` |
-| 4 | **Create a new RFC** | No related RFC exists, or the draft is a distinct new concern | Formalize draft into a fresh `RFC-NNN-<name>.md` (next sequential `NNN` unless user overrides), then `specs-refine` |
-| 5 | **Update an existing IG** | An implementation guide already exists for the target; the draft refines its design | `impl-update-guide` against the existing `IG-XXX` (draft informs the IG revision) |
-| 6 | **Create a new IG** | A new RFC exists (or will) and needs a fresh implementation guide | `impl-create-guide` producing a fresh `IG-XXX-<name>.md` (next sequential `XXX` unless user overrides) |
+| 3 | **Update an existing RFC** | A related RFC already exists; this draft should revise it rather than spawn a new one | Formalize draft as a revision to the existing RFC ID (`RFC-NNN` or `RFC-<PREFIX>-NNN`; bump version / change history), then `specs-refine` |
+| 4 | **Create a new RFC** | No related RFC exists, or the draft is a distinct new concern | Formalize draft into a fresh RFC (root `RFC-NNN-<name>.md` or namespaced `docs/specs/<ns>/RFC-<PREFIX>-NNN-<name>.md`; next sequential number **within the chosen scope** unless user overrides), then `specs-refine` |
+| 5 | **Update an existing IG** | An implementation guide already exists for the target; the draft refines its design | `impl-update-guide` against the existing `IG-XXX` or `IG-<PREFIX>-XXX` (draft informs the IG revision) |
+| 6 | **Create a new IG** | A new RFC exists (or will) and needs a fresh implementation guide | `impl-create-guide` producing a fresh IG in the source RFC's scope (`IG-XXX-<name>.md` at the impl root, or `IG-<PREFIX>-XXX-<name>.md` in the namespace's impl directory; next sequential number within that scope unless user overrides) |
 
 **Routing rules:**
 
