@@ -9,9 +9,9 @@ Systematically analyze an existing codebase for spec recovery.
 | Project root | User-provided or current directory |
 | Language | Auto-detected from build files (or `.platonic.yml` if present) |
 | Framework | Auto-detected from dependencies (or `.platonic.yml` if present) |
-| Specs path | `.platonic.yml` if present, else default `docs/specs` |
-| Impl path | `.platonic.yml` if present, else default `docs/impl` |
-| Drafts path | `.platonic.yml` if present, else default `docs/drafts` |
+| Specs path | `.platonic.yml` if present, else default `.platonic/specs` |
+| Impl path | `.platonic.yml` if present, else default `.platonic/impl` |
+| Drafts path | `.platonic.yml` if present, else default `.platonic/drafts` |
 
 **Note**: `.platonic.yml` is optional. All inputs auto-detect or use defaults when it is absent.
 

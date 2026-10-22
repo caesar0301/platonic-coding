@@ -224,13 +224,13 @@ Projects run in one of two modes, determined by whether `namespaces:` is declare
 
 - `<PREFIX>`: 1–4 uppercase ASCII letters, declared per namespace in `.platonic.yml` (`^[A-Z]{1,4}$`). Unique across the project. `RFC` and `IG` are reserved and MUST NOT be used. Prefixes are proposed by the skill and **confirmed by the user via ask_user** — never auto-assigned silently.
 - `NNN`: Exactly three numeric characters, zero-padded, with an **independent strict sequence per namespace** (each namespace counts `001`, `002`, `003`, … from its own start; no cross-namespace coordination).
-- **Directory**: namespace `foo` uses `docs/specs/foo/` by default (overridable per namespace in `.platonic.yml`). Namespace membership is derived from the file's directory — there is no `Namespace` metadata field.
+- **Directory**: namespace `foo` uses `.platonic/specs/foo/` by default (overridable per namespace in `.platonic.yml`). Namespace membership is derived from the file's directory — there is no `Namespace` metadata field.
 - **Implementation guides mirror the same structure**: `IG-<PREFIX>-NNN-<name>.md` inside the namespace's impl directory, following their source RFC's namespace.
 
 **Examples** (namespaces: `auth` → prefix `AUTH`, `agentspace` → prefix `AGSP`):
-- `docs/specs/auth/RFC-AUTH-001-session.md` - First RFC in the auth namespace
-- `docs/specs/agentspace/RFC-AGSP-007-workspace.md` - Seventh RFC in the agentspace namespace
-- `docs/impl/auth/IG-AUTH-001-session.md` - Impl guide for RFC-AUTH-001
+- `.platonic/specs/auth/RFC-AUTH-001-session.md` - First RFC in the auth namespace
+- `.platonic/specs/agentspace/RFC-AGSP-007-workspace.md` - Seventh RFC in the agentspace namespace
+- `.platonic/impl/auth/IG-AUTH-001-session.md` - Impl guide for RFC-AUTH-001
 
 **When to use namespaces**: total RFC count ≥ 10, or ≥ 3 independent services detected. Use `specs-partition` to migrate an existing flat layout.
 
@@ -602,7 +602,7 @@ The [rfc-namings.md](rfc-namings.md) file **MUST** always reflect the latest ter
 - Consider deprecation period if widely implemented
 - Update dependent RFCs if needed
 
-### Q: My project has many services and docs/specs is getting hard to navigate. What should I do?
+### Q: My project has many services and .platonic/specs is getting hard to navigate. What should I do?
 
 **A**: Declare namespaces in `.platonic.yml` (one per service or major module) and run `specs-partition` to migrate existing flat RFCs into namespace directories with `RFC-<PREFIX>-NNN` IDs. The threshold guidance is: ≥ 10 total RFCs or ≥ 3 independent services. A full old-ID → new-ID mapping is recorded in `rfc-history.md` during migration.
 

@@ -2,6 +2,16 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 3.1.0 — Default Paths Moved Under `.platonic/` (2026-10-22)
+
+**Changed:** All default artifact paths moved from `docs/` into a single project-root `.platonic/` directory. This keeps Platonic artifacts self-contained and out of the project's user-facing documentation tree.
+
+- Drafts: `.platonic/drafts`
+- Specs: `.platonic/specs`
+- Impl guides: `.platonic/impl`
+
+Namespace directories follow the same convention (`.platonic/specs/<ns>/`, `.platonic/impl/<ns>/`). Auto-detection now checks for `.platonic/specs/` (instead of `docs/specs/`) as Platonic infrastructure. Projects overriding paths via `.platonic.yml` are unaffected; existing projects still using `docs/` should either migrate their directories or declare the old paths in `.platonic.yml`.
+
 ## Version 3.0.0 — Namespaces: Multi-Service Specs/Impl Partitioning (2026-10-20)
 
 ### Namespaced mode for complex projects

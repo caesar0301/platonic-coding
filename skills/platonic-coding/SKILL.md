@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
 license: MIT
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -48,11 +48,11 @@ Before inspecting project state, scan the user's natural-language request for **
 ### Project-State Detection (when no intent keywords)
 
 **Quick Reference**:
-- No Platonic infrastructure (no `.platonic.yml` **and** no `docs/specs/`) → INIT mode (scaffold new or recover existing)
+- No Platonic infrastructure (no `.platonic.yml` **and** no `.platonic/specs/`) → INIT mode (scaffold new or recover existing)
 - RFCs but no guides → Phase 2 (implementation)
 - Guides + code → Phase 3 (review) or resume Phase 2
 
-**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`docs/specs`, `docs/impl`, `docs/drafts`). A `.platonic.yml` is only needed to override defaults, set custom spec stages, or declare namespaces (multi-service projects).
+**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`). A `.platonic.yml` is only needed to override defaults, set custom spec stages, or declare namespaces (multi-service projects).
 
 **Override** with canonical operations: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`.
 
@@ -81,7 +81,7 @@ Phases run sequentially (full workflow) or independently (explicit invocation). 
 ## Operation Modes
 
 ### BRAINSTORM Mode
-Structured design exploration through collaborative dialogue. Produces an approved design draft (`docs/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved.
+Structured design exploration through collaborative dialogue. Produces an approved design draft (`.platonic/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved.
 
 **Examples**: `brainstorm the message queue design`, `discuss how auth should work`, `investigate options for caching`.
 
@@ -120,7 +120,7 @@ For detailed guides, see `references/REFERENCE.md`.
 
 ## Post-Draft Alternative Paths
 
-After BRAINSTORM mode produces an approved design draft, the skill does **not** assume "create a new RFC" is the only next step. It checks `docs/specs/` and `docs/impl/` for related existing RFCs/IGs, then presents a routing menu (full table in `references/BRAINSTORM/brainstorm.md`):
+After BRAINSTORM mode produces an approved design draft, the skill does **not** assume "create a new RFC" is the only next step. It checks `.platonic/specs/` and `.platonic/impl/` for related existing RFCs/IGs, then presents a routing menu (full table in `references/BRAINSTORM/brainstorm.md`):
 
 1. **Pause at each phase gate** — careful, default; approve every confirmation gate
 2. **Quick pass** — run multiple phases straight through, no further confirmations (quick fixes)
@@ -135,9 +135,9 @@ The menu leads with a recommendation based on what was found. The user picks by 
 
 | Artifact | Path | Naming |
 |----------|------|--------|
-| Drafts | `docs/drafts/` | `YYYY-MM-DD-<topic>-design.md` |
-| RFCs | `docs/specs/` | `RFC-NNN-<name>.md` (`NNN` = exactly 3 digits; strict sequence) |
-| Guides | `docs/impl/` | `IG-XXX-<name>.md` (`XXX` = exactly 3 digits; strict sequence) |
+| Drafts | `.platonic/drafts/` | `YYYY-MM-DD-<topic>-design.md` |
+| RFCs | `.platonic/specs/` | `RFC-NNN-<name>.md` (`NNN` = exactly 3 digits; strict sequence) |
+| Guides | `.platonic/impl/` | `IG-XXX-<name>.md` (`XXX` = exactly 3 digits; strict sequence) |
 
 Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 
@@ -145,7 +145,7 @@ Templates in `assets/` use `{{PLACEHOLDER}}` syntax.
 
 When a project has multiple services or modules (or ≥ 10 RFCs), specs and impl guides can be partitioned into **namespaces** declared in `.platonic.yml`:
 
-- Each namespace = one directory pair (`docs/specs/<ns>/` + `docs/impl/<ns>/`) + an ID prefix (1–4 uppercase letters, **always confirmed by the user via `ask_user` with candidates proposed** — never auto-assigned)
+- Each namespace = one directory pair (`.platonic/specs/<ns>/` + `.platonic/impl/<ns>/`) + an ID prefix (1–4 uppercase letters, **always confirmed by the user via `ask_user` with candidates proposed** — never auto-assigned)
 - Namespaced IDs: `RFC-<PREFIX>-NNN` / `IG-<PREFIX>-NNN`, each namespace with its **own independent sequence** from `001`
 - Cross-cutting RFCs stay at the specs root with the `RFC-NNN` format
 - The root `rfc-index.md` is a one-screen rollup; every namespace gets its own local `rfc-index.md`

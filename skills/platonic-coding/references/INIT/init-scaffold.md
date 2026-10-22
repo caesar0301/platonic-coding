@@ -14,9 +14,9 @@ Set up the directory structure, configuration file, and RFC infrastructure neede
 | Project root | Yes | Current directory | Root directory of the project |
 | Language | No | Auto-detect | Primary programming language |
 | Framework | No | Auto-detect | Framework if applicable |
-| Specs path | No | `docs/specs` | Path for RFC specifications |
-| Impl path | No | `docs/impl` | Path for implementation guides |
-| Drafts path | No | `docs/drafts` | Path for design drafts |
+| Specs path | No | `.platonic/specs` | Path for RFC specifications |
+| Impl path | No | `.platonic/impl` | Path for implementation guides |
+| Drafts path | No | `.platonic/drafts` | Path for design drafts |
 | Custom stages | No | None | Custom spec stages (e.g. `["Core", "Storage", "API", "Infra"]`) |
 | Create `.platonic.yml` | No | No | Set to yes only if non-default paths or custom stages are needed |
 
@@ -46,7 +46,7 @@ If not provided:
 
 ### Step 2: Create .platonic.yml (only if overrides or namespaces are needed)
 
-**Skip this step by default.** Only create `.platonic.yml` when the user requested non-default paths, custom spec stages, or namespaces were confirmed in Step 1. If the user is happy with defaults (`docs/specs`, `docs/impl`, `docs/drafts`) and no custom stages and no namespaces, `.platonic.yml` is not created.
+**Skip this step by default.** Only create `.platonic.yml` when the user requested non-default paths, custom spec stages, or namespaces were confirmed in Step 1. If the user is happy with defaults (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`) and no custom stages and no namespaces, `.platonic.yml` is not created.
 
 If overrides are needed:
 

@@ -30,9 +30,9 @@ Spec Analysis → Impl Guide (incl. Coding Plan) → Coding + Tests
 Extract from RFC: core concepts, requirements (MUST/SHALL), constraints, interfaces, data structures, behaviors, dependencies. Create requirements checklist.
 
 ### Step 2: Impl Guide Design
-Create implementation guide (follow `create-guide.md`). Assign the next sequential IG number in the RFC's namespace scope (`IG-XXX` at the impl root for root-level RFCs; `IG-<PREFIX>-XXX` inside the mirrored `docs/impl/<ns>/` directory for namespaced RFCs — sequences are independent per namespace) unless the user explicitly requests a different number. Output: module structure, type definitions, interface signatures, error handling, testing strategy.
+Create implementation guide (follow `impl-create-guide.md`). Assign the next sequential IG number in the RFC's namespace scope (`IG-XXX` at the impl root for root-level RFCs; `IG-<PREFIX>-XXX` inside the mirrored `.platonic/impl/<ns>/` directory for namespaced RFCs — sequences are independent per namespace) unless the user explicitly requests a different number. Output: module structure, type definitions, interface signatures, error handling, testing strategy.
 
-Also author the **coding plan** (Section 10 of the guide): break the guide into ordered tasks — one file per task, dependency order, test pairing. Use `assets/impl-guide-template.md`, which includes the Coding Plan section. The coding plan is part of the guide, not a separate artifact.
+Also author the **coding plan** (Section 10 of the guide): break the guide into ordered tasks — one file per task, dependency order, test pairing. Use `assets/implementation/impl-guide-template.md`, which includes the Coding Plan section. The coding plan is part of the guide, not a separate artifact.
 
 **Confirmation Gate**: Present summary (module structure, key types, design decisions, task breakdown) by **calling the `ask_user` tool** with the summary and an approval question. Skip if auto-mode or "no confirmations". Plain-text questions do not pause the loop — use `ask_user` so the goal resumes on the same turn once the user answers.
 

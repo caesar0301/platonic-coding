@@ -19,7 +19,7 @@ Design a small, focused graph of Draft RFCs that captures the existing system's 
 Decide whether the project runs in **namespaced mode** before assigning IDs:
 
 - **Recommend namespaces when**: ≥ 3 independent services/modules detected in the scan (distinct top-level packages with separate deployment units, multiple language manifests), or the project already expects ≥ 10 RFCs
-- **Namespaced mode**: each subsystem (below) maps to one namespace (directory `docs/specs/<ns>/`, qualified IDs `RFC-<PREFIX>-NNN` with an independent sequence per namespace). The conceptual design RFC stays at the specs root as a cross-cutting `RFC-NNN`
+- **Namespaced mode**: each subsystem (below) maps to one namespace (directory `.platonic/specs/<ns>/`, qualified IDs `RFC-<PREFIX>-NNN` with an independent sequence per namespace). The conceptual design RFC stays at the specs root as a cross-cutting `RFC-NNN`
 - **Single-namespace mode** (default): all RFCs are root-level `RFC-NNN` — identical to pre-3.0 behavior
 
 For each proposed namespace, present 2–4 **prefix candidates** (1–4 uppercase letters) and confirm with the user via `ask_user` — never auto-assign prefixes. Candidate heuristics: service name ≤ 4 letters → direct uppercase (`auth` → AUTH); multi-word → initials (`miracloud gateway` → MGW); long word → vowel-stripped compression (`agentspace` → AGSP). Rules: `^[A-Z]{1,4}$`, unique, `RFC`/`IG` reserved.

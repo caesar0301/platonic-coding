@@ -4,12 +4,12 @@ Migrate an existing flat specs/impl layout into a namespaced layout (one directo
 
 ## Objective
 
-Take a project whose RFCs all live flat in `docs/specs/` (IDs `RFC-NNN`) and reorganize them into namespace directories with qualified IDs (`RFC-<PREFIX>-NNN`), rewriting all cross-references and recording a full old-ID → new-ID mapping.
+Take a project whose RFCs all live flat in `.platonic/specs/` (IDs `RFC-NNN`) and reorganize them into namespace directories with qualified IDs (`RFC-<PREFIX>-NNN`), rewriting all cross-references and recording a full old-ID → new-ID mapping.
 
 ## When to Use
 
 - Total RFC count ≥ 10, or ≥ 3 independent services/modules in the project
-- `docs/specs/` or `docs/impl/` is too large to navigate manually
+- `.platonic/specs/` or `.platonic/impl/` is too large to navigate manually
 - Existing hand-made subdirectories exist but are not declared in `.platonic.yml` (regularize them)
 
 Do NOT use when the project is small (< 10 RFCs, single service) — flat is fine.
@@ -24,8 +24,8 @@ Do NOT use when the project is small (< 10 RFCs, single service) — flat is fin
 
 | Input | Required | Default | Description |
 |-------|----------|---------|-------------|
-| Specs path | No | `docs/specs` | Flat specs directory |
-| Impl path | No | `docs/impl` | Flat impl directory |
+| Specs path | No | `.platonic/specs` | Flat specs directory |
+| Impl path | No | `.platonic/impl` | Flat impl directory |
 | Namespace plan | Yes | — | Produced in Step 2, confirmed by user |
 | ID mapping record | Yes | — | Written to `rfc-history.md` in Step 7 |
 
@@ -34,7 +34,7 @@ Do NOT use when the project is small (< 10 RFCs, single service) — flat is fin
 ### Step 1: Inventory
 
 1. Scan the specs root: all base RFCs (`RFC-NNN-<name>.md`), versioned files (`-<letter>.md`), and impl guides (`IG-NNN-<name>.md`)
-2. Scan for **existing subdirectories** (e.g., a hand-created `docs/specs/realdeep/`) — these are pre-partitioned clusters that need regularizing, not migrating
+2. Scan for **existing subdirectories** (e.g., a hand-created `.platonic/specs/realdeep/`) — these are pre-partitioned clusters that need regularizing, not migrating
 3. Extract metadata: titles, kinds, `Depends on`, cross-references between RFCs
 4. Build an initial cross-reference map (which RFCs reference which)
 
@@ -97,10 +97,10 @@ namespaces:
 
 For each namespace, in dependency-safe order:
 
-1. Create `docs/specs/<ns>/` and `docs/impl/<ns>/`
-2. `git mv` each base RFC to its new path with the new qualified ID filename (`docs/specs/RFC-035-session.md` → `docs/specs/auth/RFC-AUTH-001-session.md`)
+1. Create `.platonic/specs/<ns>/` and `.platonic/impl/<ns>/`
+2. `git mv` each base RFC to its new path with the new qualified ID filename (`.platonic/specs/RFC-035-session.md` → `.platonic/specs/auth/RFC-AUTH-001-session.md`)
 3. Move versioned files with their parents, updating filename IDs the same way
-4. Move impl guides to `docs/impl/<ns>/IG-<PREFIX>-NNN-<name>.md`, renumbered in the namespace's independent IG sequence (preserving relative order)
+4. Move impl guides to `.platonic/impl/<ns>/IG-<PREFIX>-NNN-<name>.md`, renumbered in the namespace's independent IG sequence (preserving relative order)
 5. Update each moved RFC's title line (`# <new-ID>-<name>: ...`) and its `Depends on`/`Supersedes`/`Parent RFC` fields
 6. **Rewrite cross-references across the entire specs and impl trees**: every occurrence of an old ID (`RFC-035`, `[RFC-035-session](RFC-035-session.md)`, …) becomes the new qualified ID with a corrected relative link path. Scan moved files AND files remaining at the root.
 
@@ -139,7 +139,7 @@ This table is the only defense for external references (code comments, MR descri
 
 ## Rollback
 
-If anything goes wrong before commit: `git checkout -- . && git clean -fd docs/` restores the pre-migration state (renames tracked by git make this cheap). After commit, revert the migration commit.
+If anything goes wrong before commit: `git checkout -- . && git clean -fd .platonic/` restores the pre-migration state (renames tracked by git make this cheap). After commit, revert the migration commit.
 
 ## Rules
 
@@ -151,11 +151,11 @@ If anything goes wrong before commit: `git checkout -- . && git clean -fd docs/`
 
 ## Example
 
-**Input**: flat `docs/specs/` with 14 RFCs (identity service 4, agentspace 7, conceptual 3), flat `docs/impl/` with 6 IGs.
+**Input**: flat `.platonic/specs/` with 14 RFCs (identity service 4, agentspace 7, conceptual 3), flat `.platonic/impl/` with 6 IGs.
 
 **Output**:
-- `docs/specs/RFC-001-vision.md` (root, unchanged)
-- `docs/specs/identity/RFC-IDN-001..004-*.md` (renumbered from old 002/005/009/012)
-- `docs/specs/agentspace/RFC-AGSP-001..007-*.md`
-- `docs/impl/identity/IG-IDN-001..002-*.md`, `docs/impl/agentspace/IG-AGSP-001..004-*.md`
+- `.platonic/specs/RFC-001-vision.md` (root, unchanged)
+- `.platonic/specs/identity/RFC-IDN-001..004-*.md` (renumbered from old 002/005/009/012)
+- `.platonic/specs/agentspace/RFC-AGSP-001..007-*.md`
+- `.platonic/impl/identity/IG-IDN-001..002-*.md`, `.platonic/impl/agentspace/IG-AGSP-001..004-*.md`
 - `.platonic.yml` with `namespaces:`; rollup + 2 local indexes regenerated; mapping table appended to `rfc-history.md`

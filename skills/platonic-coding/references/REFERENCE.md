@@ -65,7 +65,7 @@ Intent keywords in request? (brainstorm, discuss, investigate, explore,
 
 Otherwise, inspect project state:
 
-No Platonic infrastructure (no .platonic.yml AND no docs/specs/) ?
+No Platonic infrastructure (no .platonic.yml AND no .platonic/specs/) ?
   → Has code? → recovery flow (init-scan → recover)
   → No code? → init-scaffold
 
@@ -83,7 +83,7 @@ Has RFCs + guides?
 Ambiguous? → Ask or resume current phase
 ```
 
-**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`docs/specs`, `docs/impl`, `docs/drafts`) are used unless overridden in `.platonic.yml`. The presence of `docs/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized. Create `.platonic.yml` only to override paths, set custom spec stages, or declare namespaces.
+**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`) are used unless overridden in `.platonic.yml`. The presence of `.platonic/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized. Create `.platonic.yml` only to override paths, set custom spec stages, or declare namespaces.
 
 **Override**: Use canonical operations (`brainstorm`, `init-scaffold`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`).
 
@@ -100,16 +100,14 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 
 ### RFC-Level
 - `{{RFC_NUMBER}}` — RFC identifier (e.g., "001")
-- `{{RFC_TITLE}}` — RFC title
-- `{{RFC_STATUS}}` — Status (Draft, Active, Deprecated, Superseded)
-- `{{RFC_KIND}}` — Kind (Conceptual Design, Architecture Design, Impl Interface Design)
+- `{{TITLE}}` — RFC title
 - `{{DATE}}` — Current date
-- `{{AUTHOR}}` — Author name
+- `{{AUTHORS}}` — Author name(s)
 
 ### Paths
-- `{{SPECS_PATH}}` — Specs directory path (default: `docs/specs`; from `.platonic.yml` if present)
-- `{{IMPL_PATH}}` — Implementation guides path (default: `docs/impl`; from `.platonic.yml` if present)
-- `{{DRAFTS_PATH}}` — Design drafts path (default: `docs/drafts`; from `.platonic.yml` if present)
+- `{{SPECS_PATH}}` — Specs directory path (default: `.platonic/specs`; from `.platonic.yml` if present)
+- `{{IMPL_PATH}}` — Implementation guides path (default: `.platonic/impl`; from `.platonic.yml` if present)
+- `{{DRAFTS_PATH}}` — Design drafts path (default: `.platonic/drafts`; from `.platonic.yml` if present)
 
 ### Namespace-Level
 - `{{NAMESPACE_NAME}}` — Namespace name (directory and declaration key)
@@ -122,9 +120,9 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 | Artifact | Scope | Pattern | Number field |
 |----------|-------|---------|--------------|
 | RFC | Root (cross-cutting) | `RFC-NNN-<name>.md` | `NNN`: exactly **three** numeric characters (`001`–`999`); global strict sequence |
-| RFC | Namespace `<ns>` (prefix `PFX`) | `docs/specs/<ns>/RFC-PFX-NNN-<name>.md` | `NNN`: exactly three numeric characters; **independent strict sequence per namespace** |
+| RFC | Namespace `<ns>` (prefix `PFX`) | `.platonic/specs/<ns>/RFC-PFX-NNN-<name>.md` | `NNN`: exactly three numeric characters; **independent strict sequence per namespace** |
 | IG | Root | `IG-XXX-<name>.md` | `XXX`: exactly **three** numeric characters; global strict sequence |
-| IG | Namespace `<ns>` | `docs/impl/<ns>/IG-PFX-XXX-<name>.md` | Independent sequence per namespace; mirrors the source RFC's namespace |
+| IG | Namespace `<ns>` | `.platonic/impl/<ns>/IG-PFX-XXX-<name>.md` | Independent sequence per namespace; mirrors the source RFC's namespace |
 
 **Strict sequence**: When creating a new RFC or IG, assign the next unused number in order within its scope (root sequence and each namespace's sequence are independent). Do not skip numbers unless the user explicitly requests a specific number or gap. RFC and IG sequences are independent.
 
@@ -139,7 +137,7 @@ Single-namespace mode (default — no `namespaces:` declared):
 ```
 <project-root>/
 ├── .platonic.yml                   # OPTIONAL — only when overriding defaults, custom stages, or declaring namespaces
-├── docs/
+├── .platonic/
 │   ├── specs/                      # RFC specifications (default path)
 │   │   ├── rfc-history.md           # Change history (global)
 │   │   ├── rfc-index.md             # Index (flat table, or rollup in namespaced mode)
@@ -164,7 +162,7 @@ Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
 ```
 <project-root>/
 ├── .platonic.yml                   # Declares namespaces: name + prefix (+ optional paths)
-├── docs/
+├── .platonic/
 │   ├── specs/
 │   │   ├── rfc-history.md           # Global timeline (partition mappings recorded here)
 │   │   ├── rfc-index.md             # One-screen ROLLUP: namespace summary + root RFC table
@@ -205,7 +203,7 @@ Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
 | Missing terminology | Check term format in RFCs, run `specs-generate-namings` |
 | Missing code refs in review | Use specific search terms, check naming conventions |
 | Workflow stops at gate | Expected—say "no confirmations" to skip |
-| `docs/specs/` too large to navigate (≥ 10 RFCs or ≥ 3 services) | Declare namespaces and run `specs-partition` (user-confirmed migration; mapping recorded in `rfc-history.md`) |
+| `.platonic/specs/` too large to navigate (≥ 10 RFCs or ≥ 3 services) | Declare namespaces and run `specs-partition` (user-confirmed migration; mapping recorded in `rfc-history.md`) |
 | RFC in a subdirectory not picked up by scans | Declare the subdirectory as a namespace in `.platonic.yml`, or move the RFC to a declared namespace / the root |
 | Prefix mismatch (directory vs filename vs `.platonic.yml`) | `specs-check-compliance` reports the drift; fix the filename prefix or the declaration, then re-run |
 | Cross-namespace link broken | Check relative path from the referencing file (`../<ns>/...`, `<ns>/...`), run `specs-validate-consistency` |

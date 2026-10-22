@@ -60,4 +60,4 @@ Validate code implementation against specifications (NOT general code quality).
 **Do**: Read specs first, provide file:line refs, prioritize, report-only default
 **Don't**: Assume, modify without permission, judge code quality (spec focus only)
 
-Templates: `assets/review/checklist.md`, `assets/review/pr-review-template.md`
+Templates: `assets/review/review-checklist.md`, `assets/review/pr-review-template.md`

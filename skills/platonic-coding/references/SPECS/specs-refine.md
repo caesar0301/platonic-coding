@@ -20,19 +20,19 @@ This is a comprehensive operation that performs multiple checks and updates:
 
 ## Step 1: Validate Consistency
 
-**Read**: `references/validate-consistency.md` and apply it to the specs directory.
+**Read**: `references/SPECS/specs-validate-consistency.md` and apply it to the specs directory.
 
 **Expected Output**: List of consistency errors and warnings
 
 ## Step 2: Check Taxonomy
 
-**Read**: `references/check-taxonomy.md` and apply it to the specs directory.
+**Read**: `references/SPECS/specs-check-taxonomy.md` and apply it to the specs directory.
 
 **Expected Output**: Taxonomy consistency report
 
 ## Step 3: Check Standard Compliance
 
-**Read**: `references/check-standard-compliance.md` and apply it to the specs directory.
+**Read**: `references/SPECS/specs-check-compliance.md` and apply it to the specs directory.
 
 **Expected Output**: Compliance report with errors and warnings
 
@@ -40,9 +40,9 @@ This is a comprehensive operation that performs multiple checks and updates:
 
 Perform these operations in order:
 
-1. **Generate History**: Read `references/generate-history.md` and update rfc-history.md
-2. **Generate Index**: Read `references/generate-index.md` and update rfc-index.md
-3. **Generate Namings**: Read `references/generate-namings.md` and update rfc-namings.md
+1. **Generate History**: Read `references/SPECS/specs-generate-history.md` and update rfc-history.md
+2. **Generate Index**: Read `references/SPECS/specs-generate-index.md` and update rfc-index.md
+3. **Generate Namings**: Read `references/SPECS/specs-generate-namings.md` and update rfc-namings.md
 
 ## Output Summary
 

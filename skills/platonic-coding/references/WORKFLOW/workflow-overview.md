@@ -18,7 +18,7 @@ Execute the full three-phase Platonic Coding workflow with clear phase visibilit
 ```
 Phase 1: RFC Specification
     → Optional: BRAINSTORM mode (conceptual design exploration)
-    → Create design draft (docs/drafts/)
+    → Create design draft (.platonic/drafts/)
     → Generate RFC from draft
     → SPECS mode: specs-refine (validate + update supporting files)
 Phase 2: Implementation
@@ -32,11 +32,11 @@ FINISHED
 
 ## Default Paths
 
-- Design drafts: `docs/drafts/`
-- RFC specs: `docs/specs/`
-- Implementation guides: `docs/impl/`
+- Design drafts: `.platonic/drafts/`
+- RFC specs: `.platonic/specs/`
+- Implementation guides: `.platonic/impl/`
 
-These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths, to define custom spec stages, or to declare namespaces (which partition `docs/specs` and `docs/impl` per service/module with independent `RFC-<PREFIX>-NNN` sequences; see `references/SPECS/specs-partition.md`). If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
+These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths, to define custom spec stages, or to declare namespaces (which partition `.platonic/specs` and `.platonic/impl` per service/module with independent `RFC-<PREFIX>-NNN` sequences; see `references/SPECS/specs-partition.md`). If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
 
 ## BRAINSTORM Mode Integration Pattern
 
@@ -47,7 +47,7 @@ Brainstorming is an **internal mode** of this skill (formerly the standalone `pl
 1. **Detect**: Intent keywords in the user's request (brainstorm, discuss, investigate, explore, deep analysis, deep dive, think through, trade-offs, what's the best approach) → enter BRAINSTORM mode. Also enterable explicitly with `brainstorm`.
 2. **Run**: Follow `references/BRAINSTORM/brainstorm.md`:
    - Collaborative dialogue explores requirements, constraints, approaches, trade-offs
-   - Produces an approved design draft in `docs/drafts/`
+   - Produces an approved design draft in `.platonic/drafts/`
    - Presents the post-draft routing menu (see `references/BRAINSTORM/brainstorm.md`)
 3. **Benefits**: Structured exploration, approach comparison, incremental validation before committing to an RFC or implementation
 

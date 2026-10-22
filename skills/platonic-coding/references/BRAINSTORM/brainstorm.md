@@ -33,7 +33,7 @@ Create tasks for the applicable steps below and follow them in process order:
 2. **Ask clarifying questions** — one at a time, understand purpose / constraints / success criteria. **Call the `ask_user` tool** for each question (see GATE-INSTRUCTION above).
 3. **Propose 2–3 approaches** — with trade-offs and your recommendation. **Call `ask_user`** with the approach choice (options A/B/C + your recommendation).
 4. **Present design** — validate sections incrementally as needed, then **call `ask_user`** to get explicit approval on the overall design before drafting.
-5. **Write design draft** — save to `docs/drafts/YYYY-MM-DD-<topic>-design.md` by default, or update the user-provided draft if one already exists
+5. **Write design draft** — save to `.platonic/drafts/YYYY-MM-DD-<topic>-design.md` by default, or update the user-provided draft if one already exists
 6. **Draft self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
 7. **User reviews written draft** — **call `ask_user`** asking the user to review the draft file and approve or request changes before proceeding.
 8. **Post-draft routing** — present the alternative paths below via `ask_user` (numbered menu) and route to the chosen one.
@@ -115,7 +115,7 @@ Hand off to Phase 1 (RFC) or Phase 2 (impl)
 
 **Documentation:**
 
-- Write the validated design draft to `docs/drafts/YYYY-MM-DD-<topic>-design.md`
+- Write the validated design draft to `.platonic/drafts/YYYY-MM-DD-<topic>-design.md`
   - (User preferences or an existing draft path override this default)
 - Use the `elements-of-style:writing-clearly-and-concisely` skill if available
 - Commit the design draft to git only if the user wants the draft versioned now
@@ -141,7 +141,7 @@ The `ask_user` call pauses the loop and resumes once the user answers. If they r
 
 ## Post-Draft Routing (alternative paths)
 
-Once the draft is approved, do **not** assume the only next step is "create a new RFC." First check `docs/specs/` (root **and** namespace directories, if `.platonic.yml` declares any) and `docs/impl/` for existing RFCs or IGs related to this draft's topic (match by semantic name / topic keywords), then present a routing menu so the user chooses how to continue.
+Once the draft is approved, do **not** assume the only next step is "create a new RFC." First check `.platonic/specs/` (root **and** namespace directories, if `.platonic.yml` declares any) and `.platonic/impl/` for existing RFCs or IGs related to this draft's topic (match by semantic name / topic keywords), then present a routing menu so the user chooses how to continue.
 
 Present the menu as a numbered list with a one-line description per option, and lead with a recommendation based on what you found (e.g., "no existing RFC for this topic → recommend #4"). **Call `ask_user`** with the full numbered menu as the question text so the user can pick a number or describe a combination. The loop pauses and resumes on the same turn once they choose.
 
@@ -150,7 +150,7 @@ Present the menu as a numbered list with a one-line description per option, and 
 | 1 | **Pause at each phase gate** (default, careful) | The change is non-trivial and the user wants to approve each step | Phase 1 RFC formalization, pausing at every confirmation gate (RFC number, impl guide) |
 | 2 | **Quick pass** (multiple phases, no further confirm) | Small scope, quick fix, user is confident — wants draft → RFC → specs-refine → impl-full → (optional review) in one chain | Phase 1 → Phase 2 (auto-mode, gates skipped) → optional Phase 3, one approval covers the chain |
 | 3 | **Update an existing RFC** | A related RFC already exists; this draft should revise it rather than spawn a new one | Formalize draft as a revision to the existing RFC ID (`RFC-NNN` or `RFC-<PREFIX>-NNN`; bump version / change history), then `specs-refine` |
-| 4 | **Create a new RFC** | No related RFC exists, or the draft is a distinct new concern | Formalize draft into a fresh RFC (root `RFC-NNN-<name>.md` or namespaced `docs/specs/<ns>/RFC-<PREFIX>-NNN-<name>.md`; next sequential number **within the chosen scope** unless user overrides), then `specs-refine` |
+| 4 | **Create a new RFC** | No related RFC exists, or the draft is a distinct new concern | Formalize draft into a fresh RFC (root `RFC-NNN-<name>.md` or namespaced `.platonic/specs/<ns>/RFC-<PREFIX>-NNN-<name>.md`; next sequential number **within the chosen scope** unless user overrides), then `specs-refine` |
 | 5 | **Update an existing IG** | An implementation guide already exists for the target; the draft refines its design | `impl-update-guide` against the existing `IG-XXX` or `IG-<PREFIX>-XXX` (draft informs the IG revision) |
 | 6 | **Create a new IG** | A new RFC exists (or will) and needs a fresh implementation guide | `impl-create-guide` producing a fresh IG in the source RFC's scope (`IG-XXX-<name>.md` at the impl root, or `IG-<PREFIX>-XXX-<name>.md` in the namespace's impl directory; next sequential number within that scope unless user overrides) |
 
