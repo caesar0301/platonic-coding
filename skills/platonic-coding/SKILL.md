@@ -1,6 +1,6 @@
 ---
 name: platonic-coding
-description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in.
+description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in. Use when the user says "platonic coding", "brainstorm", "discuss", "investigate", "explore design", "spec-driven development", "RFC", "specs", "init-scaffold", "init-scan", "init-recover", "specs-refine", "impl-full", "spec compliance review", or "workflow".
 license: MIT
 metadata:
   version: "3.1.0"
@@ -42,7 +42,7 @@ Auto-detects intent and project state when invoked without specific instructions
 Before inspecting project state, scan the user's natural-language request for **intent keywords** that signal a desire to explore rather than immediately produce an artifact:
 
 - **Trigger words** (case-insensitive): `brainstorm`, `discuss`, `investigate`, `explore`, `deep analysis`, `deep dive`, `think through`, `design exploration`, `trade-offs`, `what's the best approach`.
-- **Match** → enter **BRAINSTORM mode** (`references/BRAINSTORM/brainstorm.md`), regardless of project state. The user wants to explore first; project-state detection resumes at handoff.
+- **Match** → enter **BRAINSTORM mode** (`references/brainstorm/brainstorm.md`), regardless of project state. The user wants to explore first; project-state detection resumes at handoff.
 - **Exception**: if the request uses a canonical operation name (`impl-full`, `review`, `specs-refine`, `init-scaffold`, `workflow --phase <N>`, `brainstorm`), the explicit operation wins — don't reroute it.
 
 ### Project-State Detection (when no intent keywords)
@@ -65,8 +65,9 @@ Plain-text questions are invisible to the runtime clarification relay: the loop 
 - **One question per call** when the questions are independent (aligns with "one question at a time" in BRAINSTORM mode).
 - Present multiple-choice options as the *content* of a single question (e.g. "Which design: A) ... B) ... C) ...?") so the user picks one.
 - Skip the gate only when the user explicitly said "no confirmations" or auto/quick-pass mode is active — but even then, if ambiguity *blocks* progress, call `ask_user` rather than guessing.
+- **Fallback**: if the host runtime exposes no structured questioning tool (`ask_user` or equivalent such as `AskUserQuestion`), degrade gracefully — output the question as plain text with numbered options and stop, resuming on the user's reply. A degraded gate is better than guessing.
 
-See `references/BRAINSTORM/brainstorm.md` for the full gate taxonomy.
+See `references/brainstorm/brainstorm.md` for the full gate taxonomy.
 
 ## Core Workflow Phases
 
@@ -76,7 +77,7 @@ See `references/BRAINSTORM/brainstorm.md` for the full gate taxonomy.
 | **2** | Implementation | Guide → Code + Tests | ✅ Optional (BRAINSTORM mode) |
 | **3** | Review | Compliance report | ❌ |
 
-Phases run sequentially (full workflow) or independently (explicit invocation). BRAINSTORM mode is an optional entry ramp to Phases 1 and 2. See `references/WORKFLOW/workflow-overview.md` for details.
+Phases run sequentially (full workflow) or independently (explicit invocation). BRAINSTORM mode is an optional entry ramp to Phases 1 and 2. See `references/workflow/workflow-overview.md` for details.
 
 ## Operation Modes
 
@@ -110,17 +111,17 @@ Validate code against specs. Generates report-only by default (no code changes).
 **Examples**: `review src/auth/ against RFC-001`, `review for gap analysis`.
 
 ### WORKFLOW Mode
-Orchestrate full 3-phase flow. See `references/WORKFLOW/workflow-overview.md`.
+Orchestrate full 3-phase flow. See `references/workflow/workflow-overview.md`.
 
 **Examples**: `workflow --phase 1`, `workflow starting with brainstorm`.
 
 ---
 
-For detailed guides, see `references/REFERENCE.md`.
+For detailed guides, see `references/REFERENCE.md` — the reference documents are the **authoritative source**. Where a summary in this file differs from the detailed tables in `references/` (routing menu, naming conventions, decision tree), follow the reference.
 
 ## Post-Draft Alternative Paths
 
-After BRAINSTORM mode produces an approved design draft, the skill does **not** assume "create a new RFC" is the only next step. It checks `.platonic/specs/` and `.platonic/impl/` for related existing RFCs/IGs, then presents a routing menu (full table in `references/BRAINSTORM/brainstorm.md`):
+After BRAINSTORM mode produces an approved design draft, the skill does **not** assume "create a new RFC" is the only next step. It checks `.platonic/specs/` and `.platonic/impl/` for related existing RFCs/IGs, then presents a routing menu (full table in `references/brainstorm/brainstorm.md`):
 
 1. **Pause at each phase gate** — careful, default; approve every confirmation gate
 2. **Quick pass** — run multiple phases straight through, no further confirmations (quick fixes)

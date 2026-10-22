@@ -36,7 +36,7 @@ FINISHED
 - RFC specs: `.platonic/specs/`
 - Implementation guides: `.platonic/impl/`
 
-These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths, to define custom spec stages, or to declare namespaces (which partition `.platonic/specs` and `.platonic/impl` per service/module with independent `RFC-<PREFIX>-NNN` sequences; see `references/SPECS/specs-partition.md`). If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
+These are built-in defaults used automatically. A `.platonic.yml` is **optional** — create one only to override these paths, to define custom spec stages, or to declare namespaces (which partition `.platonic/specs` and `.platonic/impl` per service/module with independent `RFC-<PREFIX>-NNN` sequences; see `references/specs/specs-partition.md`). If absent, the skill auto-detects project metadata (name, language, framework) from host manifests.
 
 ## BRAINSTORM Mode Integration Pattern
 
@@ -45,10 +45,10 @@ Brainstorming is an **internal mode** of this skill (formerly the standalone `pl
 ### Detection and Invocation
 
 1. **Detect**: Intent keywords in the user's request (brainstorm, discuss, investigate, explore, deep analysis, deep dive, think through, trade-offs, what's the best approach) → enter BRAINSTORM mode. Also enterable explicitly with `brainstorm`.
-2. **Run**: Follow `references/BRAINSTORM/brainstorm.md`:
+2. **Run**: Follow `references/brainstorm/brainstorm.md`:
    - Collaborative dialogue explores requirements, constraints, approaches, trade-offs
    - Produces an approved design draft in `.platonic/drafts/`
-   - Presents the post-draft routing menu (see `references/BRAINSTORM/brainstorm.md`)
+   - Presents the post-draft routing menu (see `references/brainstorm/brainstorm.md`)
 3. **Benefits**: Structured exploration, approach comparison, incremental validation before committing to an RFC or implementation
 
 ### Phase-Specific Usage
@@ -75,6 +75,6 @@ At every gate below, **call the `ask_user` tool** — do not write the question 
 
 Read the phase-specific reference file before executing each phase:
 
-- `references/WORKFLOW/workflow-phase-1.md` — RFC Specification
-- `references/WORKFLOW/workflow-phase-2.md` — Implementation
-- `references/WORKFLOW/workflow-phase-3.md` — Spec Compliance Review
+- `references/workflow/workflow-phase-1.md` — RFC Specification
+- `references/workflow/workflow-phase-2.md` — Implementation
+- `references/workflow/workflow-phase-3.md` — Spec Compliance Review

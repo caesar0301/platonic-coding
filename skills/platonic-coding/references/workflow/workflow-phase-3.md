@@ -22,7 +22,7 @@
   - The **code implementation** from Phase 2.
   - The **targeted RFC spec** (e.g. `.platonic/specs/`).
   - The **targeted impl guide** (e.g. `.platonic/impl/`).
-- Read `references/REVIEW/review-spec-compliance.md` (or the skill's review procedure) and invoke the operation accordingly.
+- Read `references/review/review-spec-compliance.md` (or the skill's review procedure) and invoke the operation accordingly.
 - Scope the review to the RFC and impl guide used in this workflow so the report is focused.
 
 ### Step 2: Produce Report

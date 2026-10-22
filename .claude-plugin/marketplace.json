@@ -5,14 +5,14 @@
     "url": "https://xiaming.site/"
   },
   "metadata": {
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Intelligent orchestrator for the complete Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single unified skill with built-in design exploration."
   },
   "plugins": [
     {
       "name": "platonic-coding",
-      "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects intent and project state, then runs the appropriate phase—brainstorm a design, init for new projects, recover specs from existing code, refine RFCs, implement from specs with guides and tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with BRAINSTORM mode built in.",
-      "version": "3.0.0",
+      "description": "Intelligent orchestrator for Platonic Coding workflow. Auto-detects intent and project state, then routes to the right next step—brainstorm a design, initialize a project (scaffold or recover specs from existing code), formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Artifacts live under the project-root `.platonic/` directory. Single entry point for the complete specification-driven development lifecycle, with BRAINSTORM mode built in.",
+      "version": "3.1.0",
       "author": {
         "name": "Xiaming Chen",
         "url": "https://xiaming.site/"
