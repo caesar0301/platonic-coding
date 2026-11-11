@@ -10,7 +10,7 @@ Produce Draft RFCs that capture each major subsystem's component structure, resp
 
 | Input | Source |
 |-------|--------|
-| Scan synthesis | From scan-project.md |
+| Scan synthesis | From the persisted analysis report at `.platonic/analysis/YYYY-MM-DD-<topic>-analysis.md` (written by `init-scan`) |
 | Confirmed RFC plan | From plan-modular-specs.md |
 | Conceptual Design RFC | Generated in recover-conceptual.md |
 | RFC numbers | From plan (e.g., 002, 003, ...) |

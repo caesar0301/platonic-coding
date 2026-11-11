@@ -17,6 +17,7 @@ Set up the directory structure, configuration file, and RFC infrastructure neede
 | Specs path | No | `.platonic/specs` | Path for RFC specifications |
 | Impl path | No | `.platonic/impl` | Path for implementation guides |
 | Drafts path | No | `.platonic/drafts` | Path for design drafts |
+| Analysis path | No | `.platonic/analysis` | Path for codebase analysis reports |
 | Custom stages | No | None | Custom spec stages (e.g. `["Core", "Storage", "API", "Infra"]`) |
 | Create `.platonic.yml` | No | No | Set to yes only if non-default paths or custom stages are needed |
 
@@ -46,7 +47,7 @@ If not provided:
 
 ### Step 2: Create .platonic.yml (only if overrides or namespaces are needed)
 
-**Skip this step by default.** Only create `.platonic.yml` when the user requested non-default paths, custom spec stages, or namespaces were confirmed in Step 1. If the user is happy with defaults (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`) and no custom stages and no namespaces, `.platonic.yml` is not created.
+**Skip this step by default.** Only create `.platonic.yml` when the user requested non-default paths, custom spec stages, or namespaces were confirmed in Step 1. If the user is happy with defaults (`.platonic/analysis`, `.platonic/specs`, `.platonic/impl`, `.platonic/drafts`) and no custom stages and no namespaces, `.platonic.yml` is not created.
 
 If overrides are needed:
 
@@ -89,7 +90,17 @@ If overrides are needed:
 4. Write to `<drafts-path>/README.md`
 5. **Skip if file already exists**
 
-### Step 6: Verify
+### Step 6: Create Analysis Directory
+
+1. Create `<analysis-path>/` directory
+2. Read `assets/templates/template-analysis-readme.md`
+3. Replace `{{PROJECT_NAME}}` → project name
+4. Write to `<analysis-path>/README.md`
+5. **Skip if file already exists**
+
+This directory holds codebase analysis reports produced by `init-scan` and the recovery flow. It is created during scaffolding so the directory structure is complete from the start, even though no analysis report exists yet for a new project.
+
+### Step 7: Verify
 
 Confirm all expected files exist:
 - `.platonic.yml` — **only if overrides or namespaces were requested**; absent is the normal case
@@ -100,6 +111,7 @@ Confirm all expected files exist:
 - `<impl-path>/README.md`
 - `<impl-path>/<namespace>/` — for each declared namespace
 - `<drafts-path>/README.md`
+- `<analysis-path>/README.md`
 
 Report any files that were skipped (already existed) vs. newly created. Note whether `.platonic.yml` was created or skipped, and list the declared namespaces with their prefixes.
 

@@ -73,18 +73,34 @@ Phase 3 → Spec Compliance Review (verify code against RFCs and guides)
 
 Each phase optionally enters BRAINSTORM mode for structured design exploration and validation.
 
+### Recommended `.platonic/` Folder Structure
+
+All Platonic artifacts live under a single project-root `.platonic/` directory:
+
+```
+.platonic/
+├── analysis/   # Codebase analysis reports (init-scan, recovery flow) — inputs to spec recovery
+├── drafts/     # Design drafts of specs (BRAINSTORM mode, Phase 1/2) — pre-RFC exploration
+├── specs/      # Formal RFC specifications — the authoritative "laws"
+└── impl/       # Implementation guides — translate RFCs into concrete designs
+```
+
+- **`analysis/`** holds structured scan findings produced when adopting Platonic Coding for an existing codebase. These are inputs to spec recovery, not specs themselves.
+- **`drafts/`** holds exploratory design documents produced in BRAINSTORM mode before an RFC exists — the forward-design counterpart to `analysis/` (which analyzes existing code).
+- **`specs/`** and **`impl/`** hold the formal RFCs and implementation guides respectively. Namespace subdirectories mirror under both for multi-service projects.
+
 ### Auto-Detection
 
 The skill automatically detects your **intent** and **project state**, then suggests the next step:
 
 - **Request mentions brainstorm / discuss / investigate / explore / deep analysis?** → Enter BRAINSTORM mode (design exploration first), then hand off to Phase 1 or 2
-- **No Platonic infrastructure** (no `.platonic.yml` **and** no `.platonic/specs/`)? → Initialize (`init-scaffold`) or start the recovery flow (`init-scan` → recovery operations)
+- **No Platonic infrastructure** (no `.platonic.yml` **and** no `.platonic/specs/`)? → Initialize (`init-scaffold`) or start the recovery flow (`init-scan` → analysis report in `.platonic/analysis/` → recovery operations)
 - **Has design drafts but no RFCs?** → Run Phase 1 (RFC Specification)
 - **Has RFCs but no implementation guides?** → Run Phase 2 (Implementation)
 - **Has RFCs and implementation guides?** → Resume Phase 2 implementation or run Phase 3 review, depending on completeness
 - **State is ambiguous?** → Resume the current phase or ask whether you want refine / implement / review
 
-**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.) and uses built-in default paths (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`). A `.platonic.yml` is only needed to override defaults or set custom spec stages.
+**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.) and uses built-in default paths (`.platonic/analysis`, `.platonic/drafts`, `.platonic/specs`, `.platonic/impl`). A `.platonic.yml` is only needed to override defaults or set custom spec stages.
 
 Prefer canonical operation names when overriding auto-detection: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`
 

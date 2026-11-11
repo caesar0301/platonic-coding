@@ -1,9 +1,9 @@
 ---
 name: platonic-coding
-description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in. Use when the user says "platonic coding", "brainstorm", "discuss", "investigate", "explore design", "spec-driven development", "RFC", "specs", "init-scaffold", "init-scan", "init-recover", "specs-refine", "impl-full", "spec compliance review", or "workflow".
+description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in. Artifacts live under the project-root `.platonic/` directory (analysis, drafts, specs, impl). Use when the user says "platonic coding", "brainstorm", "discuss", "investigate", "explore design", "spec-driven development", "RFC", "specs", "init-scaffold", "init-scan", "init-recover", "specs-refine", "impl-full", "spec compliance review", or "workflow".
 license: MIT
 metadata:
-  version: "3.1.0"
+  version: "3.2.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -52,7 +52,24 @@ Before inspecting project state, scan the user's natural-language request for **
 - RFCs but no guides → Phase 2 (implementation)
 - Guides + code → Phase 3 (review) or resume Phase 2
 
-**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`). A `.platonic.yml` is only needed to override defaults, set custom spec stages, or declare namespaces (multi-service projects).
+**Note**: `.platonic.yml` is optional. The skill auto-detects project metadata (name, language, framework) from host manifests and uses built-in default paths (`.platonic/analysis`, `.platonic/drafts`, `.platonic/specs`, `.platonic/impl`). A `.platonic.yml` is only needed to override defaults, set custom spec stages, or declare namespaces (multi-service projects).
+
+### Recommended `.platonic/` Folder Structure
+
+```
+.platonic/
+├── analysis/   # Codebase analysis reports (from init-scan, recovery flow)
+├── drafts/     # Design drafts of specs (from BRAINSTORM mode, Phase 1/2)
+├── specs/      # Formal RFC specifications
+└── impl/       # Implementation guides (translate RFCs into concrete designs)
+```
+
+- **`analysis/`** — structured scan findings and analysis reports produced when adopting Platonic Coding for an existing codebase (`init-scan` → `init-recover-*`). These are inputs to spec recovery, not specs themselves. Reports are named `YYYY-MM-DD-<topic>-analysis.md`.
+- **`drafts/`** — exploratory design documents produced in BRAINSTORM mode before an RFC exists. The forward-design counterpart to `analysis/` (which analyzes existing code). Drafts are named `YYYY-MM-DD-<topic>-design.md`.
+- **`specs/`** — formalized RFC specifications (the authoritative "laws").
+- **`impl/`** — implementation guides that translate RFCs into concrete, project-specific designs.
+
+All four live under a single project-root `.platonic/` directory so Platonic artifacts stay self-contained and out of the user-facing documentation tree. Namespace subdirectories mirror under `specs/` and `impl/` (`.platonic/specs/<ns>/`, `.platonic/impl/<ns>/`).
 
 **Override** with canonical operations: `brainstorm`, `init-scaffold`, `init-scan`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`.
 
@@ -82,14 +99,14 @@ Phases run sequentially (full workflow) or independently (explicit invocation). 
 ## Operation Modes
 
 ### BRAINSTORM Mode
-Structured design exploration through collaborative dialogue. Produces an approved design draft (`.platonic/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved.
+Structured design exploration through collaborative dialogue. Produces an approved design draft (`.platonic/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved. When exploring an existing codebase, BRAINSTORM mode may also produce an analysis report (`.platonic/analysis/`) to ground the design in the current structure.
 
 **Examples**: `brainstorm the message queue design`, `discuss how auth should work`, `investigate options for caching`.
 
 ### INIT Mode
-Bootstrap Platonic Coding infrastructure. Operations: `init-scaffold`, `init-scan`, `init-plan-modular-specs`, `init-recover-*`.
+Bootstrap Platonic Coding infrastructure. Operations: `init-scaffold`, `init-scan` (writes analysis report to `.platonic/analysis/`), `init-plan-modular-specs`, `init-recover-*`.
 
-**Note**: `init-scaffold` creates directories and templates but does **not** create `.platonic.yml` by default — project metadata is auto-detected from host manifests and default paths are used. A `.platonic.yml` is only created when the user explicitly requests non-default paths or custom spec stages.
+**Note**: `init-scaffold` creates directories and templates but does **not** create `.platonic.yml` by default — project metadata is auto-detected from host manifests and default paths are used. A `.platonic.yml` is only created when the user explicitly requests non-default paths or custom spec stages. The scaffold creates all four default subdirectories: `analysis/`, `drafts/`, `specs/`, `impl/`.
 
 **Examples**: `init-scaffold for project "Acme"`, `init-scan then recover specs`.
 
@@ -136,6 +153,7 @@ The menu leads with a recommendation based on what was found. The user picks by 
 
 | Artifact | Path | Naming |
 |----------|------|--------|
+| Analysis reports | `.platonic/analysis/` | `YYYY-MM-DD-<topic>-analysis.md` |
 | Drafts | `.platonic/drafts/` | `YYYY-MM-DD-<topic>-design.md` |
 | RFCs | `.platonic/specs/` | `RFC-NNN-<name>.md` (`NNN` = exactly 3 digits; strict sequence) |
 | Guides | `.platonic/impl/` | `IG-XXX-<name>.md` (`XXX` = exactly 3 digits; strict sequence) |

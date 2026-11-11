@@ -13,7 +13,7 @@ Detailed operation guide for Platonic Coding skill.
 | Operation | Purpose |
 |-----------|---------|
 | `init-scaffold` | Create directories, config, templates |
-| `init-scan` | Analyze existing codebase |
+| `init-scan` | Analyze existing codebase → persist analysis report to `.platonic/analysis/` |
 | `init-plan-modular-specs` | Propose RFC dependency graph |
 | `init-recover-conceptual` | Generate conceptual RFC from code |
 | `init-recover-architecture` | Generate architecture RFCs from code |
@@ -66,8 +66,8 @@ Intent keywords in request? (brainstorm, discuss, investigate, explore,
 Otherwise, inspect project state:
 
 No Platonic infrastructure (no .platonic.yml AND no .platonic/specs/) ?
-  → Has code? → recovery flow (init-scan → recover)
-  → No code? → init-scaffold
+  → Has code? → recovery flow (init-scan → analysis report in .platonic/analysis/ → recover)
+  → No code? → init-scaffold (creates analysis/, drafts/, specs/, impl/)
 
 Has specs but no RFCs?
   → Has drafts? → Phase 1 (draft → RFC)
@@ -83,7 +83,21 @@ Has RFCs + guides?
 Ambiguous? → Ask or resume current phase
 ```
 
-**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`.platonic/specs`, `.platonic/impl`, `.platonic/drafts`) are used unless overridden in `.platonic.yml`. The presence of `.platonic/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized. Create `.platonic.yml` only to override paths, set custom spec stages, or declare namespaces.
+**Note**: `.platonic.yml` is optional. Project metadata (name, language, framework) is auto-detected from host manifests (`Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.). Default paths (`.platonic/analysis`, `.platonic/drafts`, `.platonic/specs`, `.platonic/impl`) are used unless overridden in `.platonic.yml`. The presence of `.platonic/specs/` (with Platonic files like `rfc-history.md`) is the primary signal that the project is already initialized. Create `.platonic.yml` only to override paths, set custom spec stages, or declare namespaces.
+
+### Recommended `.platonic/` Folder Structure
+
+```
+.platonic/
+├── analysis/   # Codebase analysis reports (init-scan, recovery flow) — inputs to spec recovery
+├── drafts/     # Design drafts of specs (BRAINSTORM mode, Phase 1/2) — pre-RFC exploration
+├── specs/      # Formal RFC specifications — the authoritative "laws"
+└── impl/       # Implementation guides — translate RFCs into concrete designs
+```
+
+- **`analysis/`** holds structured scan findings produced when adopting Platonic Coding for an existing codebase. Reports are named `YYYY-MM-DD-<topic>-analysis.md`. These are inputs to `init-plan-modular-specs` and the `init-recover-*` operations, not specs themselves.
+- **`drafts/`** holds exploratory design documents produced in BRAINSTORM mode before an RFC exists — the forward-design counterpart to `analysis/` (which analyzes existing code). Drafts are named `YYYY-MM-DD-<topic>-design.md`.
+- **`specs/`** and **`impl/`** hold the formal RFCs and implementation guides respectively. Namespace subdirectories mirror under both (`.platonic/specs/<ns>/`, `.platonic/impl/<ns>/`).
 
 **Override**: Use canonical operations (`brainstorm`, `init-scaffold`, `specs-refine`, `impl-full`, `review`, `workflow --phase <N>`).
 
@@ -108,6 +122,7 @@ Templates use `{{PLACEHOLDER}}` syntax. Common variables:
 - `{{SPECS_PATH}}` — Specs directory path (default: `.platonic/specs`; from `.platonic.yml` if present)
 - `{{IMPL_PATH}}` — Implementation guides path (default: `.platonic/impl`; from `.platonic.yml` if present)
 - `{{DRAFTS_PATH}}` — Design drafts path (default: `.platonic/drafts`; from `.platonic.yml` if present)
+- `{{ANALYSIS_PATH}}` — Analysis reports path (default: `.platonic/analysis`; from `.platonic.yml` if present)
 
 ### Namespace-Level
 - `{{NAMESPACE_NAME}}` — Namespace name (directory and declaration key)
@@ -138,6 +153,10 @@ Single-namespace mode (default — no `namespaces:` declared):
 <project-root>/
 ├── .platonic.yml                   # OPTIONAL — only when overriding defaults, custom stages, or declaring namespaces
 ├── .platonic/
+│   ├── analysis/                   # Codebase analysis reports (init-scan, recovery flow)
+│   │   ├── README.md
+│   │   └── 2026-11-11-codebase-analysis.md
+│   │
 │   ├── specs/                      # RFC specifications (default path)
 │   │   ├── rfc-history.md           # Change history (global)
 │   │   ├── rfc-index.md             # Index (flat table, or rollup in namespaced mode)
@@ -163,6 +182,9 @@ Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
 <project-root>/
 ├── .platonic.yml                   # Declares namespaces: name + prefix (+ optional paths)
 ├── .platonic/
+│   ├── analysis/                   # Codebase analysis reports (init-scan, recovery flow)
+│   │   └── 2026-11-11-codebase-analysis.md
+│   │
 │   ├── specs/
 │   │   ├── rfc-history.md           # Global timeline (partition mappings recorded here)
 │   │   ├── rfc-index.md             # One-screen ROLLUP: namespace summary + root RFC table

@@ -32,6 +32,7 @@ FINISHED
 
 ## Default Paths
 
+- Analysis reports: `.platonic/analysis/`
 - Design drafts: `.platonic/drafts/`
 - RFC specs: `.platonic/specs/`
 - Implementation guides: `.platonic/impl/`

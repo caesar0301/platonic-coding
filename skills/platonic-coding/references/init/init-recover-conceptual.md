@@ -10,7 +10,7 @@ Produce a Draft RFC that captures the system's vision, principles, taxonomy, and
 
 | Input | Source |
 |-------|--------|
-| Scan synthesis | From scan-project.md |
+| Scan synthesis | From the persisted analysis report at `.platonic/analysis/YYYY-MM-DD-<topic>-analysis.md` (written by `init-scan`) |
 | Confirmed RFC plan | From plan-modular-specs.md |
 | RFC number | From plan (default: 001) |
 | Spec-kind template | `assets/specs/template-conceptual-design.md` |

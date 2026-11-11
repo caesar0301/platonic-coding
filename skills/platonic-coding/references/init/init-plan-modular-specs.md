@@ -10,7 +10,7 @@ Design a small, focused graph of Draft RFCs that captures the existing system's 
 
 | Input | Source |
 |-------|--------|
-| Scan synthesis | From scan-project.md Phase 5 |
+| Scan synthesis | From the persisted analysis report at `.platonic/analysis/YYYY-MM-DD-<topic>-analysis.md` (written by `init-scan`) |
 | Max RFC count | Default: 5. User may override |
 | RFC numbering start | Default: `001` (exactly three numeric characters). Continue in strict sequence unless the user explicitly overrides |
 

@@ -2,6 +2,41 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 3.2.0 — `.platonic/analysis/` Directory + Persisted Scan Reports (2026-11-11)
+
+**Added:** A fourth default subdirectory `.platonic/analysis/` to hold codebase analysis reports, completing the recommended `.platonic/` folder structure: `analysis/`, `drafts/`, `specs/`, `impl/`.
+
+- **`analysis/`** — structured scan findings and analysis reports produced when adopting Platonic Coding for an existing codebase (`init-scan` → `init-recover-*`). These are inputs to spec recovery, not specs themselves. Reports are named `YYYY-MM-DD-<topic>-analysis.md`.
+- **`drafts/`** — design drafts of specs (from BRAINSTORM mode). The forward-design counterpart to `analysis/` (which analyzes existing code).
+- **`specs/`** — formal RFC specifications.
+- **`impl/`** — implementation guides.
+
+**Changed:** `init-scan` now **persists** its scan synthesis as a structured analysis report to `.platonic/analysis/YYYY-MM-DD-<topic>-analysis.md` instead of keeping it in-memory only. Downstream operations (`init-plan-modular-specs`, `init-recover-conceptual`, `init-recover-architecture`, `init-recover-impl-interface`) now read from this persisted report instead of re-running the scan. This makes the recovery flow resumable and gives the user a reviewable artifact.
+
+**Changed:** `init-scaffold` now creates the `analysis/` directory (with a README from `template-analysis-readme.md`) alongside `drafts/`, `specs/`, and `impl/`, so the full folder structure exists from project creation.
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/SKILL.md` — version 3.2.0; new "Recommended `.platonic/` Folder Structure" section; `analysis/` in default paths table; INIT mode notes analysis output
+- ✅ `skills/platonic-coding/references/REFERENCE.md` — `analysis/` in default paths, decision tree, file structure diagrams (single + namespaced); `{{ANALYSIS_PATH}}` template variable; `init-scan` purpose updated
+- ✅ `skills/platonic-coding/references/init/init-scaffold.md` — new Step 6 (Create Analysis Directory); analysis path in inputs; verify checklist updated
+- ✅ `skills/platonic-coding/references/init/init-scan.md` — analysis path in inputs; Phase 5 writes report; Output section persists to `.platonic/analysis/`
+- ✅ `skills/platonic-coding/references/init/init-plan-modular-specs.md` — scan synthesis sourced from persisted analysis report
+- ✅ `skills/platonic-coding/references/init/init-recover-conceptual.md`, `init-recover-architecture.md`, `init-recover-impl-interface.md` — scan synthesis sourced from persisted analysis report
+- ✅ `skills/platonic-coding/assets/templates/template-platonic.yml` — `analysis` path in defaults comment and `paths:` override section
+- ✅ `skills/platonic-coding/assets/templates/template-analysis-readme.md` — **new**: README template for the analysis directory
+- ✅ `skills/platonic-coding/references/workflow/workflow-overview.md` — `analysis/` in default paths
+- ✅ `README.md` — `.platonic/` folder structure section; analysis in default paths and auto-detection
+- ✅ `.claude-plugin/marketplace.json` — version 3.2.0
+
+### Migration for existing projects
+
+Projects scaffolded before v3.2.0 do not have a `.platonic/analysis/` directory. To adopt:
+- Run `init-scaffold` again (it skips existing files and creates the missing `analysis/` directory + README), or
+- Create `.platonic/analysis/` manually.
+
+Existing recovery flows that relied on in-memory scan synthesis now persist the report — no data loss, just an additional artifact.
+
 ## Version 3.1.0 — Default Paths Moved Under `.platonic/` (2026-10-22)
 
 **Changed:** All default artifact paths moved from `docs/` into a single project-root `.platonic/` directory. This keeps Platonic artifacts self-contained and out of the project's user-facing documentation tree.

@@ -4,6 +4,7 @@
 # This file is OPTIONAL. Platonic Coding auto-detects project metadata
 # (name, language, framework) from host manifests (Cargo.toml, package.json,
 # pyproject.toml, go.mod, etc.) and uses built-in default paths:
+#   analysis: .platonic/analysis
 #   specs:   .platonic/specs
 #   impl:    .platonic/impl
 #   drafts:  .platonic/drafts
@@ -13,6 +14,7 @@
 
 # Override default artifact directories (uncomment and edit to use):
 # paths:
+#   analysis: ".platonic/analysis"        # Where codebase analysis reports live (init-scan, recovery)
 #   specs: ".platonic/specs"             # Where RFC specifications live
 #   impl: ".platonic/impl"              # Where implementation guides live
 #   drafts: ".platonic/drafts"           # Where Phase 1 design drafts live

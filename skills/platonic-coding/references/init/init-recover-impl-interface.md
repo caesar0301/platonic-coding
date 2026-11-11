@@ -17,7 +17,7 @@ Produce Draft RFCs that capture cross-boundary API contracts, naming conventions
 
 | Input | Source |
 |-------|--------|
-| Scan synthesis | From scan-project.md |
+| Scan synthesis | From the persisted analysis report at `.platonic/analysis/YYYY-MM-DD-<topic>-analysis.md` (written by `init-scan`) |
 | Confirmed RFC plan | From plan-modular-specs.md |
 | Architecture Design RFCs | Generated in recover-architecture.md |
 | RFC numbers | From plan |
