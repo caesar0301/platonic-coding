@@ -46,3 +46,12 @@ Use platonic-coding workflow to proceed with the draft at .platonic/drafts/<name
 ```
 
 This converts the draft into a formal RFC specification within Phase 1.
+
+## After a Draft is Formalized (Draft Retirement Gate)
+
+A design draft is a **transient input** — once it has been formalized into an RFC (or an implementation guide), its content lives in the spec tree. At the **Draft Retirement Gate** the skill offers (via `ask_user`) to:
+
+- **Remove the consumed draft file(s)** from this directory, and
+- **Cleanse every reference** to those drafts across the project (RFC/IG metadata, supporting docs, indexes, other drafts, config, and source comments), repointing provenance to the new RFC/IG ID.
+
+Removal and reference cleansing are atomic and verified (zero remaining references). You can also choose to **keep** the drafts for traceability. The gate is never auto-skipped by quick-pass routing. See `references/workflow/draft-retirement.md` for the full procedure.

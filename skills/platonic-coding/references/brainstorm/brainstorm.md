@@ -68,6 +68,12 @@ Draft self-review (fix inline)
 Post-draft routing menu (see below)
         │
         ▼
+Formalize draft → RFC / IG (+ specs-refine)
+        │
+        ▼
+Draft Retirement Gate (remove draft + cleanse refs, ask_user)
+        │
+        ▼
 Hand off to Phase 1 (RFC) or Phase 2 (impl)
 ```
 
@@ -158,8 +164,19 @@ Present the menu as a numbered list with a one-line description per option, and 
 
 - Paths 3 and 5 require a related existing RFC/IG — only offer them if you actually found one. State which one (e.g., "update RFC-007-message-queue").
 - Path 2 (quick pass) still respects the IMPL mode's own guardrails: if scope turns out larger than expected mid-flight, pause and surface it rather than barreling through. "Quick pass" is a consent to skip *confirmation* gates, not a license to skip *validation*.
-- After the chosen path completes its first hop (RFC created/updated, or IG created/updated), the normal phase handoff resumes — the user is not locked into the whole chain unless they picked path 2.
+- After the chosen path completes its first hop (RFC created/updated, or IG created/updated), run the **Draft Retirement Gate** before the phase handoff (see below) — the draft has been consumed and may be removed with its references cleansed. Then the normal phase handoff resumes — the user is not locked into the whole chain unless they picked path 2.
 - Whatever the choice, the terminal handoff lands inside Platonic Coding's existing phases (1 or 2), never an external implementation skill.
+
+## Draft Retirement Gate (after formalization)
+
+Paths **1–4** (and path **5** when a draft was folded into an IG revision) convert the approved draft into a formal spec. Once that conversion succeeds and `specs-refine` has run, the draft has served its purpose. Before the phase handoff, run the **Draft Retirement Gate** (`references/workflow/draft-retirement.md`):
+
+- **Call `ask_user`** to offer: remove the consumed draft(s) **and** cleanse every reference to them (recommended), keep the draft but cleanse references, keep as-is, or select specific drafts (for merged/partial conversions).
+- Removing the file and cleansing its references are **one atomic operation** — never delete a draft while other files still link to it. Provenance is repointed to the formal RFC/IG ID, not left as a dangling link.
+- Quick-pass / "no confirmations" does **not** auto-delete (destructive): default to "keep as-is" and state that retirement was skipped.
+- Path 3 / path 5 (updating an existing RFC/IG) may only partially consume the draft — default to the "select drafts" option so un-consumed exploration notes are not lost.
+
+The gate's verification (zero remaining references + `specs-validate-consistency` clean) is the last check before handoff.
 
 ## Key Principles
 

@@ -48,9 +48,11 @@ Detailed operation guide for Platonic Coding skill.
 ### WORKFLOW (`references/workflow/`)
 | Phase | Activities |
 |-------|------------|
-| 1 | Optional BRAINSTORM mode → draft → RFC → `specs-refine` |
+| 1 | Optional BRAINSTORM mode → draft → RFC → `specs-refine` → Draft Retirement Gate |
 | 2 | Optional BRAINSTORM mode → `impl-full` |
 | 3 | `review` → compliance report |
+
+`draft-retirement` (in `references/workflow/`) is the gate that runs after a draft is formalized into an RFC/IG: it offers to remove the consumed draft(s) and cleanse all references to them. It is invoked from Phase 1 and from BRAINSTORM post-draft routing, not as a standalone canonical operation.
 
 ---
 
@@ -70,7 +72,7 @@ No Platonic infrastructure (no .platonic.yml AND no .platonic/specs/) ?
   → No code? → init-scaffold (creates analysis/, drafts/, specs/, impl/)
 
 Has specs but no RFCs?
-  → Has drafts? → Phase 1 (draft → RFC)
+  → Has drafts? → Phase 1 (draft → RFC → Draft Retirement Gate)
   → No drafts? → Phase 1 (start fresh, optional BRAINSTORM mode)
 
 Has RFCs but no guides?
@@ -232,6 +234,8 @@ Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
 | Duplicate or skipped RFC/IG number | List existing numbers in the scope (root or namespace), propose the next sequential number, confirm with the user before renaming |
 | `specs-partition` interrupted mid-migration | Check `rfc-history.md` for the recorded old-ID → new-ID mapping; finish the remaining renames manually (or re-run `specs-partition` on the untouched files), then run `specs-generate-index` |
 | `.platonic/specs/` exists but is empty | Treat as Phase 1 start (not as an initialized project): ask the user whether to scaffold templates via `init-scaffold` or begin drafting a fresh RFC |
+| Dangling links to a removed design draft | Run the Draft Retirement Gate (`references/workflow/draft-retirement.md`): scan for `-design.md` / `drafts/` references, repoint provenance to the RFC/IG ID, and remove stale links |
+| A draft was deleted but other docs still cite it | Re-run the reference-cleansing scan from the Draft Retirement Gate; removal and cleansing must be atomic and verified (zero remaining references) |
 
 ---
 
@@ -242,4 +246,4 @@ Namespaced mode (multi-service; `namespaces:` declared in `.platonic.yml`):
 - `references/specs/` — Specification management
 - `references/impl/` — Implementation
 - `references/review/` — Review
-- `references/workflow/` — Workflow orchestration
+- `references/workflow/` — Workflow orchestration, incl. `draft-retirement.md` (Draft Retirement Gate)

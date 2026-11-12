@@ -13,12 +13,13 @@ Produce RFC (Status: Draft) and refine via `specs-refine`. Optional: use BRAINST
 3. **Determine RFC index**: If the project declares namespaces in `.platonic.yml`, first determine the target namespace with the user (root-level for cross-cutting RFCs, or one of the declared namespaces for service-specific ones). Suggest the next sequential `NNN` within that scope (exactly three numeric characters, zero-padded; root scope uses `RFC-NNN`, namespace scope uses `RFC-<PREFIX>-NNN` with the namespace's declared prefix). **Call `ask_user`** to confirm the index with the user. Use a non-sequential number only if the user explicitly requests it.
 4. **Generate RFC**: Formal RFC following `assets/templates/template-rfc-standard.md`. Write to `.platonic/specs/RFC-NNN-<name>.md` (root) or `.platonic/specs/<ns>/RFC-<PREFIX>-NNN-<name>.md` (namespaced)
 5. **Refine**: Run `specs-refine` (updates history, index — rollup + local indexes, namings; validates consistency)
+6. **Draft Retirement Gate**: The draft has now been formalized. Run `references/workflow/draft-retirement.md` — **call `ask_user`** to offer removing the consumed draft(s) and cleansing all references to them (recommended), or keeping them. Removal + reference cleansing are atomic; provenance is repointed to the new RFC ID. Quick-pass never auto-deletes. Verify zero remaining references before handoff.
 
 ## Output
 
 - RFC in `.platonic/specs/` (Status: Draft)
 - Updated supporting files
-- Optional: Design draft in `.platonic/drafts/`
+- Design draft in `.platonic/drafts/` — **retired** (removed + references cleansed) or explicitly kept, per the Draft Retirement Gate
 
 ## Handoff to Phase 2
 

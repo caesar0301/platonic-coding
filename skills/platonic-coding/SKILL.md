@@ -3,7 +3,7 @@ name: platonic-coding
 description: Intelligent orchestrator for the Platonic Coding lifecycle. Auto-detects the user's intent and project state, then routes to the right next step—brainstorm a design, initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. Single entry point for the complete specification-driven development lifecycle, with structured design exploration built in. Artifacts live under the project-root `.platonic/` directory (analysis, drafts, specs, impl). Use when the user says "platonic coding", "brainstorm", "discuss", "investigate", "explore design", "spec-driven development", "RFC", "specs", "init-scaffold", "init-scan", "init-recover", "specs-refine", "impl-full", "spec compliance review", or "workflow".
 license: MIT
 metadata:
-  version: "3.2.0"
+  version: "3.3.0"
   author: "Xiaming Chen"
   category: "workflow"
   replaces:
@@ -65,7 +65,7 @@ Before inspecting project state, scan the user's natural-language request for **
 ```
 
 - **`analysis/`** — structured scan findings and analysis reports produced when adopting Platonic Coding for an existing codebase (`init-scan` → `init-recover-*`). These are inputs to spec recovery, not specs themselves. Reports are named `YYYY-MM-DD-<topic>-analysis.md`.
-- **`drafts/`** — exploratory design documents produced in BRAINSTORM mode before an RFC exists. The forward-design counterpart to `analysis/` (which analyzes existing code). Drafts are named `YYYY-MM-DD-<topic>-design.md`.
+- **`drafts/`** — exploratory design documents produced in BRAINSTORM mode before an RFC exists. The forward-design counterpart to `analysis/` (which analyzes existing code). Drafts are named `YYYY-MM-DD-<topic>-design.md`. A draft is a transient input: once formalized into an RFC/IG, the **Draft Retirement Gate** (`references/workflow/draft-retirement.md`) offers to remove it and cleanse every reference to it, so the spec tree stays free of dangling draft links.
 - **`specs/`** — formalized RFC specifications (the authoritative "laws").
 - **`impl/`** — implementation guides that translate RFCs into concrete, project-specific designs.
 
@@ -99,7 +99,7 @@ Phases run sequentially (full workflow) or independently (explicit invocation). 
 ## Operation Modes
 
 ### BRAINSTORM Mode
-Structured design exploration through collaborative dialogue. Produces an approved design draft (`.platonic/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved. When exploring an existing codebase, BRAINSTORM mode may also produce an analysis report (`.platonic/analysis/`) to ground the design in the current structure.
+Structured design exploration through collaborative dialogue. Produces an approved design draft (`.platonic/drafts/`), then presents **post-draft alternative paths** (see below). Entered by intent keywords, or explicitly. No code, RFC, or scaffolding is produced until the design is approved. When exploring an existing codebase, BRAINSTORM mode may also produce an analysis report (`.platonic/analysis/`) to ground the design in the current structure. After the chosen path formalizes the draft into an RFC/IG, the **Draft Retirement Gate** offers to remove the consumed draft and cleanse its references.
 
 **Examples**: `brainstorm the message queue design`, `discuss how auth should work`, `investigate options for caching`.
 
@@ -148,6 +148,8 @@ After BRAINSTORM mode produces an approved design draft, the skill does **not** 
 6. **Create a new IG** — generate a fresh IG in the source RFC's scope (`IG-XXX` or `IG-<PREFIX>-XXX`) via `impl-create-guide` (next sequential number within that scope unless user overrides)
 
 The menu leads with a recommendation based on what was found. The user picks by number; each path maps to existing canonical operations.
+
+**After formalization (Draft Retirement Gate)**: once a path consumes the draft into an RFC or IG, the skill **calls `ask_user`** to offer retiring the draft — removing the consumed draft file(s) and cleansing all references to them across the project (recommended), or keeping them. Removal and reference cleansing are atomic and verified; provenance is repointed to the new RFC/IG ID. This gate is never auto-skipped by quick-pass routing. Full procedure: `references/workflow/draft-retirement.md`.
 
 ## Default Paths & Templates
 

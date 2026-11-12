@@ -50,7 +50,7 @@ npx skills add caesar0301/platonic-coding
 - **Phase 1 (RFC Specification)**: BRAINSTORM mode helps explore requirements, compare approaches, and validate design before RFC formalization
 - **Phase 2 (Implementation)**: BRAINSTORM mode helps refine architecture decisions and validate implementation approach against RFC constraints
 
-It activates automatically when your request signals exploration (e.g., "brainstorm", "discuss", "investigate", "deep analysis"), or when you invoke it explicitly. After a design draft is approved, the skill presents alternative paths to continue: pause at each phase gate, quick-pass multiple phases for a fast fix, or update vs. create an RFC/IG.
+It activates automatically when your request signals exploration (e.g., "brainstorm", "discuss", "investigate", "deep analysis"), or when you invoke it explicitly. After a design draft is approved, the skill presents alternative paths to continue: pause at each phase gate, quick-pass multiple phases for a fast fix, or update vs. create an RFC/IG. Once a draft is formalized, the **Draft Retirement Gate** offers to remove the consumed draft and cleanse every reference to it, keeping the spec tree free of dangling draft links.
 
 ## Available Skills
 
@@ -66,7 +66,7 @@ Platonic Coding follows a **three-phase workflow** (after initialization) with i
 
 ```
 Init    → Bootstrap infrastructure (new project or recovery flow for existing code)
-Phase 1 → RFC Specification (optional BRAINSTORM mode → design draft → RFC → specs-refine)
+Phase 1 → RFC Specification (optional BRAINSTORM mode → design draft → RFC → specs-refine → Draft Retirement Gate)
 Phase 2 → Implementation (optional BRAINSTORM mode → impl-full: guide + code + tests)
 Phase 3 → Spec Compliance Review (verify code against RFCs and guides)
 ```
@@ -86,7 +86,7 @@ All Platonic artifacts live under a single project-root `.platonic/` directory:
 ```
 
 - **`analysis/`** holds structured scan findings produced when adopting Platonic Coding for an existing codebase. These are inputs to spec recovery, not specs themselves.
-- **`drafts/`** holds exploratory design documents produced in BRAINSTORM mode before an RFC exists — the forward-design counterpart to `analysis/` (which analyzes existing code).
+- **`drafts/`** holds exploratory design documents produced in BRAINSTORM mode before an RFC exists — the forward-design counterpart to `analysis/` (which analyzes existing code). Drafts are transient: after formalization, the Draft Retirement Gate can remove the consumed draft and cleanse all references to it.
 - **`specs/`** and **`impl/`** hold the formal RFCs and implementation guides respectively. Namespace subdirectories mirror under both for multi-service projects.
 
 ### Auto-Detection

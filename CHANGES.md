@@ -2,6 +2,26 @@
 
 This document summarizes the changes made to align the platonic-coding project with the [Agent Skills](https://agentskills.io) standard.
 
+## Version 3.3.0 — Draft Retirement Gate (2026-11-12)
+
+**Added:** A **Draft Retirement Gate** at the point where a design draft is converted into a formal spec (RFC) or implementation guide (IG). Previously, drafts lingered in `.platonic/drafts/` after formalization and any links to them became dangling. The gate makes draft cleanup an explicit, user-confirmed step.
+
+- **New gate** (`references/workflow/draft-retirement.md`): after an RFC/IG is generated and `specs-refine` completes, the skill **calls `ask_user`** to offer (recommended) removing the consumed draft file(s) and cleansing all references to them, or keeping them.
+- **Reference cleansing**: scans the RFC/IG metadata and body, supporting docs (`rfc-history.md`, `rfc-index.md`, `rfc-namings.md`), remaining drafts, `.platonic.yml`, and source comments for `-design.md` / `drafts/` references. Provenance is repointed to the new RFC/IG ID; stale links are removed. Removal and cleansing are **atomic** and **verified** (zero remaining references) before handoff.
+- **Guardrails**: never auto-delete (quick-pass routing does not skip this gate); only drafts actually consumed by the formalization are eligible; `drafts/README.md` is preserved; keep a `DRAFT_RETIREMENT` event in `rfc-history.md` for traceability; git-aware removal.
+
+### Updated Files
+
+- ✅ `skills/platonic-coding/references/workflow/draft-retirement.md` — **new**: full gate procedure (eligibility, `ask_user` question, cleanse rules, verification, guardrails)
+- ✅ `skills/platonic-coding/references/brainstorm/brainstorm.md` — post-draft routing rule + process-flow step for the gate
+- ✅ `skills/platonic-coding/references/workflow/workflow-phase-1.md` — Step 6 (Draft Retirement Gate); Output now notes retired-or-kept drafts
+- ✅ `skills/platonic-coding/references/workflow/workflow-overview.md` — phase flow, "When to Ask the User", mode table, reference-file list
+- ✅ `skills/platonic-coding/SKILL.md` — version 3.3.0; `drafts/` description, BRAINSTORM mode, Post-Draft Alternative Paths note
+- ✅ `skills/platonic-coding/references/REFERENCE.md` — decision tree, workflow table, troubleshooting rows, reference-file list
+- ✅ `skills/platonic-coding/assets/templates/template-drafts-readme.md` — "After a Draft is Formalized" section
+- ✅ `README.md` — BRAINSTORM overview, folder structure, workflow diagram
+- ✅ `.claude-plugin/marketplace.json` — version 3.3.0
+
 ## Version 3.2.0 — `.platonic/analysis/` Directory + Persisted Scan Reports (2026-11-11)
 
 **Added:** A fourth default subdirectory `.platonic/analysis/` to hold codebase analysis reports, completing the recommended `.platonic/` folder structure: `analysis/`, `drafts/`, `specs/`, `impl/`.

@@ -21,6 +21,7 @@ Phase 1: RFC Specification
     → Create design draft (.platonic/drafts/)
     → Generate RFC from draft
     → SPECS mode: specs-refine (validate + update supporting files)
+    → Draft Retirement Gate (remove consumed draft + cleanse refs; ask_user)
 Phase 2: Implementation
     → Optional: BRAINSTORM mode (design refinement)
     → IMPL mode: impl-full (spec analysis → guide (incl. coding plan) → code + tests)
@@ -62,7 +63,7 @@ Brainstorming is an **internal mode** of this skill (formerly the standalone `pl
 
 At every gate below, **call the `ask_user` tool** — do not write the question as plain text. Plain-text questions do not pause the loop; `ask_user` pauses the loop and resumes on the same turn once the user answers.
 
-- **Phase 1**: RFC number/index for the new or updated RFC, if not specified. Whether to use BRAINSTORM mode for conceptual design.
+- **Phase 1**: RFC number/index for the new or updated RFC, if not specified. Whether to use BRAINSTORM mode for conceptual design. Whether to retire the consumed design draft (remove it + cleanse references) after the RFC is formalized — see `references/workflow/draft-retirement.md`.
 - **Phase 2**: RFC number/index for which to implement, if not specified. Whether to use BRAINSTORM mode for design refinement. The IMPL mode operation handles its own confirmation gates for the impl guide (which includes the coding plan).
 - **Phase 3**: Which code paths and RFC(s) to review, if not specified.
 
@@ -70,7 +71,7 @@ At every gate below, **call the `ask_user` tool** — do not write the question 
 
 | Phase | Optional Integration | Mode / Action |
 |-------|---------------------|---------------|
-| 1 | BRAINSTORM mode | **SPECS mode** — draft → RFC → refine (validate + update supporting files) |
+| 1 | BRAINSTORM mode | **SPECS mode** — draft → RFC → refine (validate + update supporting files) → Draft Retirement Gate |
 | 2 | BRAINSTORM mode | **IMPL mode** — impl-full: spec analysis → impl guide (incl. coding plan) → code with tests |
 | 3 | — | **REVIEW mode** — review code against RFC specs and impl guides |
 
@@ -79,3 +80,4 @@ Read the phase-specific reference file before executing each phase:
 - `references/workflow/workflow-phase-1.md` — RFC Specification
 - `references/workflow/workflow-phase-2.md` — Implementation
 - `references/workflow/workflow-phase-3.md` — Spec Compliance Review
+- `references/workflow/draft-retirement.md` — Draft Retirement Gate (remove consumed drafts + cleanse references)
